@@ -25,14 +25,18 @@ float CompanhiaTaxis::getCapital() {
 	return capital;
 }
 
-/*vector<Clientes *> CompanhiaTaxis::getClientes()
- {return clientes;}*/
+vector<Cliente *> CompanhiaTaxis::getClientes() const {
+	return clientes;
+}
 
-/*vector<Ocasionais> CompanhiaTaxis::getOcasionais()
- {return ocasionais;}*/
+vector<Ocasionais> CompanhiaTaxis::getOcasionais() const {
+	return ocasionais;
+}
 
-/*vector<Taxi *> CompanhiaTaxis::getTaxis_totais()
- {return taxis_totais;}
+vector<Taxi *> CompanhiaTaxis::getTaxisTotais() const {
+	return taxisTotais;
+}
 
- vector<Taxi *> CompanhiaTaxis::getTaxis_disponiveis()
- {return taxis_disponiveis;}*/
+vector<Taxi *> CompanhiaTaxis::getTaxisDisponiveis() const {
+	return taxisDisponiveis;
+}

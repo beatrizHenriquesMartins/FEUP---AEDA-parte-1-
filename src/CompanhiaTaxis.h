@@ -11,6 +11,7 @@
 #include <string>
 #include <vector>
 #include "Cliente.h"
+#include "Taxi.h"
 
 using namespace std;
 
@@ -20,21 +21,19 @@ private:
 	float capital;
 	vector<Cliente *> clientes;
 	vector<Ocasionais> ocasionais;
-	//vector<Taxi*> taxis_totais;    ?
-	//vector<Taxi*> taxis_disponiveis;    ?
+	vector<Taxi*> taxisTotais;
+	vector<Taxi*> taxisDisponiveis;
 
 public:
 	CompanhiaTaxis();
 	CompanhiaTaxis(string n, float c);
 	string getNome();
 	float getCapital();
-	//vector<Clientes *> getClientes();
-	//vector<Ocasionais> getOcasionais();
-	//vector<Taxi *> getTaxis_totais();
-	//vector<Taxi *> getTaxis_disponiveis();
+	vector<Cliente *> getClientes() const;
+	vector<Ocasionais> getOcasionais() const;
+	vector<Taxi *> getTaxisTotais() const;
+	vector<Taxi *> getTaxisDisponiveis() const;
 
 };
-
-
 
 #endif /* SRC_COMPANHIATAXIS_H_ */
