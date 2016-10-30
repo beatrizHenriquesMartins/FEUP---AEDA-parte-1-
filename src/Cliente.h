@@ -17,6 +17,8 @@ class Utente {
 	int NIF;
 public:
 	Utente(int nif);
+	int getNIF() const;
+	void setNIF(int nif);
 };
 
 class Ocasionais: Utente {
@@ -29,8 +31,17 @@ class Cliente: Utente {
 	string morada;
 	string email;
 	int numeroTelemovel;
+	//vector<Viagens> historicoViagens;
 public:
 	Cliente(string nC, string m, string mail, int nT, int nif);
+	string getNomeC() const;
+	string getMorada() const;
+	string getEmail() const;
+	int getNumeroTelemovel() const;
+	void setNomeC(string nC);
+	void setMorada(string m);
+	void setEmail(string mail);
+	void setNumeroTelemovel(int nT);
 };
 
 class Particular: Cliente {
