@@ -1,29 +1,31 @@
 /*
- * Empresa.h
+ * CompanhiaTaxis.h
  *
  *  Created on: 17/10/2016
  *      Author: Pedro Silva
  */
 
-#ifndef SRC_EMPRESA_H_
-#define SRC_EMPRESA_H_
+#ifndef SRC_COMPANHIATAXIS_H_
+#define SRC_COMPANHIATAXIS_H_
+
 #include <string>
 #include <vector>
+#include "Cliente.h"
 
 using namespace std;
 
-class Empresa {
+class CompanhiaTaxis {
 private:
 	string nome;
 	float capital;
-	//vector<Clientes *> clientes;
-	//vector<Ocasionais> ocasionais;   ?
+	vector<Cliente *> clientes;
+	vector<Ocasionais> ocasionais;
 	//vector<Taxi*> taxis_totais;    ?
 	//vector<Taxi*> taxis_disponiveis;    ?
 
 public:
-	Empresa();
-	Empresa(string n, float c);
+	CompanhiaTaxis();
+	CompanhiaTaxis(string n, float c);
 	string getNome();
 	float getCapital();
 	//vector<Clientes *> getClientes();
@@ -33,4 +35,6 @@ public:
 
 };
 
-#endif /* SRC_EMPRESA_H_ */
+
+
+#endif /* SRC_COMPANHIATAXIS_H_ */
