@@ -13,27 +13,34 @@
 #include <vector>
 
 #include "Data.h"
+#include "Percurso.h"
 
 using namespace std;
 
 class Viagem {
 private:
-	Data inicio;
-	string local_partida;
-	string local_destino;
-	int id_cliente;
+	Data dia;
+	string horaIn;
+	string horaOut;
+	Percurso deslocacao;
+	int idCliente;
 	double custo;
 	bool pago;
 public:
-	Viagem(Data data_in, string local_part, string local_dest, int cliente);
-	//Fun??o que adiciona e retira viagens dever?o ser implementadas na empresa de t?xis
+	Viagem(Data dia, string horaIn, string horaOut, Percurso & p1, int cliente);
+
 	//void alteraViagem();
-	Data getDatainicio() const;
-	void setDatainicio(string data);
+
+	Data getDia() const;
+	void setDia(int d, int m, int a);
+	string getHoraIn()const;
+	void setHoraIn(string hora);
+	string getHoraOut()const;
+	void setHoraOut(string hora);
 	string getPartida() const;
+	void setPartida(string localP, int dist1);
 	string getDestino() const;
-	void setPartida(string local);
-	void setDestino(string local);
+	void setDestino(string localD, int dist2);
 	void pagarViagem();
 	double getCustoViagem() const;
 };
