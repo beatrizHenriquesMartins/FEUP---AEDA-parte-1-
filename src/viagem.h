@@ -1,12 +1,20 @@
-#ifndef VIAGEM_H_
-#define VIAGEM_H_
+/*
+ * Viagem.h
+ *
+ *  Created on: 01/11/2016
+ *      Author: Diogo Pereira
+ */
+
+#ifndef SRC_VIAGEM_H_
+#define SRC_VIAGEM_H_
 
 #include <sstream>
 #include <string>
 #include <vector>
-#include "Data.h"
-using namespace std;
 
+#include "Data.h"
+
+using namespace std;
 
 class Viagem {
 private:
@@ -18,10 +26,8 @@ private:
 	double custo;
 	bool pago;
 public:
-	Viagem (string data_in, string local_part, string local_dest, int cliente);
-
-	//Função que adiciona e retira viagens deverão ser implementadas na empresa de táxis
-
+	Viagem(Data data_in, string local_part, string local_dest, int cliente);
+	//Fun??o que adiciona e retira viagens dever?o ser implementadas na empresa de t?xis
 	//void alteraViagem();
 	Data getDatainicio() const;
 	Data getDatafim() const;
@@ -34,6 +40,5 @@ public:
 	void pagarViagem();
 	double getCustoViagem() const;
 };
-
 
 #endif /* SRC_VIAGEM_H_ */
