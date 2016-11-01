@@ -19,7 +19,6 @@ using namespace std;
 class Viagem {
 private:
 	Data inicio;
-	Data fim;
 	string local_partida;
 	string local_destino;
 	int id_cliente;
@@ -30,9 +29,7 @@ public:
 	//Fun??o que adiciona e retira viagens dever?o ser implementadas na empresa de t?xis
 	//void alteraViagem();
 	Data getDatainicio() const;
-	Data getDatafim() const;
 	void setDatainicio(string data);
-	void setDatafim(string data);
 	string getPartida() const;
 	string getDestino() const;
 	void setPartida(string local);

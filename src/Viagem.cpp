@@ -7,8 +7,8 @@
 
 #include "viagem.h"
 
-Viagem::Viagem(Data data_in, string local_part, string local_dest,
-		int cliente) {
+Viagem::Viagem(Data data_in, string local_part, string local_dest,int cliente)
+{
 	this->inicio = data_in;
 	this->local_partida = local_part;
 	this->local_destino = local_dest;
@@ -20,24 +20,7 @@ Data Viagem::getDatainicio() const {
 	return inicio;
 }
 
-Data Viagem::getDatafim() const {
-	return fim;
-}
 
-/*
-void Viagem::setDatainicio(Data data) {
-	d1 = Data(data);
-
-	this->inicio = d1;
-}
-*/
-/*
-void Viagem::setDatafim(string data) {
-	d1 = Data(data);
-
-	this->fim = d1;
-}
-*/
 string Viagem::getPartida() const {
 	return local_partida;
 }
