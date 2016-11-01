@@ -1,27 +1,31 @@
-#ifndef DATA_H_
-#define DATA_H_
+/*
+ * Data.h
+ *
+ *  Created on: 01/11/2016
+ *      Author: Diogo Pereira
+ */
 
-#include <sstream>
+#ifndef SRC_DATA_H_
+#define SRC_DATA_H_
+
 #include <string>
+
 using namespace std;
 
-
 class Data {
- private:
-  int dia;
-  int mes;
-  int ano;
+	int dia;
+	int mes;
+	int ano;
 
- public:
-  Data(){};
-  Data(string data); // data na forma DD/MM/AAA
-  int getDia() const;
-  int getMes() const;
-  int getAno() const;
-  void setDia(int dia);
-  void setMes(int mes);
-  void setAno(int ano);
+public:
+	Data();
+	Data(int d, int m, int a);
+	int getDia() const;
+	int getMes() const;
+	int getAno() const;
+	void setDia(int d);
+	void setMes(int m);
+	void setAno(int a);
 };
-
 
 #endif /* SRC_DATA_H_ */
