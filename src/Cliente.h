@@ -11,7 +11,6 @@
 #include <vector>
 #include <string>
 #include "Pagamento.h"
-#include "CompanhiaTaxis.h"
 
 using namespace std;
 
@@ -29,15 +28,15 @@ public:
 	Ocasionais(int nif, int tipo_pagamento);
 };
 
-
-class Cliente: Utente {
+class Cliente: public Utente {
 	string nomeC;
 	string morada;
 	string email;
 	int numeroTelemovel;
 	//vector<Viagens> historicoViagens;
 public:
-	Cliente(string nC, string m, string mail, int nT, int nif, int tipo_pagamento);
+	Cliente(string nC, string m, string mail, int nT, int nif,
+			int tipo_pagamento);
 	string getNomeC() const;
 	string getMorada() const;
 	string getEmail() const;
@@ -51,14 +50,16 @@ public:
 
 class Particular: Cliente {
 public:
-	Particular(string nC, string m, string mail, int nT, int nif, int tipo_pagamento);
+	Particular(string nC, string m, string mail, int nT, int nif,
+			int tipo_pagamento);
 	void givepromotion();
 };
 
 class Empresa: Cliente {
-int num_funcionarios;
+	int num_funcionarios;
 public:
-	Empresa(string nC, string m, string mail, int nT, int nif, int tipo_pagamento, int num_funcionarios);
+	Empresa(string nC, string m, string mail, int nT, int nif,
+			int tipo_pagamento, int num_funcionarios);
 	float givepromotion();
 };
 

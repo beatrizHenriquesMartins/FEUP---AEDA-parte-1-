@@ -7,7 +7,6 @@
 
 #include "Cliente.h"
 
-
 //Utente
 Utente::Utente(int nif, int tipo_pagamento) {
 	custo = Pagamento(tipo_pagamento);
@@ -72,8 +71,8 @@ void Cliente::setNumeroTelemovel(int nT) {
 
 void givepromotion() {
 }
-;
-//função vazia, será implementada nas subclasses
+
+//funï¿½ï¿½o vazia, serï¿½ implementada nas subclasses
 
 //Particular
 Particular::Particular(string nC, string m, string mail, int nT, int nif,
@@ -83,34 +82,34 @@ Particular::Particular(string nC, string m, string mail, int nT, int nif,
 }
 
 /*
-float Particular::givepromotion() {
-	if (custo.getTipo() != "fim_do_mes")
-		//if(historicoViagens.size()>=15)
-		return 0.20;
-	else {
-		if(historicoViagens.size()>=25)
-		return 0.20;
-	else
-	return 0;
-	}
-}*/
+ float Particular::givepromotion() {
+ if (custo.getTipo() != "fim_do_mes")
+ //if(historicoViagens.size()>=15)
+ return 0.20;
+ else {
+ if(historicoViagens.size()>=25)
+ return 0.20;
+ else
+ return 0;
+ }
+ }*/
 
 //Empresa
 Empresa::Empresa(string nC, string m, string mail, int nT, int nif,
-	int tipo_pagamento, int num_funcionarios) :
-	Cliente(nC, m, mail, nT, nif, tipo_pagamento) {
-	this->num_funcionarios=num_funcionarios;
+		int tipo_pagamento, int num_funcionarios) :
+		Cliente(nC, m, mail, nT, nif, tipo_pagamento) {
+	this->num_funcionarios = num_funcionarios;
 }
 
 /*
-float Empresa::givepromotion() {
-	if (custo.getTipo() != "fim_do_mes")
-		//if(historicoViagens.size()/num_funcionarios>=20)
-		return 0.20;
-	else {
-		if(historicoViagens.size()/num_funcionarios>=30)
-		return 0.20;
-	else
-	return 0;
-	}
-}*/
+ float Empresa::givepromotion() {
+ if (custo.getTipo() != "fim_do_mes")
+ //if(historicoViagens.size()/num_funcionarios>=20)
+ return 0.20;
+ else {
+ if(historicoViagens.size()/num_funcionarios>=30)
+ return 0.20;
+ else
+ return 0;
+ }
+ }*/
