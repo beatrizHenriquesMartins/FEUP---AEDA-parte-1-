@@ -8,8 +8,8 @@
 #include "Cliente.h"
 
 //Utente
-Utente::Utente(int nif, int tipo_pagamento) {
-	custo = Pagamento(tipo_pagamento);
+Utente::Utente(int nif) { //int tipo_pagamento
+	//custo = Pagamento(tipo_pagamento);
 	NIF = nif;
 }
 
@@ -22,19 +22,23 @@ void Utente::setNIF(int nif) {
 }
 
 //Ocasionais
-Ocasionais::Ocasionais(int nif, int tipo_pagamento) :
-		Utente(nif, tipo_pagamento) {
+Ocasionais::Ocasionais(int nif) :
+		Utente(nif) { //int tipo_pagamento
 
 }
 
 //Cliente
-Cliente::Cliente(string nC, string m, string mail, int nT, int nif,
-		int tipo_pagamento) :
-		Utente(nif, tipo_pagamento) {
+Cliente::Cliente(int id, string nC, string m, string mail, int nT, int nif) :
+		Utente(nif) { //int tipo_pagamento
+	idC = id;
 	nomeC = nC;
 	morada = m;
 	email = m;
 	numeroTelemovel = nT;
+}
+
+int Cliente::getID() const {
+	return idC;
 }
 
 string Cliente::getNomeC() const {
@@ -75,9 +79,9 @@ void givepromotion() {
 //fun��o vazia, ser� implementada nas subclasses
 
 //Particular
-Particular::Particular(string nC, string m, string mail, int nT, int nif,
-		int tipo_pagamento) :
-		Cliente(nC, m, mail, nT, nif, tipo_pagamento) {
+Particular::Particular(int id, string nC, string m, string mail, int nT,
+		int nif) :
+		Cliente(id, nC, m, mail, nT, nif) { //, tipo_pagamento
 
 }
 
@@ -95,9 +99,9 @@ Particular::Particular(string nC, string m, string mail, int nT, int nif,
  }*/
 
 //Empresa
-Empresa::Empresa(string nC, string m, string mail, int nT, int nif,
-		int tipo_pagamento, int num_funcionarios) :
-		Cliente(nC, m, mail, nT, nif, tipo_pagamento) {
+Empresa::Empresa(int id, string nC, string m, string mail, int nT, int nif,
+		int num_funcionarios) :
+		Cliente(id, nC, m, mail, nT, nif) { //, tipo_pagamento
 	this->num_funcionarios = num_funcionarios;
 }
 

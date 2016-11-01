@@ -10,8 +10,10 @@
 
 #include <string>
 #include <vector>
+
 #include "Cliente.h"
 #include "Taxi.h"
+#include "sequentialSearch.h"
 
 using namespace std;
 
@@ -22,7 +24,7 @@ private:
 	vector<Cliente *> clientes;
 	vector<Ocasionais> ocasionais;
 	vector<Taxi*> taxisTotais;
-	vector<Taxi*> taxisDisponiveis;
+	//vector<Taxi*> taxisDisponiveis;
 
 public:
 	CompanhiaTaxis();
@@ -32,8 +34,12 @@ public:
 	vector<Cliente *> getClientes() const;
 	vector<Ocasionais> getOcasionais() const;
 	vector<Taxi *> getTaxisTotais() const;
-	vector<Taxi *> getTaxisDisponiveis() const;
-
+	//vector<Taxi *> getTaxisDisponiveis() const;
+	void adicionaClienteParticular(string nome, string morada, string email,
+			int nT, int nif);
+	bool removeCliente(string nomeC);
+	int procuraCliente(const string &nomeC) const;
+	int ultimoIDcliente();
 };
 
 #endif /* SRC_COMPANHIATAXIS_H_ */

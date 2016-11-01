@@ -18,25 +18,26 @@ class Utente {
 	int NIF;
 	Pagamento custo;
 public:
-	Utente(int nif, int tipo_pagamento);
+	Utente(int nif); //, int tipo_pagamento
 	int getNIF() const;
 	void setNIF(int nif);
 };
 
-class Ocasionais: Utente {
+class Ocasionais: public Utente {
 public:
-	Ocasionais(int nif, int tipo_pagamento);
+	Ocasionais(int nif); //, int tipo_pagamento
 };
 
 class Cliente: public Utente {
+	int idC;
 	string nomeC;
 	string morada;
 	string email;
 	int numeroTelemovel;
 	//vector<Viagens> historicoViagens;
 public:
-	Cliente(string nC, string m, string mail, int nT, int nif,
-			int tipo_pagamento);
+	Cliente(int id, string nC, string m, string mail, int nT, int nif); //int tipo_pagamento
+	int getID() const;
 	string getNomeC() const;
 	string getMorada() const;
 	string getEmail() const;
@@ -48,18 +49,17 @@ public:
 	float givepromotion();
 };
 
-class Particular: Cliente {
+class Particular: public Cliente {
 public:
-	Particular(string nC, string m, string mail, int nT, int nif,
-			int tipo_pagamento);
+	Particular(int id, string nC, string m, string mail, int nT, int nif); //,int tipo_pagamento
 	void givepromotion();
 };
 
-class Empresa: Cliente {
+class Empresa: public Cliente {
 	int num_funcionarios;
 public:
-	Empresa(string nC, string m, string mail, int nT, int nif,
-			int tipo_pagamento, int num_funcionarios);
+	Empresa(int id, string nC, string m, string mail, int nT, int nif,
+			int num_funcionarios); //,int tipo_pagamento,
 	float givepromotion();
 };
 
