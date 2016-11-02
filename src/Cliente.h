@@ -11,21 +11,30 @@
 #include <vector>
 #include <string>
 #include "Pagamento.h"
+#include "Percurso.h"
+#include "viagem.h"
 
 using namespace std;
 
 class Utente {
+protected:
 	int NIF;
 	Pagamento custo;
 public:
 	Utente(int nif); //, int tipo_pagamento
 	int getNIF() const;
 	void setNIF(int nif);
+	void fazerViagem(Data dia, string horaIn, string horaOut, Percurso & p1);
+	float pagarViagem();
 };
 
 class Ocasionais: public Utente {
+	Viagem v;
 public:
 	Ocasionais(int nif); //, int tipo_pagamento
+	void fazerViagem(Data dia, string horaIn, string horaOut, Percurso & p1);
+	float pagarViagem();
+
 };
 
 class Cliente: public Utente {
@@ -34,7 +43,9 @@ class Cliente: public Utente {
 	string morada;
 	string email;
 	int numeroTelemovel;
-	//vector<Viagens> historicoViagens;
+	vector<Viagem> historicoViagens;
+	vector<Viagem> viagens_nao_pagas;
+	//int pontos=0;
 public:
 	Cliente(int id, string nC, string m, string mail, int nT, int nif); //int tipo_pagamento
 	int getID() const;
@@ -46,7 +57,10 @@ public:
 	void setMorada(string m);
 	void setEmail(string mail);
 	void setNumeroTelemovel(int nT);
-	float givepromotion();
+	//float givepromotion();
+	void fazerViagem(Data dia, string horaIn, string horaOut, Percurso & p1);
+	float pagarViagem();
+	void fimdoMes();
 };
 
 class Particular: public Cliente {
