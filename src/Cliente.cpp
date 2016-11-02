@@ -91,7 +91,7 @@ void Cliente::fazerViagem(Data dia, string horaIn, string horaOut,
 		Percurso & p1) {
 	Viagem v = Viagem(dia, horaIn, horaOut, p1, this->getID());
 	historicoViagens.push_back(v);
-if(custo.getTipo()=="fim_do_mes")
+
 	{
 	viagens_nao_pagas.push_back(v);
 	}
@@ -117,6 +117,8 @@ custo.changeTotal(n);
 }
 
 float Cliente::pagarViagem() {
+	if(custo.getTipo()=="fim_do_mes")
+		this->fimdoMes();
 		float total = custo.getTotal();
 			custo.changeTotal(0);
 			return total;
