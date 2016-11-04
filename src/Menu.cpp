@@ -8,10 +8,10 @@
 #include "Menu.h"
 
 Menu::Menu() {
-	menuIncio();
+	menuInicio();
 }
 
-void Menu::menuIncio() {
+void Menu::menuInicio() {
 	cout << "||Menu||" << endl << setw(5) << " " << "1. Clientes" << endl
 			<< setw(5) << " " << "2. Companhia" << endl << setw(5) << " "
 			<< "3. Sair" << endl << setw(5) << " " << "op: ";
@@ -53,7 +53,7 @@ void Menu::menuClientes() {
 		break;
 
 	case 3:
-		menuIncio();
+		menuInicio();
 		break;
 
 	}
@@ -83,5 +83,7 @@ void Menu::menuNovoCliente() {
 }
 
 void Menu::menuCompanhia() {
-	cout << "menu comapnhia" << endl;
+	cout << "||Companhia de taxis" << endl << setw(5) << " " << "1. Nome da Companhia" << endl
+				<< setw(5) << " " << "2. Ver Clientes"<<" "<<"3. Adicionar Cliente"<<" "<<"4. Remover Cliente"<<" "<<"5. Ver capital" <<" "<<"6. Cobrar pagamentos mensais"<< endl << setw(5) << " "
+				<< "3. Sair" << endl << setw(5) << " " << "op: ";
 }

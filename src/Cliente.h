@@ -13,6 +13,7 @@
 #include "Pagamento.h"
 #include "Percurso.h"
 #include "viagem.h"
+#include "CompanhiaTaxis.h"
 
 using namespace std;
 
@@ -24,8 +25,8 @@ public:
 	Utente(int nif); //, int tipo_pagamento
 	int getNIF() const;
 	void setNIF(int nif);
-	void fazerViagem(Data dia, string horaIn, string horaOut, Percurso & p1);
-	float pagarViagem();
+	virtual void fazerViagem(Data dia, string horaIn, string horaOut, Percurso & p1);
+	virtual void pagarViagem(CompanhiaTaxis c);
 };
 
 class Ocasionais: public Utente {
@@ -33,7 +34,7 @@ class Ocasionais: public Utente {
 public:
 	Ocasionais(int nif); //, int tipo_pagamento
 	void fazerViagem(Data dia, string horaIn, string horaOut, Percurso & p1);
-	float pagarViagem();
+	void pagarViagem(CompanhiaTaxis c);
 
 };
 
@@ -59,8 +60,9 @@ public:
 	void setNumeroTelemovel(int nT);
 	//float givepromotion();
 	void fazerViagem(Data dia, string horaIn, string horaOut, Percurso & p1);
-	float pagarViagem();
+	void pagarViagem(CompanhiaTaxis c);
 	void fimdoMes();
+	friend ostream operator <<(ostream os, Cliente cli);
 };
 
 class Particular: public Cliente {

@@ -33,10 +33,9 @@ void Ocasionais::fazerViagem(Data dia, string horaIn, string horaOut,
 
 }
 
-float Ocasionais::pagarViagem() {
-	float total = custo.getTotal();
+void Ocasionais::pagarViagem(CompanhiaTaxis c) {
+	c.somaCapital(custo.getTotal());
 	custo.changeTotal(0);
-	return total;
 }
 
 //Cliente
@@ -87,11 +86,13 @@ void Cliente::setNumeroTelemovel(int nT) {
 
 /*void Cliente::givepromotion() {
  }*/  //funcao vazia, seria implementada nas subclasses
-void Cliente::fazerViagem(Data dia, string horaIn, string horaOut,
-		Percurso & p1) {
+
+
+void Cliente::fazerViagem(Data dia, string horaIn, string horaOut, Percurso & p1) {
 	Viagem v = Viagem(dia, horaIn, horaOut, p1, this->getID());
 	historicoViagens.push_back(v);
 
+	if(custo.getTipo()=="fim_do_mes")
 	{
 	viagens_nao_pagas.push_back(v);
 	}
@@ -100,7 +101,7 @@ if(custo.getTipo()=="credito")
 	custo.changeTotal(v.getCustoViagem()*1.05);
 	}
 else
-	custo.changeTotal(v.getCustoViagem();
+	custo.changeTotal(v.getCustoViagem());
 
 //pontos++;
 	}
@@ -116,13 +117,21 @@ custo.changeTotal(n);
 
 }
 
-float Cliente::pagarViagem() {
+void Cliente::pagarViagem(CompanhiaTaxis c) {
 	if(custo.getTipo()=="fim_do_mes")
-		this->fimdoMes();
-		float total = custo.getTotal();
-			custo.changeTotal(0);
-			return total;
-	}
+		return;
+	else
+		{
+		c.somaCapital(custo.getTotal());
+		custo.changeTotal(0);
+		}
+}
+
+ostream operator <<(ostream os, Cliente cli)
+{
+os<<cli.getID()<<" Nome: "<<cli.getNomeC()<<" Morada: "<<cli.getMorada()<<" Email: "<<cli.getEmail()<<" Nr Telemovel: "<<cli.getNumeroTelemovel()<<endl;
+return os;
+}
 
 //Particular
 	Particular::Particular(int id, string nC, string m, string mail, int nT,

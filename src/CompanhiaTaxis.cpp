@@ -25,6 +25,10 @@ float CompanhiaTaxis::getCapital() {
 	return capital;
 }
 
+void CompanhiaTaxis::somaCapital(float n) {
+	capital+=n;
+}
+
 vector<Cliente *> CompanhiaTaxis::getClientes() const {
 	return clientes;
 }

@@ -19,7 +19,7 @@ using namespace std;
 class Menu {
 public:
 	Menu();
-	void menuIncio();
+	void menuInicio();
 	void menuClientes();
 	void menuNovoCliente();
 	void menuCompanhia();
