@@ -106,14 +106,18 @@ else
 //pontos++;
 	}
 
+Pagamento Cliente::getCusto()
+{
+return custo;
+}
 
-void Cliente::fimdoMes()
+float Cliente::fimdoMes()
 {
 	float n=0;
 for (unsigned int i=0; i<viagens_nao_pagas.size(); i++)
 	n+=viagens_nao_pagas[i].getCustoViagem();
 
-custo.changeTotal(n);
+return n;
 
 }
 

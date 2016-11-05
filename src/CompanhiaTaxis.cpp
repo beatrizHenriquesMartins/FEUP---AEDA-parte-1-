@@ -97,3 +97,15 @@ int CompanhiaTaxis::ultimoIDcliente() {
 
 	return clientes[ind]->getID() + 1;
 }
+
+void CompanhiaTaxis::cobrarPagamentoMensal()
+{
+
+for (unsigned int i=0; i<clientes.size(); i++)
+{
+	if(clientes[i]->getCusto().getTipo()=="fim_do_mes")
+		capital+=clientes[i]->fimdoMes();
+
+}
+}
+

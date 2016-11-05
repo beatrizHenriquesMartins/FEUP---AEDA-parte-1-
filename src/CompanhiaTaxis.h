@@ -40,6 +40,7 @@ public:
 	bool removeCliente(string nomeC);
 	int procuraCliente(const string &nomeC) const;
 	int ultimoIDcliente();
+	void cobrarPagamentoMensal();
 };
 
 #endif /* SRC_COMPANHIATAXIS_H_ */

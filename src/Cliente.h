@@ -61,7 +61,8 @@ public:
 	//float givepromotion();
 	void fazerViagem(Data dia, string horaIn, string horaOut, Percurso & p1);
 	void pagarViagem(CompanhiaTaxis c);
-	void fimdoMes();
+	float fimdoMes();
+	Pagamento getCusto();
 	friend ostream operator <<(ostream os, Cliente cli);
 };
 
