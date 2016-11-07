@@ -13,7 +13,7 @@
 #include "Pagamento.h"
 #include "Percurso.h"
 #include "viagem.h"
-#include "CompanhiaTaxis.h"
+
 
 using namespace std;
 
@@ -26,7 +26,7 @@ public:
 	int getNIF() const;
 	void setNIF(int nif);
 	virtual void fazerViagem(Data dia, string horaIn, string horaOut, Percurso & p1);
-	virtual void pagarViagem(CompanhiaTaxis c);
+	virtual void pagarViagem();
 };
 
 class Ocasionais: public Utente {
@@ -34,7 +34,7 @@ class Ocasionais: public Utente {
 public:
 	Ocasionais(int nif); //, int tipo_pagamento
 	void fazerViagem(Data dia, string horaIn, string horaOut, Percurso & p1);
-	void pagarViagem(CompanhiaTaxis c);
+	void pagarViagem();
 
 };
 
@@ -58,9 +58,11 @@ public:
 	void setMorada(string m);
 	void setEmail(string mail);
 	void setNumeroTelemovel(int nT);
+	void addViagem_nao_paga(Viagem v);
+	void addViagem_historico(Viagem v);
 	//float givepromotion();
 	void fazerViagem(Data dia, string horaIn, string horaOut, Percurso & p1);
-	void pagarViagem(CompanhiaTaxis c);
+	void pagarViagem();
 	float fimdoMes();
 	Pagamento getCusto();
 	friend ostream operator <<(ostream os, Cliente cli);
@@ -80,4 +82,12 @@ public:
 	float givepromotion();
 };
 
+
+class ClienteInexistente{
+	int id;
+public:
+	ClienteInexistente(int n){id=n;};
+	int getID(){return id;};
+
+};
 #endif /* SRC_CLIENTE_H_ */

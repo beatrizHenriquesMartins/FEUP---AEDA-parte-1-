@@ -11,6 +11,7 @@
 Taxi::Taxi(int nTaxi) {
 	numeroTaxi = nTaxi;
 	disponivel = true;
+	rentabilidade=0;
 }
 
 int Taxi::getNumeroTaxi() const {
@@ -23,4 +24,12 @@ bool Taxi::getDisponivel() const {
 
 void Taxi::setDisponivel(bool d) {
 	disponivel = d;
+}
+
+float Taxi::getRentabilidade() {
+	return rentabilidade;
+}
+
+void Taxi::setRentabilidade(float n) {
+	rentabilidade+=n;
 }

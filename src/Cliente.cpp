@@ -26,17 +26,7 @@ Ocasionais::Ocasionais(int nif) :
 		Utente(nif) { //int tipo_pagamento
 
 }
-void Ocasionais::fazerViagem(Data dia, string horaIn, string horaOut,
-		Percurso & p1) {
-	v = Viagem(dia, horaIn, horaOut, p1, -1); //-1 para mudar
-	custo.changeTotal(v.getCustoViagem());
 
-}
-
-void Ocasionais::pagarViagem(CompanhiaTaxis c) {
-	c.somaCapital(custo.getTotal());
-	custo.changeTotal(0);
-}
 
 //Cliente
 Cliente::Cliente(int id, string nC, string m, string mail, int nT, int nif) :
@@ -84,27 +74,22 @@ void Cliente::setNumeroTelemovel(int nT) {
 	numeroTelemovel = nT;
 }
 
+void Cliente::addViagem_nao_paga(Viagem v)
+{
+viagens_nao_pagas.push_back(v);
+
+}
+
+void Cliente::addViagem_historico(Viagem v)
+{
+		historicoViagens.push_back(v);
+}
+
+
 /*void Cliente::givepromotion() {
  }*/  //funcao vazia, seria implementada nas subclasses
 
 
-void Cliente::fazerViagem(Data dia, string horaIn, string horaOut, Percurso & p1) {
-	Viagem v = Viagem(dia, horaIn, horaOut, p1, this->getID());
-	historicoViagens.push_back(v);
-
-	if(custo.getTipo()=="fim_do_mes")
-	{
-	viagens_nao_pagas.push_back(v);
-	}
-if(custo.getTipo()=="credito")
-	{
-	custo.changeTotal(v.getCustoViagem()*1.05);
-	}
-else
-	custo.changeTotal(v.getCustoViagem());
-
-//pontos++;
-	}
 
 Pagamento Cliente::getCusto()
 {
@@ -121,17 +106,8 @@ return n;
 
 }
 
-void Cliente::pagarViagem(CompanhiaTaxis c) {
-	if(custo.getTipo()=="fim_do_mes")
-		return;
-	else
-		{
-		c.somaCapital(custo.getTotal());
-		custo.changeTotal(0);
-		}
-}
 
-ostream operator <<(ostream os, Cliente cli)
+ostream & operator <<(ostream & os, Cliente cli)
 {
 os<<cli.getID()<<" Nome: "<<cli.getNomeC()<<" Morada: "<<cli.getMorada()<<" Email: "<<cli.getEmail()<<" Nr Telemovel: "<<cli.getNumeroTelemovel()<<endl;
 return os;

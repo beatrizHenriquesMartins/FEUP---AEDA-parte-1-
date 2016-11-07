@@ -22,7 +22,7 @@ private:
 	string nome;
 	float capital;
 	vector<Cliente *> clientes;
-	vector<Ocasionais> ocasionais;
+	//vector<Ocasionais> ocasionais;
 	vector<Taxi*> taxisTotais;
 	//vector<Taxi*> taxisDisponiveis;
 
@@ -40,6 +40,8 @@ public:
 	bool removeCliente(string nomeC);
 	int procuraCliente(const string &nomeC) const;
 	int ultimoIDcliente();
+	void fazerviagem_ocasional(Data dia, string horaIn, string horaOut, Percurso & p1);
+	void fazerviagem_cliente(int id, Data dia, string horaIn, string horaOut, Percurso & p1);
 	void cobrarPagamentoMensal();
 };
 

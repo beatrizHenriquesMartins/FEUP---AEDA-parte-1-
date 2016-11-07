@@ -33,9 +33,9 @@ vector<Cliente *> CompanhiaTaxis::getClientes() const {
 	return clientes;
 }
 
-vector<Ocasionais> CompanhiaTaxis::getOcasionais() const {
+/*vector<Ocasionais> CompanhiaTaxis::getOcasionais() const {
 	return ocasionais;
-}
+}*/
 
 vector<Taxi *> CompanhiaTaxis::getTaxisTotais() const {
 	return taxisTotais;
@@ -98,6 +98,61 @@ int CompanhiaTaxis::ultimoIDcliente() {
 	return clientes[ind]->getID() + 1;
 }
 
+
+void CompanhiaTaxis::fazerviagem_ocasional(Data dia, string horaIn, string horaOut, Percurso & p1)
+{
+
+for(unsigned int i=0; i<taxisTotais.size();i++)
+{
+if(taxisTotais[i]->getDisponivel())
+{
+	Viagem v(dia,horaIn,horaOut,p1,-1);
+	taxisTotais[i]->setRentabilidade(v.getCustoViagem());
+	return;
+}
+}
+throw TaxisIndisponiveis("Nao existem taxis de momento disponiveis");
+}
+
+void CompanhiaTaxis::fazerviagem_cliente(int id, Data dia, string horaIn, string horaOut, Percurso & p1)
+{
+
+	for(unsigned int j=0; j<clientes.size();j++)
+	{
+		if(clientes[j]->getID()==id)
+		{
+
+for(unsigned int i=0; i<taxisTotais.size();i++)
+{
+
+if(taxisTotais[i]->getDisponivel())
+{
+	Viagem v(dia,horaIn,horaOut,p1,-1);
+	if(clientes[j]->getCusto().getTipo()=="fim_do_mes")
+		{
+		clientes[j]->addViagem_nao_paga(v);
+		return;
+		}
+	if(clientes[j]->getCusto().getTipo()=="credito")
+		{
+		taxisTotais[i]->setRentabilidade(v.getCustoViagem()*1.05);
+		return;
+		}
+	else
+		{taxisTotais[i]->setRentabilidade(v.getCustoViagem());
+		return;}
+}
+
+}
+throw TaxisIndisponiveis("Nao existem taxis de momento disponiveis");
+		}
+	}
+
+throw ClienteInexistente(id);
+
+}
+
+
 void CompanhiaTaxis::cobrarPagamentoMensal()
 {
 
@@ -107,5 +162,8 @@ for (unsigned int i=0; i<clientes.size(); i++)
 		capital+=clientes[i]->fimdoMes();
 
 }
+
+for (unsigned int j=0; j<taxisTotais.size(); j++)
+	capital+=taxisTotais[j]->getRentabilidade();
 }
 
