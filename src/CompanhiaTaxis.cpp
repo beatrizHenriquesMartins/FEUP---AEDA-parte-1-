@@ -48,10 +48,10 @@ vector<Taxi *> CompanhiaTaxis::getTaxisTotais() const {
  */
 
 void CompanhiaTaxis::adicionaClienteParticular(string nome, string morada,
-		string email, int nT, int nif) {
+		string email, int nT, int nif, int tipo_pagamento) {
 	int id;
 	id = ultimoIDcliente();
-	Cliente *c = new Particular(id, nome, morada, email, nT, nif);
+	Cliente *c = new Particular(id, nome, morada, email, nT, nif, tipo_pagamento);
 	clientes.push_back(c);
 }
 
@@ -77,7 +77,7 @@ int CompanhiaTaxis::procuraCliente(const string &nomeC) const {
 
 	vector<string> aux;
 
-	for (int i = 0; i < clientes.size(); i++) {
+	for (unsigned int i = 0; i < clientes.size(); i++) {
 		aux.push_back(clientes[i]->getNomeC());
 	}
 
@@ -107,6 +107,7 @@ for(unsigned int i=0; i<taxisTotais.size();i++)
 if(taxisTotais[i]->getDisponivel())
 {
 	Viagem v(dia,horaIn,horaOut,p1,-1);
+	v.pagarViagem();
 	taxisTotais[i]->setRentabilidade(v.getCustoViagem());
 	return;
 }
@@ -135,12 +136,18 @@ if(taxisTotais[i]->getDisponivel())
 		}
 	if(clientes[j]->getCusto().getTipo()=="credito")
 		{
+		v.pagarViagem();
+		clientes[j]->changeCusto_total(v.getCustoViagem()*1.05);
 		taxisTotais[i]->setRentabilidade(v.getCustoViagem()*1.05);
 		return;
 		}
 	else
-		{taxisTotais[i]->setRentabilidade(v.getCustoViagem());
-		return;}
+		{
+		v.pagarViagem();
+		clientes[j]->changeCusto_total(v.getCustoViagem());
+		taxisTotais[i]->setRentabilidade(v.getCustoViagem());
+		return;
+		}
 }
 
 }
@@ -164,6 +171,9 @@ for (unsigned int i=0; i<clientes.size(); i++)
 }
 
 for (unsigned int j=0; j<taxisTotais.size(); j++)
+	{
 	capital+=taxisTotais[j]->getRentabilidade();
+	taxisTotais[j]->setRentabilidade(0);
+	}
 }
 

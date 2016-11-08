@@ -8,31 +8,46 @@
 #include "Cliente.h"
 
 //Utente
-Utente::Utente(int nif) { //int tipo_pagamento
-	//custo = Pagamento(tipo_pagamento);
-	NIF = nif;
+Utente::Utente(string nome, int tipo_pagamento) {
+	custo = Pagamento(tipo_pagamento);
+	nomeC = nome;
 }
 
-int Utente::getNIF() const {
-	return NIF;
+string Utente::getNomeC() const {
+	return nomeC;
 }
 
-void Utente::setNIF(int nif) {
-	NIF = nif;
+void Utente::setNomeC(string nC) {
+	nomeC = nC;
+}
+
+Pagamento Utente::getCusto()
+{
+return custo;
+}
+
+void Utente::changeCusto_total(float n)
+{
+custo.changeTotal(n);
+}
+
+void Utente::changeCusto_tipo(int tipo)
+{
+custo.changeTipo(tipo);
 }
 
 //Ocasionais
-Ocasionais::Ocasionais(int nif) :
-		Utente(nif) { //int tipo_pagamento
+Ocasionais::Ocasionais(string nome,int tipo_pagamento) :
+		Utente(nome, tipo_pagamento) {
 
 }
 
 
 //Cliente
-Cliente::Cliente(int id, string nC, string m, string mail, int nT, int nif) :
-		Utente(nif) { //int tipo_pagamento
+Cliente::Cliente(int id, string nC, string m, string mail, int nT, int nif, int tipo_pagamento) :
+		Utente(nC, tipo_pagamento) { //int tipo_pagamento
 	idC = id;
-	nomeC = nC;
+	NIF = nif;
 	morada = m;
 	email = m;
 	numeroTelemovel = nT;
@@ -42,8 +57,12 @@ int Cliente::getID() const {
 	return idC;
 }
 
-string Cliente::getNomeC() const {
-	return nomeC;
+int Cliente::getNIF() const {
+	return NIF;
+}
+
+void Cliente::setNIF(int nif) {
+	NIF = nif;
 }
 
 string Cliente::getMorada() const {
@@ -58,9 +77,7 @@ int Cliente::getNumeroTelemovel() const {
 	return numeroTelemovel;
 }
 
-void Cliente::setNomeC(string nC) {
-	nomeC = nC;
-}
+
 
 void Cliente::setMorada(string m) {
 	morada = m;
@@ -86,22 +103,19 @@ void Cliente::addViagem_historico(Viagem v)
 }
 
 
-/*void Cliente::givepromotion() {
- }*/  //funcao vazia, seria implementada nas subclasses
+float Cliente::give_monthly_promotion() {return 1;}  //funcao vazia, seria implementada nas subclasses
 
-
-
-Pagamento Cliente::getCusto()
-{
-return custo;
-}
 
 float Cliente::fimdoMes()
 {
 	float n=0;
 for (unsigned int i=0; i<viagens_nao_pagas.size(); i++)
-	n+=viagens_nao_pagas[i].getCustoViagem();
-
+	{
+		viagens_nao_pagas[i].pagarViagem();
+		n+=viagens_nao_pagas[i].getCustoViagem();
+	}
+vector<Viagem> vazio;
+viagens_nao_pagas=vazio;
 return n;
 
 }
@@ -115,40 +129,44 @@ return os;
 
 //Particular
 	Particular::Particular(int id, string nC, string m, string mail, int nT,
-			int nif) :
-			Cliente(id, nC, m, mail, nT, nif) { //, tipo_pagamento
+			int nif, int tipo_pagamento) :
+			Cliente(id, nC, m, mail, nT, nif, tipo_pagamento) {
 
 	}
 
-	/*
-	 float Particular::givepromotion() {
+
+ float Particular::give_monthly_promotion() {
 	 if (custo.getTipo() != "fim_do_mes")
-	 //if(historicoViagens.size()>=15)
-	 return 0.20;
+	 {
+		 if(historicoViagens.size()>=15)
+			 return 1.20;
+	 }
 	 else {
 	 if(historicoViagens.size()>=25)
-	 return 0.20;
+	 return 1.20;
 	 else
-	 return 0;
+	 return 1;
 	 }
-	 }*/
+	 }
 
 //Empresa
 	Empresa::Empresa(int id, string nC, string m, string mail, int nT, int nif,
-			int num_funcionarios) :
-			Cliente(id, nC, m, mail, nT, nif) { //, tipo_pagamento
+			int num_funcionarios, int tipo_pagamento) :
+			Cliente(id, nC, m, mail, nT, nif, tipo_pagamento) {
 		this->num_funcionarios = num_funcionarios;
 	}
 
-	/*
-	 float Empresa::givepromotion() {
+
+	 float Empresa::give_monthly_promotion() {
 	 if (custo.getTipo() != "fim_do_mes")
-	 //if(historicoViagens.size()/num_funcionarios>=20)
-	 return 0.20;
+	 {
+		 if(historicoViagens.size()/num_funcionarios>=20)
+			 return 1.20;
+	 }
 	 else {
 	 if(historicoViagens.size()/num_funcionarios>=30)
-	 return 0.20;
+		 return 1.20;
 	 else
-	 return 0;
+		 return 1;
 	 }
-	 }*/
+	 }

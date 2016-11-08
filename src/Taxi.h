@@ -9,16 +9,17 @@
 #define SRC_TAXI_H_
 
 #include <string>
+#include "Hora.h"
 
 class Taxi {
 	int numeroTaxi;
-	bool disponivel;
 	float rentabilidade;
+	Hora horaIn;
+	Hora horaOff;
 public:
-	Taxi(int nTaxi);
+	Taxi(int nTaxi, Hora horI, Hora horO);
 	int getNumeroTaxi() const;
-	bool getDisponivel() const;
-	void setDisponivel(bool d);
+	bool getDisponivel(Hora h);
 	float getRentabilidade();
 	void setRentabilidade(float n);
 };

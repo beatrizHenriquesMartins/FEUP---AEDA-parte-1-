@@ -19,28 +19,28 @@ using namespace std;
 
 class Utente {
 protected:
-	int NIF;
+	string nomeC;
 	Pagamento custo;
 public:
-	Utente(int nif); //, int tipo_pagamento
-	int getNIF() const;
-	void setNIF(int nif);
-	virtual void fazerViagem(Data dia, string horaIn, string horaOut, Percurso & p1);
-	virtual void pagarViagem();
+	Utente(string nome, int tipo_pagamento);
+	string getNomeC() const;
+	void setNomeC(string nome);
+	void changeCusto_total(float n);
+	void changeCusto_tipo(int tipo);
+	Pagamento getCusto();
 };
 
 class Ocasionais: public Utente {
-	Viagem v;
 public:
-	Ocasionais(int nif); //, int tipo_pagamento
-	void fazerViagem(Data dia, string horaIn, string horaOut, Percurso & p1);
-	void pagarViagem();
+	Ocasionais(string nome,int tipo_pagamento);
+
 
 };
 
 class Cliente: public Utente {
+protected:
 	int idC;
-	string nomeC;
+	int NIF;
 	string morada;
 	string email;
 	int numeroTelemovel;
@@ -48,8 +48,10 @@ class Cliente: public Utente {
 	vector<Viagem> viagens_nao_pagas;
 	//int pontos=0;
 public:
-	Cliente(int id, string nC, string m, string mail, int nT, int nif); //int tipo_pagamento
+	Cliente(int id, string nC, string m, string mail, int nT, int nif,int tipo_pagamento); //int tipo_pagamento
 	int getID() const;
+	int getNIF() const;
+	void setNIF(int nif);
 	string getNomeC() const;
 	string getMorada() const;
 	string getEmail() const;
@@ -60,26 +62,22 @@ public:
 	void setNumeroTelemovel(int nT);
 	void addViagem_nao_paga(Viagem v);
 	void addViagem_historico(Viagem v);
-	//float givepromotion();
-	void fazerViagem(Data dia, string horaIn, string horaOut, Percurso & p1);
-	void pagarViagem();
+	float give_monthly_promotion();
 	float fimdoMes();
-	Pagamento getCusto();
 	friend ostream operator <<(ostream os, Cliente cli);
 };
 
 class Particular: public Cliente {
 public:
-	Particular(int id, string nC, string m, string mail, int nT, int nif); //,int tipo_pagamento
-	void givepromotion();
+	Particular(int id, string nC, string m, string mail, int nT, int nif, int tipo_pagamento);
+	float give_monthly_promotion();
 };
 
 class Empresa: public Cliente {
 	int num_funcionarios;
 public:
-	Empresa(int id, string nC, string m, string mail, int nT, int nif,
-			int num_funcionarios); //,int tipo_pagamento,
-	float givepromotion();
+	Empresa(int id, string nC, string m, string mail, int nT, int nif, int tipo_pagamento, int num_funcionarios);
+	float give_monthly_promotion();
 };
 
 

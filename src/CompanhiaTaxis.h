@@ -36,7 +36,7 @@ public:
 	vector<Ocasionais> getOcasionais() const;
 	vector<Taxi *> getTaxisTotais() const;
 	//vector<Taxi *> getTaxisDisponiveis() const;
-	void adicionaClienteParticular(string nome, string morada, string email, int nT, int nif);
+	void adicionaClienteParticular(string nome, string morada, string email, int nT, int nif, int tipo_pagamento);
 	bool removeCliente(string nomeC);
 	int procuraCliente(const string &nomeC) const;
 	int ultimoIDcliente();

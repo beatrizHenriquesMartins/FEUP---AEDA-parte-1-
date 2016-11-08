@@ -27,7 +27,7 @@ private:
 	double custo;
 	bool pago;
 public:
-	Viagem(Data dia, string horaIn, string horaOut, Percurso & p1, int cliente);
+	Viagem(Data dia, string horaIn, string horaOut, Percurso p1, int cliente);
 
 	//void alteraViagem();
 

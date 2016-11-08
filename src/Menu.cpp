@@ -84,6 +84,13 @@ void Menu::menuNovoCliente() {
 
 void Menu::menuCompanhia() {
 	cout << "||Companhia de taxis" << endl << setw(5) << " " << "1. Nome da Companhia" << endl
-				<< setw(5) << " " << "2. Ver Clientes"<<" "<<"3. Adicionar Cliente"<<" "<<"4. Remover Cliente"<<" "<<"5. Ver capital" <<" "<<"6. Cobrar pagamentos mensais"<< endl << setw(5) << " "
+				<< setw(5) << " " << "2. Ver Clientes"<<" "<<"3. Adicionar Cliente"<<" "<<endl<<"4. Remover Cliente"<<" "<<"5. Ver capital" <<" "<<"6. Cobrar pagamentos mensais"<< endl << setw(5) << " "
 				<< "3. Sair" << endl << setw(5) << " " << "op: ";
 }
+
+
+
+
+
+
+

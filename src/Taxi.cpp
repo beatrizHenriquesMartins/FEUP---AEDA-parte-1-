@@ -8,9 +8,10 @@
 #include "Taxi.h"
 
 //Taxi
-Taxi::Taxi(int nTaxi) {
+Taxi::Taxi(int nTaxi, Hora horI, Hora horO){
+	horaIn=horI;
+	horaOff=horO;
 	numeroTaxi = nTaxi;
-	disponivel = true;
 	rentabilidade=0;
 }
 
@@ -18,13 +19,13 @@ int Taxi::getNumeroTaxi() const {
 	return numeroTaxi;
 }
 
-bool Taxi::getDisponivel() const {
-	return disponivel;
+bool Taxi::getDisponivel(Hora h)  {
+	if(h<=horaOff && horaIn<=h)
+		return true;
+	else
+		return false;
 }
 
-void Taxi::setDisponivel(bool d) {
-	disponivel = d;
-}
 
 float Taxi::getRentabilidade() {
 	return rentabilidade;

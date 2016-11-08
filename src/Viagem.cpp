@@ -9,14 +9,15 @@
 #include "Data.h"
 #include "Percurso.h"
 
-Viagem::Viagem(Data dia, string horaIn, string horaOut, Percurso & p1, int cliente)
+Viagem::Viagem(Data dia, string horaIn, string horaOut, Percurso p1, int cliente)
 {
 	this->dia = dia;
 	this->horaIn = horaIn;
 	this->horaOut = horaOut;
-	this->deslocacao = p1;
+	this->deslocacao=p1;
 	this->idCliente = idCliente;
 	this->pago = false;
+	this->custo=0;
 }
 
 Data Viagem::getDia() const {
