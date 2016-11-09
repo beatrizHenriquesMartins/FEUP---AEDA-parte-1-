@@ -46,7 +46,7 @@ protected:
 	int numeroTelemovel;
 	vector<Viagem> historicoViagens;
 	vector<Viagem> viagens_nao_pagas;
-	//int pontos=0;
+	int cartao_pontos;
 public:
 	Cliente(int id, string nC, string m, string mail, int nT, int nif,int tipo_pagamento); //int tipo_pagamento
 	int getID() const;
@@ -55,7 +55,10 @@ public:
 	string getNomeC() const;
 	string getMorada() const;
 	string getEmail() const;
+	vector<Viagem> getHistoricoViagens();
 	int getNumeroTelemovel() const;
+	int getPontos();
+	void aumentaPontos();
 	void setNomeC(string nC);
 	void setMorada(string m);
 	void setEmail(string mail);
@@ -65,6 +68,7 @@ public:
 	float give_monthly_promotion();
 	float fimdoMes();
 	friend ostream operator <<(ostream os, Cliente cli);
+	bool operator <(Cliente c2);
 };
 
 class Particular: public Cliente {

@@ -45,12 +45,13 @@ Ocasionais::Ocasionais(string nome,int tipo_pagamento) :
 
 //Cliente
 Cliente::Cliente(int id, string nC, string m, string mail, int nT, int nif, int tipo_pagamento) :
-		Utente(nC, tipo_pagamento) { //int tipo_pagamento
+		Utente(nC, tipo_pagamento) {
 	idC = id;
 	NIF = nif;
 	morada = m;
 	email = m;
 	numeroTelemovel = nT;
+	cartao_pontos=0;
 }
 
 int Cliente::getID() const {
@@ -73,11 +74,23 @@ string Cliente::getEmail() const {
 	return email;
 }
 
+vector<Viagem> Cliente::getHistoricoViagens()
+{
+return historicoViagens;
+}
+
 int Cliente::getNumeroTelemovel() const {
 	return numeroTelemovel;
 }
 
+int Cliente::getPontos()  {
+	return cartao_pontos;
+}
 
+void Cliente::aumentaPontos()
+{
+cartao_pontos++;
+}
 
 void Cliente::setMorada(string m) {
 	morada = m;
@@ -125,6 +138,18 @@ ostream & operator <<(ostream & os, Cliente cli)
 {
 os<<cli.getID()<<" Nome: "<<cli.getNomeC()<<" Morada: "<<cli.getMorada()<<" Email: "<<cli.getEmail()<<" Nr Telemovel: "<<cli.getNumeroTelemovel()<<endl;
 return os;
+}
+
+bool Cliente::operator <(Cliente c2)
+{
+	if( this->custo.getTotal() < c2.getCusto().getTotal())
+		return true;
+	else
+		if( this->custo.getTotal() == c2.getCusto().getTotal() && this->historicoViagens.size() < c2.getHistoricoViagens().size() )
+			return true;
+		else
+			return false;
+
 }
 
 //Particular

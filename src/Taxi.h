@@ -19,7 +19,7 @@ class Taxi {
 public:
 	Taxi(int nTaxi, Hora horI, Hora horO);
 	int getNumeroTaxi() const;
-	bool getDisponivel(Hora h);
+	bool getDisponivel(Hora hi, Hora hf);
 	float getRentabilidade();
 	void setRentabilidade(float n);
 };

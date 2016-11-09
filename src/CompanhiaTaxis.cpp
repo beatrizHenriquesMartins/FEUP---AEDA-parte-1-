@@ -6,6 +6,7 @@
  */
 
 #include "CompanhiaTaxis.h"
+#include <algorithm>
 
 CompanhiaTaxis::CompanhiaTaxis() {
 	capital = 0;
@@ -99,12 +100,12 @@ int CompanhiaTaxis::ultimoIDcliente() {
 }
 
 
-void CompanhiaTaxis::fazerviagem_ocasional(Data dia, string horaIn, string horaOut, Percurso & p1)
+void CompanhiaTaxis::fazerviagem_ocasional(Data dia, Hora horaIn, Hora horaOut, Percurso & p1)
 {
 
 for(unsigned int i=0; i<taxisTotais.size();i++)
 {
-if(taxisTotais[i]->getDisponivel())
+if(taxisTotais[i]->getDisponivel(horaIn,horaOut));
 {
 	Viagem v(dia,horaIn,horaOut,p1,-1);
 	v.pagarViagem();
@@ -115,7 +116,7 @@ if(taxisTotais[i]->getDisponivel())
 throw TaxisIndisponiveis("Nao existem taxis de momento disponiveis");
 }
 
-void CompanhiaTaxis::fazerviagem_cliente(int id, Data dia, string horaIn, string horaOut, Percurso & p1)
+void CompanhiaTaxis::fazerviagem_cliente(int id, Data dia, Hora horaIn, Hora horaOut, Percurso & p1)
 {
 
 	for(unsigned int j=0; j<clientes.size();j++)
@@ -126,17 +127,23 @@ void CompanhiaTaxis::fazerviagem_cliente(int id, Data dia, string horaIn, string
 for(unsigned int i=0; i<taxisTotais.size();i++)
 {
 
-if(taxisTotais[i]->getDisponivel())
+if(taxisTotais[i]->getDisponivel(horaIn,horaOut))
 {
 	Viagem v(dia,horaIn,horaOut,p1,-1);
+	clientes[j]->addViagem_historico(v);
+	clientes[j]->aumentaPontos();
 	if(clientes[j]->getCusto().getTipo()=="fim_do_mes")
 		{
+		if(clientes[j]->getPontos()>50)
+			return;
 		clientes[j]->addViagem_nao_paga(v);
 		return;
 		}
 	if(clientes[j]->getCusto().getTipo()=="credito")
 		{
 		v.pagarViagem();
+		if(clientes[j]->getPontos()>50)
+			return;
 		clientes[j]->changeCusto_total(v.getCustoViagem()*1.05);
 		taxisTotais[i]->setRentabilidade(v.getCustoViagem()*1.05);
 		return;
@@ -144,6 +151,8 @@ if(taxisTotais[i]->getDisponivel())
 	else
 		{
 		v.pagarViagem();
+		if(clientes[j]->getPontos()>50)
+			return;
 		clientes[j]->changeCusto_total(v.getCustoViagem());
 		taxisTotais[i]->setRentabilidade(v.getCustoViagem());
 		return;
@@ -176,4 +185,21 @@ for (unsigned int j=0; j<taxisTotais.size(); j++)
 	taxisTotais[j]->setRentabilidade(0);
 	}
 }
+
+ostream & CompanhiaTaxis::mostrarClientesPorCapital(ostream os)
+{
+	vector<Cliente *> v= clientes;
+	vector<Cliente *>::iterator it=v.begin();
+	vector<Cliente *>::iterator ite=v.end();
+
+	sort(it,ite);
+	reverse(it,ite);
+
+	for (;it!=ite; it++)
+	{
+		os<<(*it)<<endl;
+	}
+return os;
+}
+
 

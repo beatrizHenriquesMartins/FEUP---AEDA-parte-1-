@@ -1,4 +1,4 @@
-/* * Hora.h
+ /* * Hora.h
  *
  *  Created on: 08/11/2016
  *      Author: Pedro Silva
@@ -24,12 +24,13 @@ public:
 	bool operator <= (Hora h2);
 };
 
+/*
 class HoraInvalida{
 	string razao;
 public:
 	HoraInvalida(string r){razao=r;};
 	string getRazao(){return razao;};
-};
+};*/
 
 
 

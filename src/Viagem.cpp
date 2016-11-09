@@ -9,7 +9,7 @@
 #include "Data.h"
 #include "Percurso.h"
 
-Viagem::Viagem(Data dia, string horaIn, string horaOut, Percurso p1, int cliente)
+Viagem::Viagem(Data dia, Hora horaIn, Hora horaOut, Percurso p1, int cliente)
 {
 	this->dia = dia;
 	this->horaIn = horaIn;
@@ -31,27 +31,27 @@ void Viagem::setDia(int d, int m, int a)
 	this->dia = d1;
 }
 
-string Viagem::getHoraIn()const
+Hora Viagem::getHoraIn()const
 {
 	return horaIn;
 }
 
 
-void Viagem::setHoraIn(string hora)
+void Viagem::setHoraIn(Hora hora)
 {
-	this->horaIn = hora;
+	horaIn = hora;
 }
 
 
-string Viagem::getHoraOut()const
+Hora Viagem::getHoraOut()const
 {
 	return horaOut;
 }
 
 
-void Viagem::setHoraOut(string hora)
+void Viagem::setHoraOut(Hora hora)
 {
-	this->horaOut = hora;
+	horaOut = hora;
 }
 
 
@@ -78,13 +78,9 @@ void Viagem::setDestino(string localD, int dist2)
 void Viagem::pagarViagem()
 {
 	double tempo = 1.15 * deslocacao.getDistancia();
-	string t1, t2, t3, t4;
-	t1 = "7:15";
-	t2 = "9:00";
-	t3 = "18:00";
-	t4 = "20:15";
+	Hora t1(7,15,0), t2(9,0,0), t3(18,0,0), t4(20,15,0);
 
-	if ((horaIn < t2 && horaIn > t1) || (horaIn < t4 && horaIn > t3))
+	if ((horaIn < t2 && t1 < horaIn) || (horaIn < t4 && t3<horaIn))
 		tempo = tempo * 1.3;
 
 	custo = tempo*0.6;

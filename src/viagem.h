@@ -12,6 +12,7 @@
 #include <string>
 #include <vector>
 
+#include "Hora.h"
 #include "Data.h"
 #include "Percurso.h"
 
@@ -20,23 +21,23 @@ using namespace std;
 class Viagem {
 private:
 	Data dia;
-	string horaIn;
-	string horaOut;
+	Hora horaIn;
+	Hora horaOut;
 	Percurso deslocacao;
 	int idCliente;
 	double custo;
 	bool pago;
 public:
-	Viagem(Data dia, string horaIn, string horaOut, Percurso p1, int cliente);
+	Viagem(Data dia, Hora horaIn, Hora horaOut, Percurso p1, int cliente);
 
 	//void alteraViagem();
 
 	Data getDia() const;
 	void setDia(int d, int m, int a);
-	string getHoraIn()const;
-	void setHoraIn(string hora);
-	string getHoraOut()const;
-	void setHoraOut(string hora);
+	Hora getHoraIn()const;
+	void setHoraIn(Hora hora);
+	Hora getHoraOut()const;
+	void setHoraOut(Hora hora);
 	string getPartida() const;
 	void setPartida(string localP, int dist1);
 	string getDestino() const;

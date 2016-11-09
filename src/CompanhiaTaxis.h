@@ -40,9 +40,10 @@ public:
 	bool removeCliente(string nomeC);
 	int procuraCliente(const string &nomeC) const;
 	int ultimoIDcliente();
-	void fazerviagem_ocasional(Data dia, string horaIn, string horaOut, Percurso & p1);
-	void fazerviagem_cliente(int id, Data dia, string horaIn, string horaOut, Percurso & p1);
+	void fazerviagem_ocasional(Data dia, Hora horaIn, Hora horaOut, Percurso & p1);
+	void fazerviagem_cliente(int id, Data dia, Hora horaIn, Hora horaOut, Percurso & p1);
 	void cobrarPagamentoMensal();
+	ostream & mostrarClientesPorCapital(ostream os);
 };
 
 #endif /* SRC_COMPANHIATAXIS_H_ */

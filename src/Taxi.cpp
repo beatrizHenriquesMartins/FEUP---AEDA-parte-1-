@@ -19,8 +19,8 @@ int Taxi::getNumeroTaxi() const {
 	return numeroTaxi;
 }
 
-bool Taxi::getDisponivel(Hora h)  {
-	if(h<=horaOff && horaIn<=h)
+bool Taxi::getDisponivel(Hora hi, Hora hf)  {
+	if(hf<=horaOff && horaIn<=hi)
 		return true;
 	else
 		return false;
