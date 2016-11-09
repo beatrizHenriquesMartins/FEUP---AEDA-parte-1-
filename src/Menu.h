@@ -20,9 +20,9 @@ class Menu {
 public:
 	Menu();
 	void menuInicio();
-	void menuClientes();
+	void menuClientes(CompanhiaTaxis &comp);
 	void menuNovoCliente();
-	void menuCompanhia(CompanhiaTaxis comp);
+	void menuCompanhia(CompanhiaTaxis &comp);
 };
 
 #endif /* SRC_MENU_H_ */

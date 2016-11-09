@@ -9,6 +9,7 @@
 
 #include <string>
 
+
 class Hora {
 	int hora;
 	int minutos;
@@ -22,6 +23,7 @@ public:
 	int get_segundos() const;
 	bool operator < (Hora h2);
 	bool operator <= (Hora h2);
+	//friend ostream operator <<(ostream os, Hora h);
 };
 
 /*

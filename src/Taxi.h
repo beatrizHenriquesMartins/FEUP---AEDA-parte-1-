@@ -22,6 +22,9 @@ public:
 	bool getDisponivel(Hora hi, Hora hf);
 	float getRentabilidade();
 	void setRentabilidade(float n);
+	Hora getHoraIn();
+	Hora getHoraOff();
+	//friend ostream operator << (ostream os, Taxi t);
 };
 /*
 class TaxisIndisponiveis{

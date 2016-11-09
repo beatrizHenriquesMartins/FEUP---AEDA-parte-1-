@@ -38,14 +38,15 @@ public:
 	//vector<Taxi *> getTaxisDisponiveis() const;
 	void adicionaClienteParticular(string nome, string morada, string email, int nT, int nif, int tipo_pagamento);
 	void adicionaClienteEmpresa(string nome, string morada, string email, int nT, int nif, int tipo_pagamento,int num_funcionarios);
-	bool removeCliente(string nomeC);
-	int procuraCliente(const string &nomeC) const;
+	bool removeCliente(int id);
+	int procuraCliente(int id) const;
 	int ultimoIDcliente();
-	void fazerviagem_ocasional(Data dia, Hora horaIn, Hora horaOut, Percurso & p1);
-	void fazerviagem_cliente(int id, Data dia, Hora horaIn, Hora horaOut, Percurso & p1);
+	void fazerviagem_ocasional(Data dia, Hora horaIn, Hora horaOut, Percurso p1);
+	void fazerviagem_cliente(int id, Data dia, Hora horaIn, Hora horaOut, Percurso p1);
 	void cobrarPagamentoMensal();
 	ostream & mostrarClientesPorCapital(ostream os);
 	ostream & mostrarClientesPorID(ostream os);
+	ostream & mostrarTaxis(ostream os);
 };
 
 #endif /* SRC_COMPANHIATAXIS_H_ */

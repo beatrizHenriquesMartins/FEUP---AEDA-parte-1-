@@ -134,9 +134,9 @@ return n;
 }
 
 
-ostream & operator <<(ostream & os, Cliente cli)
+ostream & operator <<(ostream os, Cliente cli)
 {
-os<<cli.getID()<<" Nome: "<<cli.getNomeC()<<" Morada: "<<cli.getMorada()<<" Email: "<<cli.getEmail()<<" Nr Telemovel: "<<cli.getNumeroTelemovel()<<endl;
+os<<cli.getID()<<" Nome: "<<cli.getNomeC()<<" Morada: "<<cli.getMorada()<<" Email: "<<cli.getEmail()<<" Nr Telemovel: "<<cli.getNumeroTelemovel()<<" Total dispendido na Companhia: "<<cli.getCusto().getTotal()<<" Tipo de pagamento: "<<cli.getCusto().getTipo()<<" Nr total de pontos no cartao: "<<cli.getPontos()<<endl;
 return os;
 }
 

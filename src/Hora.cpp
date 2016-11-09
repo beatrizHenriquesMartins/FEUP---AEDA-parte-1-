@@ -66,3 +66,14 @@ else
 
 }
 
+/*ostream & operator <<(ostream os, Hora h)
+{
+
+	os<<h.hora<<":"<<h.minutos<<":"<<h.segundos<<endl;
+	return os;
+
+}*/
+
+
+
+

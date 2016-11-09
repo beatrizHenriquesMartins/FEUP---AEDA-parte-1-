@@ -65,9 +65,9 @@ public:
 	void setNumeroTelemovel(int nT);
 	void addViagem_nao_paga(Viagem v);
 	void addViagem_historico(Viagem v);
-	float give_monthly_promotion();
+	virtual float give_monthly_promotion();
 	float fimdoMes();
-	friend ostream operator <<(ostream os, Cliente cli);
+	friend ostream & operator <<(ostream os, Cliente cli);
 	bool operator <(Cliente c2);
 };
 

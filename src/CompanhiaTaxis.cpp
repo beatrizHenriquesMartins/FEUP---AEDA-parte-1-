@@ -64,9 +64,9 @@ void CompanhiaTaxis::adicionaClienteEmpresa(string nome, string morada,
 	clientes.push_back(c);
 }
 
-bool CompanhiaTaxis::removeCliente(string nomeC) {
+bool CompanhiaTaxis::removeCliente(int id) {
 	int ind;
-	ind = procuraCliente(nomeC);
+	ind = procuraCliente(id);
 
 	if (ind == -1) {
 		return false;
@@ -79,19 +79,19 @@ bool CompanhiaTaxis::removeCliente(string nomeC) {
 	return true;
 }
 
-int CompanhiaTaxis::procuraCliente(const string &nomeC) const {
+int CompanhiaTaxis::procuraCliente(int id) const {
 	if (clientes.size() == 0) {
 		return -1;
 	}
 
-	vector<string> aux;
+	vector<int> aux;
 
 	for (unsigned int i = 0; i < clientes.size(); i++) {
-		aux.push_back(clientes[i]->getNomeC());
+		aux.push_back(clientes[i]->getID());
 	}
 
 	int ind;
-	ind = sequentialSearch(aux, nomeC);
+	ind = sequentialSearch(aux, id);
 
 	if (ind == -1) {
 		return -1;
@@ -108,7 +108,7 @@ int CompanhiaTaxis::ultimoIDcliente() {
 }
 
 
-void CompanhiaTaxis::fazerviagem_ocasional(Data dia, Hora horaIn, Hora horaOut, Percurso & p1)
+void CompanhiaTaxis::fazerviagem_ocasional(Data dia, Hora horaIn, Hora horaOut, Percurso p1)
 {
 
 for(unsigned int i=0; i<taxisTotais.size();i++)
@@ -124,7 +124,7 @@ if(taxisTotais[i]->getDisponivel(horaIn,horaOut));
 throw TaxisIndisponiveis("Nao existem taxis de momento disponiveis");
 }
 
-void CompanhiaTaxis::fazerviagem_cliente(int id, Data dia, Hora horaIn, Hora horaOut, Percurso & p1)
+void CompanhiaTaxis::fazerviagem_cliente(int id, Data dia, Hora horaIn, Hora horaOut, Percurso p1)
 {
 
 	for(unsigned int j=0; j<clientes.size();j++)
@@ -219,6 +219,19 @@ ostream & CompanhiaTaxis::mostrarClientesPorID(ostream os)
 	for (;it!=ite; it++)
 	{
 		os<<(*it)<<endl;
+	}
+return os;
+}
+
+ostream & CompanhiaTaxis::mostrarTaxis(ostream os)
+{
+
+	vector<Cliente *>::iterator it=taxisTotais.begin();
+	vector<Cliente *>::iterator ite=taxisTotais.end();
+
+	for (;it!=ite; it++)
+	{
+		os<<(*it);
 	}
 return os;
 }
