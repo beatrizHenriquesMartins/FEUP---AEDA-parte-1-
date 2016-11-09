@@ -23,12 +23,12 @@ public:
 	float getRentabilidade();
 	void setRentabilidade(float n);
 };
-
+/*
 class TaxisIndisponiveis{
 	string razao;
 public:
 	TaxisIndisponiveis(string r){razao=r;};
 	string getRazao(){return razao;};
 };
-
+*/
 #endif /* SRC_TAXI_H_ */

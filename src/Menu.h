@@ -22,7 +22,7 @@ public:
 	void menuInicio();
 	void menuClientes();
 	void menuNovoCliente();
-	void menuCompanhia();
+	void menuCompanhia(CompanhiaTaxis comp);
 };
 
 #endif /* SRC_MENU_H_ */

@@ -56,6 +56,14 @@ void CompanhiaTaxis::adicionaClienteParticular(string nome, string morada,
 	clientes.push_back(c);
 }
 
+void CompanhiaTaxis::adicionaClienteEmpresa(string nome, string morada,
+		string email, int nT, int nif, int tipo_pagamento,int num_funcionarios) {
+	int id;
+	id = ultimoIDcliente();
+	Cliente *c = new Empresa(id, nome, morada, email, nT, nif, tipo_pagamento,num_funcionarios);
+	clientes.push_back(c);
+}
+
 bool CompanhiaTaxis::removeCliente(string nomeC) {
 	int ind;
 	ind = procuraCliente(nomeC);
@@ -194,6 +202,19 @@ ostream & CompanhiaTaxis::mostrarClientesPorCapital(ostream os)
 
 	sort(it,ite);
 	reverse(it,ite);
+
+	for (;it!=ite; it++)
+	{
+		os<<(*it)<<endl;
+	}
+return os;
+}
+
+ostream & CompanhiaTaxis::mostrarClientesPorID(ostream os)
+{
+
+	vector<Cliente *>::iterator it=clientes.begin();
+	vector<Cliente *>::iterator ite=clientes.end();
 
 	for (;it!=ite; it++)
 	{
