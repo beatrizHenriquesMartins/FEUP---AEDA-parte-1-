@@ -10,11 +10,11 @@
 Hora::Hora(int h, int m, int s) {
 
 	if(h<0 || h>23)
-		throw HoraInvalida("Hora nao permitida");
+		//throw HoraInvalida("Hora nao permitida");
 	if(m<0 || m>59)
-			throw HoraInvalida("Minutos nao permitidos");
+			//throw HoraInvalida("Minutos nao permitidos");
 	if(s<0 || s>59)
-			throw HoraInvalida("Segundos nao permitidos");
+			//throw HoraInvalida("Segundos nao permitidos");
 
 	hora = h;
 	minutos = m;

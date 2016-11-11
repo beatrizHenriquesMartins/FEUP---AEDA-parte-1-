@@ -59,3 +59,4 @@ void Pagamento::changeTipo (int t)
 		case(4):
 				tipo="fim_do_mes";
 }
+}

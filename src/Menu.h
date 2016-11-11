@@ -25,4 +25,15 @@ public:
 	void menuCompanhia(CompanhiaTaxis &comp);
 };
 
+class OpcaoErrada{
+public:
+	int alertaErro(){cout<<"Opcao errada, tente outra vez"<<endl; return 1;};
+};
+
+class ErroInput{
+public:
+	int alertaErro(){cout<<"Erro de input, digite tudo outra vez"<<endl; return 1;};
+};
+
+
 #endif /* SRC_MENU_H_ */

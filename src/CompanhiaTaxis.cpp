@@ -121,7 +121,7 @@ if(taxisTotais[i]->getDisponivel(horaIn,horaOut));
 	return;
 }
 }
-throw TaxisIndisponiveis("Nao existem taxis de momento disponiveis");
+//throw TaxisIndisponiveis("Nao existem taxis de momento disponiveis");
 }
 
 void CompanhiaTaxis::fazerviagem_cliente(int id, Data dia, Hora horaIn, Hora horaOut, Percurso p1)
@@ -168,7 +168,7 @@ if(taxisTotais[i]->getDisponivel(horaIn,horaOut))
 }
 
 }
-throw TaxisIndisponiveis("Nao existem taxis de momento disponiveis");
+//throw TaxisIndisponiveis("Nao existem taxis de momento disponiveis");
 		}
 	}
 
@@ -194,9 +194,9 @@ for (unsigned int j=0; j<taxisTotais.size(); j++)
 	}
 }
 
-ostream & CompanhiaTaxis::mostrarClientesPorCapital(ostream os)
+ostream & mostrarClientesPorCapital(ostream os,CompanhiaTaxis c)
 {
-	vector<Cliente *> v= clientes;
+	vector<Cliente *> v= c.getClientes();
 	vector<Cliente *>::iterator it=v.begin();
 	vector<Cliente *>::iterator ite=v.end();
 
@@ -210,11 +210,11 @@ ostream & CompanhiaTaxis::mostrarClientesPorCapital(ostream os)
 return os;
 }
 
-ostream & CompanhiaTaxis::mostrarClientesPorID(ostream os)
+ostream & mostrarClientesPorID(ostream os, CompanhiaTaxis c)
 {
 
-	vector<Cliente *>::iterator it=clientes.begin();
-	vector<Cliente *>::iterator ite=clientes.end();
+	vector<Cliente *>::iterator it=c.getClientes().begin();
+	vector<Cliente *>::iterator ite=c.getClientes().end();
 
 	for (;it!=ite; it++)
 	{
@@ -223,11 +223,11 @@ ostream & CompanhiaTaxis::mostrarClientesPorID(ostream os)
 return os;
 }
 
-ostream & CompanhiaTaxis::mostrarTaxis(ostream os)
+ostream & mostrarTaxis(ostream os, CompanhiaTaxis c)
 {
 
-	vector<Cliente *>::iterator it=taxisTotais.begin();
-	vector<Cliente *>::iterator ite=taxisTotais.end();
+	vector<Taxi *>::iterator it=c.getTaxisTotais().begin();
+	vector<Taxi *>::iterator ite=c.getTaxisTotais().end();
 
 	for (;it!=ite; it++)
 	{
