@@ -22,17 +22,17 @@ protected:
 	string nomeC;
 	Pagamento custo;
 public:
-	Utente(string nome, int tipo_pagamento);
+	Utente(string nome, string tipo_pagamento);
 	string getNomeC() const;
 	void setNomeC(string nome);
 	void changeCusto_total(float n);
-	void changeCusto_tipo(int tipo);
+	void changeCusto_tipo(string tipo);
 	Pagamento getCusto();
 };
 
 class Ocasionais: public Utente {
 public:
-	Ocasionais(string nome,int tipo_pagamento);
+	Ocasionais(string nome,string tipo_pagamento);
 
 
 };
@@ -48,7 +48,7 @@ protected:
 	vector<Viagem> viagens_nao_pagas;
 	int cartao_pontos;
 public:
-	Cliente(int id, string nC, string m, string mail, int nT, int nif,int tipo_pagamento);
+	Cliente(int id, string nC, string m, string mail, int nT, int nif,string tipo_pagamento);
 	int getID() const;
 	int getNIF() const;
 	void setNIF(int nif);
@@ -73,7 +73,7 @@ public:
 
 class Particular: public Cliente {
 public:
-	Particular(int id, string nC, string m, string mail, int nT, int nif, int tipo_pagamento);
+	Particular(int id, string nC, string m, string mail, int nT, int nif, string tipo_pagamento);
 	float give_monthly_promotion();
 	string mostrarCliente();
 
@@ -82,7 +82,7 @@ public:
 class Empresa: public Cliente {
 	int num_funcionarios;
 public:
-	Empresa(int id, string nC, string m, string mail, int nT, int nif, int tipo_pagamento, int num_funcionarios);
+	Empresa(int id, string nC, string m, string mail, int nT, int nif, string tipo_pagamento, int num_funcionarios);
 	float give_monthly_promotion();
 	string mostrarCliente();
 };

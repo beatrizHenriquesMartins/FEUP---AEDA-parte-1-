@@ -17,10 +17,10 @@ private:
 	string tipo;
 public:
 	Pagamento();
-	Pagamento(int t);
+	Pagamento(string t);
 	float getTotal();
 	string getTipo();
 	void changeTotal(float n);
-	void changeTipo (int t);
+	void changeTipo (string t);
 };
 

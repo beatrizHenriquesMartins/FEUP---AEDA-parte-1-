@@ -8,7 +8,7 @@
 #include "Cliente.h"
 
 //Utente
-Utente::Utente(string nome, int tipo_pagamento) {
+Utente::Utente(string nome, string tipo_pagamento) {
 	custo = Pagamento(tipo_pagamento);
 	nomeC = nome;
 }
@@ -31,20 +31,20 @@ void Utente::changeCusto_total(float n)
 custo.changeTotal(n);
 }
 
-void Utente::changeCusto_tipo(int tipo)
+void Utente::changeCusto_tipo(string tipo)
 {
 custo.changeTipo(tipo);
 }
 
 //Ocasionais
-Ocasionais::Ocasionais(string nome,int tipo_pagamento) :
+Ocasionais::Ocasionais(string nome,string tipo_pagamento) :
 		Utente(nome, tipo_pagamento) {
 
 }
 
 
 //Cliente
-Cliente::Cliente(int id, string nC, string m, string mail, int nT, int nif, int tipo_pagamento) :
+Cliente::Cliente(int id, string nC, string m, string mail, int nT, int nif, string tipo_pagamento) :
 		Utente(nC, tipo_pagamento) {
 	idC = id;
 	NIF = nif;
@@ -155,7 +155,7 @@ bool Cliente::operator <(Cliente c2)
 
 //Particular
 	Particular::Particular(int id, string nC, string m, string mail, int nT,
-			int nif, int tipo_pagamento) :
+			int nif, string tipo_pagamento) :
 			Cliente(id, nC, m, mail, nT, nif, tipo_pagamento) {
 
 	}
@@ -183,7 +183,7 @@ bool Cliente::operator <(Cliente c2)
  }
 //Empresa
 	Empresa::Empresa(int id, string nC, string m, string mail, int nT, int nif,
-			int num_funcionarios, int tipo_pagamento) :
+			string tipo_pagamento, int num_funcionarios) :
 			Cliente(id, nC, m, mail, nT, nif, tipo_pagamento) {
 		this->num_funcionarios = num_funcionarios;
 	}

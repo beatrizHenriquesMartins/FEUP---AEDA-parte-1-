@@ -13,21 +13,9 @@ Pagamento::Pagamento()
 	dinheiro=0;
 }
 
-Pagamento::Pagamento(int t)
+Pagamento::Pagamento(string t)
 {
-	switch (t)
-	{
-	case(1):
-			tipo="numerario";
-	case(2):
-			tipo="multibanco";
-	case(3):
-			tipo="credito";
-	case(4):
-			tipo="fim_do_mes";
-	default:
-		tipo="indefinido";
-	}
+	tipo=t;
 	dinheiro=0;
 }
 
@@ -46,17 +34,8 @@ void Pagamento::changeTotal(float n)
 	dinheiro=n;
 }
 
-void Pagamento::changeTipo (int t)
+void Pagamento::changeTipo (string t)
 {
-	switch (t)
-		{
-		case(1):
-				tipo="numerario";
-		case(2):
-				tipo="multibanco";
-		case(3):
-				tipo="credito";
-		case(4):
-				tipo="fim_do_mes";
-}
+tipo=t;
+
 }
