@@ -34,6 +34,29 @@ int Hora::get_segundos() const {
 	return segundos;
 }
 
+Hora Hora::somaHoras(int min)
+{
+	int minfinal;
+
+	minfinal = this->minutos + min;
+
+	if (minfinal / 60 > 0)
+	{
+		if (hora + 1 == 24 )
+		{
+			Hora h = Hora(0,0,0);
+			return h;
+		}
+	}
+
+	int hor = this->hora + 1;
+	int minu = this->minutos + minfinal % 60;
+	int sec = this->segundos;
+
+	Hora h = Hora(hor,minu,sec);
+	return h;
+}
+
 bool Hora::operator <(Hora h2)
 {
 

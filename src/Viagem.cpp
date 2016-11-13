@@ -75,20 +75,24 @@ void Viagem::setDestino(string localD, int dist2)
 	deslocacao.setLocalDestino(localD, dist2);
 }
 
-void Viagem::pagarViagem()
+float Viagem::pagarViagem()
 {
-	double tempo = 1.15 * deslocacao.getDistancia();
+	float tempo = 1.15 * deslocacao.getDistancia();
 	Hora t1(7,15,0), t2(9,0,0), t3(18,0,0), t4(20,15,0);
 
 	if ((horaIn < t2 && t1 < horaIn) || (horaIn < t4 && t3<horaIn))
 		tempo = tempo * 1.3;
 
-	custo = tempo*0.6;
+	int temp = floor(tempo);
 
-	//Pre?o fixo por tempo de viagem (1 minuto -- 0.6 euros)
-	//atualiza-se o pre?o e se o boleano pago
+	horaOut = horaIn.somaHoras(temp);
+
+	custo = tempo*0.6;
+	this->pago = true;
+
+	return custo;
 }
 
-double Viagem::getCustoViagem() const {
+float Viagem::getCustoViagem() const {
 	return custo;
 }

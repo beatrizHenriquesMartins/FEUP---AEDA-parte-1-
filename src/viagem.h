@@ -11,6 +11,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <math.h>
 
 #include "Hora.h"
 #include "Data.h"
@@ -25,7 +26,7 @@ private:
 	Hora horaOut;
 	Percurso deslocacao;
 	int idCliente;
-	double custo;
+	float custo;
 	bool pago;
 public:
 	Viagem(Data dia, Hora horaIn, Hora horaOut, Percurso p1, int cliente);
@@ -42,8 +43,8 @@ public:
 	void setPartida(string localP, int dist1);
 	string getDestino() const;
 	void setDestino(string localD, int dist2);
-	void pagarViagem();
-	double getCustoViagem() const;
+	float pagarViagem();
+	float getCustoViagem() const;
 };
 
 #endif /* SRC_VIAGEM_H_ */
