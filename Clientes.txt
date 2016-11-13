@@ -1,4 +1,0 @@
-3
-123456789; Diogo Pereira; Rua Chaos do Monte
-987654321; Beatriz; Maia
-192837465; Pedro Ferreira; Alfena
