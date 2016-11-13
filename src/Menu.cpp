@@ -6,7 +6,6 @@
  */
 
 #include "Menu.h"
-#include <fstream>
 
 Menu::Menu() {
 	menuInicio();
@@ -14,7 +13,7 @@ Menu::Menu() {
 
 void Menu::menuInicio() {
 	cout << "||Menu||" << endl << setw(5) << " " << "Bem vindo" << endl
-			<< setw(5) << " " << "1. Companhia" << endl << setw(5) << " "
+			<< setw(5) << " " << "1. Entrar" << endl << setw(5) << " "
 			<< "2. Sair" << endl << setw(5) << " " << "op: ";
 
 	int op;
@@ -39,25 +38,114 @@ void Menu::menuInicio() {
 	}
 }
 
-void Menu::menuEntrar() {
-	CompanhiaTaxis comp = CompanhiaTaxis("TaxUber", 0);
-
-	menuCompanhia(comp);
-}
-
-int Menu::lerFicheiroCliente(string fichCliente, CompanhiaTaxis comp) {
-	ifstream file(fichCliente);
+int Menu::lerFicheiroClienteParticular(CompanhiaTaxis comp) {
+	ifstream file("clientesParticulares.txt");
 
 	if (!file.is_open()) {
 		return -1;
 	}
 
-	while (!file.eof()) {
+	int total;
 
+	file >> total;
+
+	string lixo;
+
+	vector<Cliente*> aux;
+
+	while (!file.eof()) {
+		int id;
+		file >> id;
+		getline(file, lixo, ';');
+		string nome;
+		getline(file, nome, ';');
+		string morada;
+		getline(file, morada, ';');
+		string email;
+		getline(file, email, ';');
+		int nTelemovel;
+		file >> nTelemovel;
+		getline(file, lixo, ';');
+		int nif;
+		file >> nif;
+		getline(file, lixo, ';');
+		string tipoPagamento;
+		getline(file, tipoPagamento, '\n');
+		Cliente *p = new Particular(id, nome, morada, email, nTelemovel, nif,
+				tipoPagamento);
+		aux.push_back(p);
 	}
+
+	file.close();
+
+	if (aux.size() != total) {
+		return -1;
+	}
+
+	comp.setClientes(aux);
 
 	return 0;
 }
+
+int Menu::lerFicheiroClienteEmpresas(CompanhiaTaxis comp) {
+	ifstream file("clientesParticulares.txt");
+
+	if (!file.is_open()) {
+		return -1;
+	}
+
+	int total;
+
+	file >> total;
+
+	string lixo;
+
+	vector<Cliente*> aux;
+
+	while (!file.eof()) {
+		int id;
+		file >> id;
+		getline(file, lixo, ';');
+		string nome;
+		getline(file, nome, ';');
+		string morada;
+		getline(file, morada, ';');
+		string email;
+		getline(file, email, ';');
+		int nTelemovel;
+		file >> nTelemovel;
+		getline(file, lixo, ';');
+		int nif;
+		file >> nif;
+		getline(file, lixo, ';');
+		string tipoPagamento;
+		getline(file, tipoPagamento, ';');
+		int nFunc;
+		file >> nFunc;
+		getline(file, lixo, '\n');
+		Cliente *p = new Empresa(id, nome, morada, email, nTelemovel, nif,
+				tipoPagamento, nFunc);
+		aux.push_back(p);
+	}
+
+	file.close();
+
+	if (aux.size() != total) {
+		return -1;
+	}
+
+	comp.setClientes(aux);
+
+	return 0;
+}
+
+void Menu::menuEntrar() {
+	CompanhiaTaxis comp = CompanhiaTaxis("TaxUber", 0);
+	lerFicheiroClienteParticular(comp);
+	lerFicheiroClienteEmpresas(comp);
+	menuCompanhia(comp);
+}
+
 void Menu::menuClientes(CompanhiaTaxis &comp) {
 	cout << "||Clientes" << endl << setw(5) << " " << "1. Novo Cliente" << endl
 

@@ -12,7 +12,6 @@
 #include <string>
 #include <vector>
 
-
 using namespace std;
 
 class Percurso {
@@ -21,6 +20,7 @@ private:
 	string localDestino;
 	int distancia;
 public:
+	Percurso();
 	Percurso(string localPart, string localDest, int distancia);
 	string getLocalPartida() const;
 	string getLocalDestino() const;
@@ -29,7 +29,5 @@ public:
 	void setLocalDestino(string localDest, int dist);
 	void setDistancia(int distancia);
 };
-
-
 
 #endif /* SRC_PERCURSO_H_ */

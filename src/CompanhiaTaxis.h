@@ -37,13 +37,18 @@ public:
 	vector<Ocasionais> getOcasionais() const;
 	vector<Taxi> getTaxisTotais() const;
 	//vector<Taxi *> getTaxisDisponiveis() const;
-	void adicionaClienteParticular(string nome, string morada, string email, int nT, int nif, string tipo_pagamento);
-	void adicionaClienteEmpresa(string nome, string morada, string email, int nT, int nif, string tipo_pagamento,int num_funcionarios);
+	void setClientes(vector<Cliente*> c);
+	void adicionaClienteParticular(string nome, string morada, string email,
+			int nT, int nif, string tipo_pagamento);
+	void adicionaClienteEmpresa(string nome, string morada, string email,
+			int nT, int nif, string tipo_pagamento, int num_funcionarios);
 	bool removeCliente(int id);
 	int procuraCliente(int id) const;
 	int ultimoIDcliente();
-	void fazerviagem_ocasional(Data dia, Hora horaIn, Hora horaOut, Percurso p1);
-	void fazerviagem_cliente(int id, Data dia, Hora horaIn, Hora horaOut, Percurso p1);
+	void fazerviagem_ocasional(Data dia, Hora horaIn, Hora horaOut,
+			Percurso p1);
+	void fazerviagem_cliente(int id, Data dia, Hora horaIn, Hora horaOut,
+			Percurso p1);
 	void cobrarPagamentoMensal();
 	void mostrarClientesPorCapital();
 	void mostrarClientesPorID();
