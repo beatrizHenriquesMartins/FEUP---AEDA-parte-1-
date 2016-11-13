@@ -14,7 +14,6 @@
 #include "Percurso.h"
 #include "viagem.h"
 
-
 using namespace std;
 
 class Utente {
@@ -32,8 +31,7 @@ public:
 
 class Ocasionais: public Utente {
 public:
-	Ocasionais(string nome,string tipo_pagamento);
-
+	Ocasionais(string nome, string tipo_pagamento);
 
 };
 
@@ -48,18 +46,20 @@ protected:
 	vector<Viagem> viagens_nao_pagas;
 	int cartao_pontos;
 public:
-	Cliente(int id, string nC, string m, string mail, int nT, int nif,string tipo_pagamento);
+	Cliente(int id, string nC, string m, string mail, int nT, int nif,
+			string tipo_pagamento);
+	virtual ~Cliente() {
+	}
+	;
 	int getID() const;
 	int getNIF() const;
 	void setNIF(int nif);
-	string getNomeC() const;
 	string getMorada() const;
 	string getEmail() const;
 	vector<Viagem> getHistoricoViagens();
 	int getNumeroTelemovel() const;
 	int getPontos();
 	void aumentaPontos();
-	void setNomeC(string nC);
 	void setMorada(string m);
 	void setEmail(string mail);
 	void setNumeroTelemovel(int nT);
@@ -73,7 +73,8 @@ public:
 
 class Particular: public Cliente {
 public:
-	Particular(int id, string nC, string m, string mail, int nT, int nif, string tipo_pagamento);
+	Particular(int id, string nC, string m, string mail, int nT, int nif,
+			string tipo_pagamento);
 	float give_monthly_promotion();
 	string mostrarCliente();
 
@@ -82,17 +83,23 @@ public:
 class Empresa: public Cliente {
 	int num_funcionarios;
 public:
-	Empresa(int id, string nC, string m, string mail, int nT, int nif, string tipo_pagamento, int num_funcionarios);
+	Empresa(int id, string nC, string m, string mail, int nT, int nif,
+			string tipo_pagamento, int num_funcionarios);
 	float give_monthly_promotion();
 	string mostrarCliente();
 };
 
-
-class ClienteInexistente{
+class ClienteInexistente {
 	int id;
 public:
-	ClienteInexistente(int n){id=n;};
-	int getID(){return id;};
+	ClienteInexistente(int n) {
+		id = n;
+	}
+	;
+	int getID() {
+		return id;
+	}
+	;
 
 };
 #endif /* SRC_CLIENTE_H_ */
