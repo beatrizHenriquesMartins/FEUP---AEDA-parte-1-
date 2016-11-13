@@ -55,6 +55,6 @@ void Percurso::setDistancia(int distancia)
 ostream & operator << (ostream os, Percurso p)
 {
 
-os<<"Percurso: "<<p.getLocalPartida()<<"-"<<p.getLocalDestino()<<"Distancia: "<<p.getDistancia();
+os<<"Percurso: "<<p.getLocalPartida()<<"-"<<p.getLocalDestino()<<" Distancia: "<<p.getDistancia();
 return os;
 }
