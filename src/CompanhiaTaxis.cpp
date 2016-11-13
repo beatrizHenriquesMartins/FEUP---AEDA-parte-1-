@@ -147,7 +147,7 @@ if(taxisTotais[i].getDisponivel(horaIn,horaOut))
 		{
 		if(clientes[j]->getPontos()>50)
 			return;
-		clientes[j]->addViagem_nao_paga(v);
+		clientes[j]->addViagem_mensal(v);
 		return;
 		}
 	if(clientes[j]->getCusto().getTipo()=="credito")

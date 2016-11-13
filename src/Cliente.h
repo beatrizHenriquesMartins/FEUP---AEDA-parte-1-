@@ -43,7 +43,7 @@ protected:
 	string email;
 	int numeroTelemovel;
 	vector<Viagem> historicoViagens;
-	vector<Viagem> viagens_nao_pagas;
+	vector<Viagem> viagens_mensais;
 	int cartao_pontos;
 public:
 	Cliente(int id, string nC, string m, string mail, int nT, int nif,
@@ -63,7 +63,7 @@ public:
 	void setMorada(string m);
 	void setEmail(string mail);
 	void setNumeroTelemovel(int nT);
-	void addViagem_nao_paga(Viagem v);
+	void addViagem_mensal(Viagem v);
 	void addViagem_historico(Viagem v);
 	virtual float give_monthly_promotion();
 	float fimdoMes();
