@@ -49,7 +49,7 @@ vector<Taxi> CompanhiaTaxis::getTaxisTotais() const {
  */
 
 void CompanhiaTaxis::adicionaClienteParticular(string nome, string morada,
-		string email, int nT, int nif, int tipo_pagamento) {
+		string email, int nT, int nif, string tipo_pagamento) {
 	int id;
 	id = ultimoIDcliente();
 	Cliente *c = new Particular(id, nome, morada, email, nT, nif, tipo_pagamento);
@@ -57,7 +57,7 @@ void CompanhiaTaxis::adicionaClienteParticular(string nome, string morada,
 }
 
 void CompanhiaTaxis::adicionaClienteEmpresa(string nome, string morada,
-		string email, int nT, int nif, int tipo_pagamento,int num_funcionarios) {
+		string email, int nT, int nif, string tipo_pagamento,int num_funcionarios) {
 	int id;
 	id = ultimoIDcliente();
 	Cliente *c = new Empresa(id, nome, morada, email, nT, nif, tipo_pagamento,num_funcionarios);
