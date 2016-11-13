@@ -40,3 +40,11 @@ void Data::setMes(int m) {
 void Data::setAno(int a) {
 	ano = a;
 }
+
+ostream & operator <<(ostream os, Data d)
+{
+
+os<<d.getDia()<<"/"<<d.getMes()<<"/"<<d.getAno();
+return os;
+
+}

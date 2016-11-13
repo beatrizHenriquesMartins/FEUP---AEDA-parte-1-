@@ -25,11 +25,10 @@ private:
 	Hora horaIn;
 	Hora horaOut;
 	Percurso deslocacao;
-	int idCliente;
 	float custo;
 	bool pago;
 public:
-	Viagem(Data dia, Hora horaIn, Hora horaOut, Percurso p1, int cliente);
+	Viagem(Data dia, Hora horaIn, Hora horaOut, Percurso p1);
 
 	//void alteraViagem();
 
@@ -45,6 +44,8 @@ public:
 	void setDestino(string localD, int dist2);
 	float pagarViagem();
 	float getCustoViagem() const;
+	Percurso getDeslocacao();
+	friend ostream & operator <<(ostream os, Viagem v);
 };
 
 #endif /* SRC_VIAGEM_H_ */

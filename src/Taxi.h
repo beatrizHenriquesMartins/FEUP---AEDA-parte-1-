@@ -9,7 +9,10 @@
 #define SRC_TAXI_H_
 
 #include <string>
+#include <iostream>
 #include "Hora.h"
+
+using namespace std;
 
 class Taxi {
 	int numeroTaxi;
@@ -18,23 +21,21 @@ class Taxi {
 	Hora horaOff;
 public:
 	Taxi(int nTaxi, Hora horI, Hora horO);
-	~Taxi() {
-	}
-	;
+	~Taxi();
 	int getNumeroTaxi() const;
 	bool getDisponivel(Hora hi, Hora hf);
 	float getRentabilidade();
 	void setRentabilidade(float n);
 	Hora getHoraIn();
 	Hora getHoraOff();
-	//friend ostream operator << (ostream os, Taxi t);
+	friend ostream & operator <<(ostream os, Taxi t);
 };
 /*
- class TaxisIndisponiveis{
- string razao;
- public:
- TaxisIndisponiveis(string r){razao=r;};
- string getRazao(){return razao;};
- };
- */
+class TaxisIndisponiveis{
+	string razao;
+public:
+	TaxisIndisponiveis(string r){razao=r;};
+	string getRazao(){return razao;};
+};
+*/
 #endif /* SRC_TAXI_H_ */

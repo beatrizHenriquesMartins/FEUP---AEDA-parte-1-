@@ -8,43 +8,52 @@
 #include "Taxi.h"
 
 //Taxi
-Taxi::Taxi(int nTaxi, Hora horI, Hora horO) {
-	horaIn = horI;
-	horaOff = horO;
+Taxi::Taxi(int nTaxi, Hora horI, Hora horO){
+	horaIn=horI;
+	horaOff=horO;
 	numeroTaxi = nTaxi;
-	rentabilidade = 0;
+	rentabilidade=0;
 }
+
+
+Taxi::~Taxi() {};
 
 int Taxi::getNumeroTaxi() const {
 	return numeroTaxi;
 }
 
-bool Taxi::getDisponivel(Hora hi, Hora hf) {
-	if (hf <= horaOff && horaIn <= hi)
+bool Taxi::getDisponivel(Hora hi, Hora hf)  {
+	if(hf<=horaOff && horaIn<=hi)
 		return true;
 	else
 		return false;
 }
+
 
 float Taxi::getRentabilidade() {
 	return rentabilidade;
 }
 
 void Taxi::setRentabilidade(float n) {
-	rentabilidade += n;
+	rentabilidade+=n;
 }
 
-Hora Taxi::getHoraIn() {
+Hora Taxi::getHoraIn()
+{
 	return horaIn;
 }
 
-Hora Taxi::getHoraOff() {
+Hora Taxi::getHoraOff()
+{
 	return horaOff;
 }
 
-/*ostream & operator <<(ostream os, Taxi t)
- {
+ostream & operator <<(ostream os, Taxi t)
+{
 
- os<<"Taxi numero "<<t.getNumeroTaxi()<<" Rentabilidade Atual: "<<t.getRentabilidade()<<" Disponivel entre:"<<t.getHoraIn() <<" e as "<<t.getHoraOff()<<endl;
- return os;
- }*/
+os<<"Taxi numero "<<t.getNumeroTaxi()<<" Rentabilidade Atual: "<<t.getRentabilidade()<<" Disponivel entre:"<<t.getHoraIn() <<" e as "<<t.getHoraOff();
+return os;
+}
+
+
+
