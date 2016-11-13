@@ -10,6 +10,7 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
 
 #include "Cliente.h"
 #include "Taxi.h"
@@ -44,9 +45,9 @@ public:
 	void fazerviagem_ocasional(Data dia, Hora horaIn, Hora horaOut, Percurso p1);
 	void fazerviagem_cliente(int id, Data dia, Hora horaIn, Hora horaOut, Percurso p1);
 	void cobrarPagamentoMensal();
-	friend ostream & mostrarClientesPorCapital(ostream os,CompanhiaTaxis c);
-	friend ostream & mostrarClientesPorID(ostream os,CompanhiaTaxis c);
-	friend ostream & mostrarTaxis(ostream os, CompanhiaTaxis c);
+	void mostrarClientesPorCapital();
+	void mostrarClientesPorID();
+	void mostrarTaxis();
 };
 
 #endif /* SRC_COMPANHIATAXIS_H_ */

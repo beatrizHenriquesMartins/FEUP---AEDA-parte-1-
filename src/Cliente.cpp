@@ -134,10 +134,11 @@ return n;
 }
 
 
-ostream & operator <<(ostream os, Cliente cli)
+string Cliente::mostrarCliente()
 {
-os<<cli.getID()<<" Nome: "<<cli.getNomeC()<<" Morada: "<<cli.getMorada()<<" Email: "<<cli.getEmail()<<" Nr Telemovel: "<<cli.getNumeroTelemovel()<<" Total dispendido na Companhia: "<<cli.getCusto().getTotal()<<" Tipo de pagamento: "<<cli.getCusto().getTipo()<<" Nr total de pontos no cartao: "<<cli.getPontos()<<endl;
-return os;
+	stringstream ss;
+ss<<idC<<" Nome: "<<this->getNomeC()<<" Morada: "<<morada<<" Email: "<<email<<" Nr Telemovel: "<<numeroTelemovel<<" Total dispendido na Companhia: "<<this->getCusto().getTotal()<<" Tipo de pagamento: "<<this->getCusto().getTipo()<<" Nr total de pontos no cartao: "<<cartao_pontos;
+return ss.str();
 }
 
 bool Cliente::operator <(Cliente c2)
@@ -174,6 +175,12 @@ bool Cliente::operator <(Cliente c2)
 	 }
 	 }
 
+ string Particular::mostrarCliente()
+ {
+ 	stringstream ss;
+ ss<<idC<<" Nome: "<<this->getNomeC()<<" Morada: "<<morada<<" Email: "<<email<<" Nr Telemovel: "<<numeroTelemovel<<" Total dispendido na Companhia: "<<this->getCusto().getTotal()<<" Tipo de pagamento: "<<this->getCusto().getTipo()<<" Nr total de pontos no cartao: "<<cartao_pontos;
+ return ss.str();
+ }
 //Empresa
 	Empresa::Empresa(int id, string nC, string m, string mail, int nT, int nif,
 			int num_funcionarios, int tipo_pagamento) :
@@ -194,4 +201,12 @@ bool Cliente::operator <(Cliente c2)
 	 else
 		 return 1;
 	 }
+	 }
+
+
+	 string Empresa::mostrarCliente()
+	 {
+	 	stringstream ss;
+	 ss<<idC()<<" Nome: "<<this->getNomeC()<<" Morada: "<<morada<<" Email: "<<email<<" Nr Telemovel: "<<numeroTelemovel<<" Total dispendido na Companhia: "<<this->getCusto().getTotal()<<" Tipo de pagamento: "<<this->getCusto().getTipo()<<" Nr total de pontos no cartao: "<<cartao_pontos<<"Nr de funcionarios: "<<num_funcionarios;
+	 return ss.str();
 	 }

@@ -194,9 +194,9 @@ for (unsigned int j=0; j<taxisTotais.size(); j++)
 	}
 }
 
-ostream & mostrarClientesPorCapital(ostream os,CompanhiaTaxis c)
+void CompanhiaTaxis::mostrarClientesPorCapital()
 {
-	vector<Cliente *> v= c.getClientes();
+	vector<Cliente *> v=clientes;
 	vector<Cliente *>::iterator it=v.begin();
 	vector<Cliente *>::iterator ite=v.end();
 
@@ -205,35 +205,34 @@ ostream & mostrarClientesPorCapital(ostream os,CompanhiaTaxis c)
 
 	for (;it!=ite; it++)
 	{
-		os<<(*it)<<endl;
+		cout<< *it<<endl;
 	}
-return os;
+
 }
 
-ostream & mostrarClientesPorID(ostream os, CompanhiaTaxis c)
+void CompanhiaTaxis::mostrarClientesPorID()
 {
 
-	vector<Cliente *>::iterator it=c.getClientes().begin();
-	vector<Cliente *>::iterator ite=c.getClientes().end();
+	vector<Cliente *>::iterator it=clientes.begin();
+	vector<Cliente *>::iterator ite=clientes.end();
 
 	for (;it!=ite; it++)
 	{
-		os<<(*it)<<endl;
+		cout<<*it<<endl;
 	}
-return os;
+
 }
 
-ostream & mostrarTaxis(ostream os, CompanhiaTaxis c)
+void CompanhiaTaxis::mostrarTaxis()
 {
 
-	vector<Taxi *>::iterator it=c.getTaxisTotais().begin();
-	vector<Taxi *>::iterator ite=c.getTaxisTotais().end();
+	vector<Taxi *>::iterator it=taxisTotais.begin();
+	vector<Taxi *>::iterator ite=taxisTotais.end();
 
 	for (;it!=ite; it++)
 	{
-		os<<(*it);
+		cout<<(*(*it));
 	}
-return os;
 }
 
 

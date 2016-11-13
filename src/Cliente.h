@@ -48,7 +48,7 @@ protected:
 	vector<Viagem> viagens_nao_pagas;
 	int cartao_pontos;
 public:
-	Cliente(int id, string nC, string m, string mail, int nT, int nif,int tipo_pagamento); //int tipo_pagamento
+	Cliente(int id, string nC, string m, string mail, int nT, int nif,int tipo_pagamento);
 	int getID() const;
 	int getNIF() const;
 	void setNIF(int nif);
@@ -67,7 +67,7 @@ public:
 	void addViagem_historico(Viagem v);
 	virtual float give_monthly_promotion();
 	float fimdoMes();
-	friend ostream & operator <<(ostream os, Cliente cli);
+	virtual string mostrarCliente();
 	bool operator <(Cliente c2);
 };
 
@@ -75,6 +75,8 @@ class Particular: public Cliente {
 public:
 	Particular(int id, string nC, string m, string mail, int nT, int nif, int tipo_pagamento);
 	float give_monthly_promotion();
+	string mostrarCliente();
+
 };
 
 class Empresa: public Cliente {
@@ -82,6 +84,7 @@ class Empresa: public Cliente {
 public:
 	Empresa(int id, string nC, string m, string mail, int nT, int nif, int tipo_pagamento, int num_funcionarios);
 	float give_monthly_promotion();
+	string mostrarCliente();
 };
 
 
