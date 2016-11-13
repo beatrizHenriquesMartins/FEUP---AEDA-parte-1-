@@ -154,14 +154,17 @@ Particular::Particular(int id, string nC, string m, string mail, int nT,
 
 float Particular::give_monthly_promotion() {
 	if (custo.getTipo() != "fim_do_mes") {
-		if (historicoViagens.size() >= 15)
+		if (historicoViagens.size() >= 15) {
 			return 1.20;
+		}
 	} else {
-		if (historicoViagens.size() >= 25)
+		if (historicoViagens.size() >= 25) {
 			return 1.20;
-		else
+		} else {
 			return 1;
+		}
 	}
+	return 1;
 }
 
 string Particular::mostrarCliente() {
@@ -183,14 +186,17 @@ Empresa::Empresa(int id, string nC, string m, string mail, int nT, int nif,
 
 float Empresa::give_monthly_promotion() {
 	if (custo.getTipo() != "fim_do_mes") {
-		if (historicoViagens.size() / num_funcionarios >= 20)
+		if (historicoViagens.size() / num_funcionarios >= 20) {
 			return 1.20;
+		}
 	} else {
-		if (historicoViagens.size() / num_funcionarios >= 30)
+		if (historicoViagens.size() / num_funcionarios >= 30) {
 			return 1.20;
-		else
+		} else {
 			return 1;
+		}
 	}
+	return 1;
 }
 
 string Empresa::mostrarCliente() {
