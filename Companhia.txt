@@ -1,4 +1,2 @@
 Taxifeup
-0,00
-viagens.....(na forma)
-data; hora_inicio; hora_fim; local_partida - local_destino; id_cliente; custo; pago
+0.0

@@ -1,4 +1,8 @@
-3
+7
 1 ; Diogo Pereira ; Rua Chaos do Monte, Vilar de Andorinho ; diogopeixotopereira@gmail.com ; 934533870 ; 270564373 ; numerario
 2 ; Beatriz de Henriques Martins ; Rua Padre Arnaldo Rebelo 122, Maia ; beatrizhenriquesmartins@gmail.com ; 265533627 ; multibanco
-3 ; Pedro Silva ; Rua D.Afonso II 71, Alfena ; pedronogueirasilva5@gmail.com ; 271133445 ; fim_do_mes
+3 ; Pedro Silva ; Rua D.Afonso II 71, Alfena ; pedronogueirasilva5@gmail.com ; 271133445 ; numerario
+4 ; Pedro Dias ; Rua D.Sancho 35, Ermesinde ; pedrodias@gmail.com ; 277833445 ; numerario
+5 ; Joao Dias ; Rua Andor, Porto ; pokemon4@gmail.com ; 268594454 ; credito
+6 ; Ricardo Leite ; Rua do Sarilho 244, Matosinhos ; ricardoleite@live.com ; 293333445 ; multibanco
+7 ; Maria Pombinho ; Rua Alberto 70, Areosa ; pombinho@hotmail.com ; 201199445 ; fim_do_mes
