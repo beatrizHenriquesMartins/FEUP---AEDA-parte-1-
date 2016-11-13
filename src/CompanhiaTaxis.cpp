@@ -38,7 +38,7 @@ vector<Cliente *> CompanhiaTaxis::getClientes() const {
 	return ocasionais;
 }*/
 
-vector<Taxi *> CompanhiaTaxis::getTaxisTotais() const {
+vector<Taxi> CompanhiaTaxis::getTaxisTotais() const {
 	return taxisTotais;
 }
 
@@ -113,11 +113,11 @@ void CompanhiaTaxis::fazerviagem_ocasional(Data dia, Hora horaIn, Hora horaOut, 
 
 for(unsigned int i=0; i<taxisTotais.size();i++)
 {
-if(taxisTotais[i]->getDisponivel(horaIn,horaOut));
+if(taxisTotais[i].getDisponivel(horaIn,horaOut));
 {
 	Viagem v(dia,horaIn,horaOut,p1,-1);
 	v.pagarViagem();
-	taxisTotais[i]->setRentabilidade(v.getCustoViagem());
+	taxisTotais[i].setRentabilidade(v.getCustoViagem());
 	return;
 }
 }
@@ -135,7 +135,7 @@ void CompanhiaTaxis::fazerviagem_cliente(int id, Data dia, Hora horaIn, Hora hor
 for(unsigned int i=0; i<taxisTotais.size();i++)
 {
 
-if(taxisTotais[i]->getDisponivel(horaIn,horaOut))
+if(taxisTotais[i].getDisponivel(horaIn,horaOut))
 {
 	Viagem v(dia,horaIn,horaOut,p1,-1);
 	clientes[j]->addViagem_historico(v);
@@ -153,7 +153,7 @@ if(taxisTotais[i]->getDisponivel(horaIn,horaOut))
 		if(clientes[j]->getPontos()>50)
 			return;
 		clientes[j]->changeCusto_total(v.getCustoViagem()*1.05);
-		taxisTotais[i]->setRentabilidade(v.getCustoViagem()*1.05);
+		taxisTotais[i].setRentabilidade(v.getCustoViagem()*1.05);
 		return;
 		}
 	else
@@ -162,7 +162,7 @@ if(taxisTotais[i]->getDisponivel(horaIn,horaOut))
 		if(clientes[j]->getPontos()>50)
 			return;
 		clientes[j]->changeCusto_total(v.getCustoViagem());
-		taxisTotais[i]->setRentabilidade(v.getCustoViagem());
+		taxisTotais[i].setRentabilidade(v.getCustoViagem());
 		return;
 		}
 }
@@ -189,8 +189,8 @@ for (unsigned int i=0; i<clientes.size(); i++)
 
 for (unsigned int j=0; j<taxisTotais.size(); j++)
 	{
-	capital+=taxisTotais[j]->getRentabilidade();
-	taxisTotais[j]->setRentabilidade(0);
+	capital+=taxisTotais[j].getRentabilidade();
+	taxisTotais[j].setRentabilidade(0);
 	}
 }
 
@@ -226,12 +226,12 @@ void CompanhiaTaxis::mostrarClientesPorID()
 void CompanhiaTaxis::mostrarTaxis()
 {
 
-	vector<Taxi *>::iterator it=taxisTotais.begin();
-	vector<Taxi *>::iterator ite=taxisTotais.end();
+	vector<Taxi>::iterator it=taxisTotais.begin();
+	vector<Taxi>::iterator ite=taxisTotais.end();
 
 	for (;it!=ite; it++)
 	{
-		cout<<(*(*it));
+		cout<<*it;
 	}
 }
 

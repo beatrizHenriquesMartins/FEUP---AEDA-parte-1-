@@ -207,6 +207,6 @@ bool Cliente::operator <(Cliente c2)
 	 string Empresa::mostrarCliente()
 	 {
 	 	stringstream ss;
-	 ss<<idC()<<" Nome: "<<this->getNomeC()<<" Morada: "<<morada<<" Email: "<<email<<" Nr Telemovel: "<<numeroTelemovel<<" Total dispendido na Companhia: "<<this->getCusto().getTotal()<<" Tipo de pagamento: "<<this->getCusto().getTipo()<<" Nr total de pontos no cartao: "<<cartao_pontos<<"Nr de funcionarios: "<<num_funcionarios;
+	 ss<<idC<<" Nome: "<<this->getNomeC()<<" Morada: "<<morada<<" Email: "<<email<<" Nr Telemovel: "<<numeroTelemovel<<" Total dispendido na Companhia: "<<this->getCusto().getTotal()<<" Tipo de pagamento: "<<this->getCusto().getTipo()<<" Nr total de pontos no cartao: "<<cartao_pontos<<"Nr de funcionarios: "<<num_funcionarios;
 	 return ss.str();
 	 }

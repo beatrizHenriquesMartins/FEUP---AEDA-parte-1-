@@ -24,7 +24,7 @@ private:
 	float capital;
 	vector<Cliente *> clientes;
 	//vector<Ocasionais> ocasionais;
-	vector<Taxi*> taxisTotais;
+	vector<Taxi> taxisTotais;
 	//vector<Taxi*> taxisDisponiveis;
 
 public:
@@ -35,7 +35,7 @@ public:
 	void somaCapital(float n);
 	vector<Cliente *> getClientes() const;
 	vector<Ocasionais> getOcasionais() const;
-	vector<Taxi *> getTaxisTotais() const;
+	vector<Taxi> getTaxisTotais() const;
 	//vector<Taxi *> getTaxisDisponiveis() const;
 	void adicionaClienteParticular(string nome, string morada, string email, int nT, int nif, int tipo_pagamento);
 	void adicionaClienteEmpresa(string nome, string morada, string email, int nT, int nif, int tipo_pagamento,int num_funcionarios);
