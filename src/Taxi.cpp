@@ -48,7 +48,7 @@ Hora Taxi::getHoraOff()
 	return horaOff;
 }
 
-ostream & operator <<(ostream os, Taxi t)
+ostream & operator <<(ostream & os, Taxi t)
 {
 
 os<<"Taxi numero "<<t.getNumeroTaxi()<<" Rentabilidade Atual: "<<t.getRentabilidade()<<" Disponivel entre:"<<t.getHoraIn() <<" e as "<<t.getHoraOff();

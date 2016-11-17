@@ -101,12 +101,10 @@ float Viagem::getCustoViagem() const {
 	return custo;
 }
 
-ostream & operator <<(ostream os, Viagem v)
+ostream & operator <<(ostream & os, Viagem &v)
 {
 
 os<<v.getDia()<<"Hora inicial: "<<v.getHoraIn()<<"Hora final: "<<v.getHoraOut()<<" " <<v.getDeslocacao()<<"Custo: "<<v.getCustoViagem();
 return os;
-
 }
-
 

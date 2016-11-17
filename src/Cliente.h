@@ -60,12 +60,14 @@ public:
 	int getNumeroTelemovel() const;
 	int getPontos();
 	void aumentaPontos();
+	void resetPontos();
 	void setMorada(string m);
 	void setEmail(string mail);
 	void setNumeroTelemovel(int nT);
 	void addViagem_mensal(Viagem v);
 	void addViagem_historico(Viagem v);
-	virtual float give_monthly_promotion();
+	void resetMes();
+	virtual float give_monthly_promotion(float p);
 	float fimdoMes();
 	virtual string mostrarCliente();
 	bool operator <(Cliente c2);
@@ -75,7 +77,7 @@ class Particular: public Cliente {
 public:
 	Particular(int id, string nC, string m, string mail, int nT, int nif,
 			string tipo_pagamento);
-	float give_monthly_promotion();
+	float give_monthly_promotion(float p);
 	string mostrarCliente();
 
 };
@@ -85,7 +87,7 @@ class Empresa: public Cliente {
 public:
 	Empresa(int id, string nC, string m, string mail, int nT, int nif,
 			string tipo_pagamento, int num_funcionarios);
-	float give_monthly_promotion();
+	float give_monthly_promotion(float p);
 	string mostrarCliente();
 };
 

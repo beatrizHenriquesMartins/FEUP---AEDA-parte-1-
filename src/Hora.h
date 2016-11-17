@@ -8,6 +8,7 @@
 #define SRC_HORA_H_
 
 #include <string>
+#include <iostream>
 
 using namespace std;
 
@@ -26,7 +27,7 @@ public:
 	Hora somaHoras(int min);
 	bool operator < (Hora h2);
 	bool operator <= (Hora h2);
-	friend ostream & operator <<(ostream os, Hora h);
+	friend ostream & operator <<(ostream & os, Hora h);
 };
 
 /*

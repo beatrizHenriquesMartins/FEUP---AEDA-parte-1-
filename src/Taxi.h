@@ -28,14 +28,14 @@ public:
 	void setRentabilidade(float n);
 	Hora getHoraIn();
 	Hora getHoraOff();
-	friend ostream & operator <<(ostream os, Taxi t);
+	friend ostream & operator <<(ostream & os, Taxi t);
 };
-/*
+
 class TaxisIndisponiveis{
 	string razao;
 public:
 	TaxisIndisponiveis(string r){razao=r;};
 	string getRazao(){return razao;};
 };
-*/
+
 #endif /* SRC_TAXI_H_ */

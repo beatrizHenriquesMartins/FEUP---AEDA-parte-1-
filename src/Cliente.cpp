@@ -92,6 +92,11 @@ void Cliente::aumentaPontos()
 cartao_pontos++;
 }
 
+void Cliente::resetPontos()
+{
+cartao_pontos=0;
+}
+
 void Cliente::setMorada(string m) {
 	morada = m;
 }
@@ -115,8 +120,13 @@ void Cliente::addViagem_historico(Viagem v)
 		historicoViagens.push_back(v);
 }
 
+void Cliente::resetMes()
+{
+	vector<Viagem> v;
+	viagens_mensais=v;
+}
 
-float Cliente::give_monthly_promotion() {return 1;}  //funcao vazia, seria implementada nas subclasses
+float Cliente::give_monthly_promotion(float p) {return 1;}  //funcao vazia, seria implementada nas subclasses
 
 
 float Cliente::fimdoMes()
@@ -125,10 +135,9 @@ float Cliente::fimdoMes()
 for (unsigned int i=0; i<viagens_mensais.size(); i++)
 	{
 	viagens_mensais[i].pagarViagem();
-		n+=viagens_mensais[i].getCustoViagem();
+	n+=viagens_mensais[i].getCustoViagem();
 	}
-/*vector<Viagem> vazio;
-viagens_nao_pagas=vazio;*/
+custo.changeTotal(n);
 return n;
 
 }
@@ -161,14 +170,14 @@ bool Cliente::operator <(Cliente c2)
 	}
 
 
-	float Particular::give_monthly_promotion() {
+	float Particular::give_monthly_promotion(float p) {
 		if (custo.getTipo() != "fim_do_mes") {
-			if (historicoViagens.size() >= 15) {
-				return 1.20;
+			if (viagens_mensais.size() >= 15) {
+				return (1-p);
 			}
 		} else {
-			if (historicoViagens.size() >= 25) {
-				return 1.20;
+			if (viagens_mensais.size() >= 25) {
+				return (1-p);
 			} else {
 				return 1;
 			}
@@ -190,14 +199,14 @@ bool Cliente::operator <(Cliente c2)
 	}
 
 
-	float Empresa::give_monthly_promotion() {
+	float Empresa::give_monthly_promotion(float p) {
 		if (custo.getTipo() != "fim_do_mes") {
-			if (historicoViagens.size() / num_funcionarios >= 20) {
-				return 1.20;
+			if (viagens_mensais.size() / num_funcionarios >= 20) {
+				return (1-p);
 			}
 		} else {
-			if (historicoViagens.size() / num_funcionarios >= 30) {
-				return 1.20;
+			if (viagens_mensais.size() / num_funcionarios >= 30) {
+				return (1-p);
 			} else {
 				return 1;
 			}

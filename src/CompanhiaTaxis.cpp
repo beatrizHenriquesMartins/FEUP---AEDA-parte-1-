@@ -116,7 +116,7 @@ void CompanhiaTaxis::fazerviagem_ocasional(Data dia, Hora horaIn, Hora horaOut, 
 
 for(unsigned int i=0; i<taxisTotais.size();i++)
 {
-if(taxisTotais[i].getDisponivel(horaIn,horaOut));
+if(taxisTotais[i].getDisponivel(horaIn,horaOut))
 {
 	Viagem v(dia,horaIn,horaOut,p1);
 
@@ -124,8 +124,9 @@ if(taxisTotais[i].getDisponivel(horaIn,horaOut));
 	return;
 }
 }
-//throw TaxisIndisponiveis("Nao existem taxis de momento disponiveis");
+throw TaxisIndisponiveis("Nao existem taxis de momento disponiveis");
 }
+
 
 void CompanhiaTaxis::fazerviagem_cliente(int id, Data dia, Hora horaIn, Hora horaOut, Percurso p1)
 {
@@ -143,18 +144,24 @@ if(taxisTotais[i].getDisponivel(horaIn,horaOut))
 	Viagem v(dia,horaIn,horaOut,p1);
 	clientes[j]->addViagem_historico(v);
 	clientes[j]->aumentaPontos();
+	clientes[j]->addViagem_mensal(v);
 	if(clientes[j]->getCusto().getTipo()=="fim_do_mes")
 		{
 		if(clientes[j]->getPontos()>50)
+		{
+			clientes[j]->resetPontos();
 			return;
-		clientes[j]->addViagem_mensal(v);
+		}
 		return;
 		}
 	if(clientes[j]->getCusto().getTipo()=="credito")
 		{
 
 		if(clientes[j]->getPontos()>50)
-			return;
+		{
+					clientes[j]->resetPontos();
+					return;
+				}
 		clientes[j]->changeCusto_total(v.pagarViagem()*1.05);
 		taxisTotais[i].setRentabilidade(v.pagarViagem()*1.05);
 		return;
@@ -163,7 +170,10 @@ if(taxisTotais[i].getDisponivel(horaIn,horaOut))
 		{
 		v.pagarViagem();
 		if(clientes[j]->getPontos()>50)
-			return;
+		{
+					clientes[j]->resetPontos();
+					return;
+				}
 		clientes[j]->changeCusto_total(v.pagarViagem());
 		taxisTotais[i].setRentabilidade(v.pagarViagem());
 		return;
@@ -171,7 +181,7 @@ if(taxisTotais[i].getDisponivel(horaIn,horaOut))
 }
 
 }
-//throw TaxisIndisponiveis("Nao existem taxis de momento disponiveis");
+throw TaxisIndisponiveis("Nao existem taxis de momento disponiveis");
 		}
 	}
 
@@ -188,6 +198,7 @@ for (unsigned int i=0; i<clientes.size(); i++)
 	if(clientes[i]->getCusto().getTipo()=="fim_do_mes")
 		capital+=clientes[i]->fimdoMes();
 
+	clientes[i]->resetMes();
 }
 
 for (unsigned int j=0; j<taxisTotais.size(); j++)

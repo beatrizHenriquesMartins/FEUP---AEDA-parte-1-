@@ -45,7 +45,7 @@ public:
 	float pagarViagem();
 	float getCustoViagem() const;
 	Percurso getDeslocacao();
-	friend ostream & operator <<(ostream os, Viagem v);
+	friend ostream & operator <<(ostream & os, Viagem &v);
 };
 
 #endif /* SRC_VIAGEM_H_ */

@@ -23,9 +23,7 @@ private:
 	string nome;
 	float capital;
 	vector<Cliente *> clientes;
-	//vector<Ocasionais> ocasionais;
 	vector<Taxi> taxisTotais;
-	//vector<Taxi*> taxisDisponiveis;
 
 public:
 	CompanhiaTaxis();
@@ -36,7 +34,6 @@ public:
 	vector<Cliente *> getClientes() const;
 	vector<Ocasionais> getOcasionais() const;
 	vector<Taxi> getTaxisTotais() const;
-	//vector<Taxi *> getTaxisDisponiveis() const;
 	void adicionaClienteParticular(string nome, string morada, string email, int nT, int nif, string tipo_pagamento);
 	void adicionaClienteEmpresa(string nome, string morada, string email, int nT, int nif, string tipo_pagamento,int num_funcionarios);
 	bool removeCliente(int id);

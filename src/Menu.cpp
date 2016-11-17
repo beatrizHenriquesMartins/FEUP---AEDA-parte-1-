@@ -29,7 +29,7 @@ void Menu::menuInicio() {
 			if (op == 1) {
 				menuEntrar();
 			} else if (op == 2) {
-				exit(0);
+				return;
 			}
 
 		} catch (OpcaoErrada &x) {
@@ -140,11 +140,23 @@ int Menu::lerFicheiroClienteEmpresas(CompanhiaTaxis comp) {
 }
 
 void Menu::menuEntrar() {
-	CompanhiaTaxis comp = CompanhiaTaxis("TaxUber", 0);
+	ifstream file("Companhia.txt");
+
+		if (!file.is_open()) {
+			return;
+		}
+		string lixo,nome;
+		float capital;
+		while (!file.eof()) {
+			file >> nome;
+			file>>capital;
+		}
+	CompanhiaTaxis comp = CompanhiaTaxis(nome, capital);
 	lerFicheiroClienteParticular(comp);
 	lerFicheiroClienteEmpresas(comp);
 	menuCompanhia(comp);
 }
+
 
 void Menu::menuClientes(CompanhiaTaxis &comp) {
 	cout << "||Clientes" << endl << setw(5) << " " << "1. Novo Cliente" << endl

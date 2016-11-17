@@ -9,7 +9,9 @@
 
 
 Hora::Hora() {
-
+	hora=0;
+	minutos=0;
+	segundos=0;
 }
 
 Hora::Hora(int h, int m, int s) {
@@ -94,7 +96,7 @@ else
 
 }
 
-ostream & operator <<(ostream os, Hora h)
+ostream & operator <<(ostream & os, Hora h)
 {
 
 	os<<h.get_hora()<<":"<<h.get_minutos()<<":"<<h.get_segundos()<<endl;
