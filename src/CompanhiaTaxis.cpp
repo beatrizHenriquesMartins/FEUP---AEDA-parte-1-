@@ -11,7 +11,7 @@
 CompanhiaTaxis::CompanhiaTaxis() {
 	capital = 0;
 }
-;
+
 
 CompanhiaTaxis::CompanhiaTaxis(string n, float c) {
 	nome = n;
@@ -34,19 +34,57 @@ vector<Cliente *> CompanhiaTaxis::getClientes() const {
 	return clientes;
 }
 
-/*vector<Ocasionais> CompanhiaTaxis::getOcasionais() const {
-	return ocasionais;
-}*/
 
 vector<Taxi> CompanhiaTaxis::getTaxisTotais() const {
 	return taxisTotais;
 }
 
-/*
- vector<Taxi *> CompanhiaTaxis::getTaxisDisponiveis() const {
- return taxisDisponiveis;
- }
- */
+
+void CompanhiaTaxis::adicionaTaxi(Hora horI, Hora horO)
+{
+	Taxi t(horI,horO);
+	capital-=500;
+	taxisTotais.push_back(t);
+}
+
+int CompanhiaTaxis::procuraTaxi(int n) const {
+	if (taxisTotais.size() == 0) {
+		return -1;
+	}
+
+	vector<int> aux;
+
+	for (unsigned int i = 0; i < taxisTotais.size(); i++) {
+		aux.push_back(taxisTotais[i].getNumeroTaxi());
+	}
+
+	int ind;
+	ind = sequentialSearch(aux, n);
+
+	if (ind == -1) {
+		return -1;
+	}
+
+	return ind;
+}
+
+bool CompanhiaTaxis::removeTaxi(int n) {
+	int ind;
+	ind = procuraTaxi(n);
+
+	if (ind == -1) {
+		return false;
+	}
+
+	vector<Taxi>::iterator itBegin = taxisTotais.begin();
+
+	capital+=taxisTotais[ind].getRentabilidade();
+	taxisTotais.erase(itBegin + ind);
+
+	return true;
+}
+
+
 void CompanhiaTaxis::setClientes(vector<Cliente*> c) {
 	this->clientes = c;
 }

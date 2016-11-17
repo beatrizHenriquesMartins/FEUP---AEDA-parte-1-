@@ -15,12 +15,12 @@
 using namespace std;
 
 class Taxi {
-	int numeroTaxi;
+	static int numeroTaxi;
 	float rentabilidade;
 	Hora horaIn;
 	Hora horaOff;
 public:
-	Taxi(int nTaxi, Hora horI, Hora horO);
+	Taxi(Hora horI, Hora horO);
 	~Taxi();
 	int getNumeroTaxi() const;
 	bool getDisponivel(Hora hi, Hora hf);

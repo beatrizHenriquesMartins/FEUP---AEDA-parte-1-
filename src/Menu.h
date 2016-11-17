@@ -21,13 +21,13 @@ class Menu {
 public:
 	Menu();
 	void menuInicio();
-	int lerFicheiroClienteParticular(CompanhiaTaxis comp);
-	int lerFicheiroClienteEmpresas(CompanhiaTaxis comp);
+	int lerFicheiroClienteParticular(CompanhiaTaxis &comp);
+	int lerFicheiroClienteEmpresas(CompanhiaTaxis &comp);
 	//int escreverFicheiroClienteParticular(CompanhiaTaxis comp);
 	//int escreverFicheiroClienteEmpresas(CompanhiaTaxis comp);
 	void menuEntrar();
 	void menuClientes(CompanhiaTaxis &comp);
-	void menuNovoCliente();
+	void menuTaxis(CompanhiaTaxis &comp);
 	void menuCompanhia(CompanhiaTaxis &comp);
 };
 
@@ -42,9 +42,9 @@ public:
 
 class ErroInput {
 public:
-	int alertaErro() {
+	void alertaErro() {
 		cout << "Erro de input, digite tudo outra vez" << endl;
-		return 1;
+
 	}
 	;
 };
