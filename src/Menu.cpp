@@ -7,6 +7,9 @@
 
 #include "Menu.h"
 
+static bool desconto=false;
+static float percentagem=1;
+
 Menu::Menu() {
 	menuInicio();
 }
@@ -45,7 +48,7 @@ int Menu::lerFicheiroClienteParticular(CompanhiaTaxis comp) {
 		return -1;
 	}
 
-	int total;
+	unsigned int total;
 
 	file >> total;
 
@@ -324,7 +327,7 @@ void Menu::menuClientes(CompanhiaTaxis &comp) {
 
 					comp.fazerviagem_cliente(id, Data(dia, mes, ano),
 							Hora(hi, mi, si), Hora(hf, mf, sf),
-							Percurso(localPartida, localDestino, distancia));
+							Percurso(localPartida, localDestino, distancia),desconto,percentagem);
 					break;
 				} catch (ClienteInexistente &c) {
 					cout << "Cliente numero " << c.getID() << " nao existe"
@@ -372,17 +375,20 @@ void Menu::menuClientes(CompanhiaTaxis &comp) {
 	}
 }
 
+
+
 void Menu::menuCompanhia(CompanhiaTaxis &comp) {
 	cout << "||Companhia de taxis" << endl << setw(5) << " "
 
-	<< "1. Nome da Companhia" << endl << setw(5) << " "
+			<< "1. Nome da Companhia" << endl << setw(5) << " "
 			<< "2. Ver Clientes por ID" << " " << "3. Gestao de Clientes" << " "
 			<< "4. Ver capital" << " "
-			<< "5. Prestar servi�o a utente ocasional" << " "
+			<< "5. Prestar servico a utente ocasional" << " "
 			<< "6. Lista de clientes mais lucrativos" << " "
 			<< "7. Mostrar todos os Taxis " << " "
-			<< "8. Cobrar pagamentos mensais" << endl << setw(5) << " "
-			<< "9. Sair" << endl << setw(5) << " " << "op: ";
+			<< "8. Aplicar desconto mensal " << " "
+			<< "9. Cobrar pagamentos mensais" << endl << setw(5) << " "
+			<< "10. Sair" << endl << setw(5) << " " << "op: ";
 
 	int opC;
 	while (1) {
@@ -395,7 +401,7 @@ void Menu::menuCompanhia(CompanhiaTaxis &comp) {
 				break;
 			}
 			case 2: {
-				//mostrarClientesPorID(cout, comp) << endl;
+				comp.mostrarClientesPorID();
 				break;
 			}
 			case 3: {
@@ -423,7 +429,7 @@ void Menu::menuCompanhia(CompanhiaTaxis &comp) {
 				//mostrarClientesPorID(cout, comp) << endl;
 				cout << "ID do utente que quer fazer uma viagem: ";
 				cin >> id;
-				cout << "Qual � o local de origem da viagem? ";
+				cout << "Qual e o local de origem da viagem? ";
 				cin >> localPartida;
 				cout << "E de destino? ";
 				cin >> localDestino;
@@ -451,31 +457,38 @@ void Menu::menuCompanhia(CompanhiaTaxis &comp) {
 				cout << " Ano: ";
 				cin >> ano;
 
-				//try{
+				try{
 				comp.fazerviagem_ocasional(Data(dia, mes, ano),
 						Hora(hi, mi, si), Hora(hf, mf, sf),
 						Percurso(localPartida, localDestino, distancia));
 				break;
-				//}
-				/*catch (TaxisIndisponiveis &t)
+				}
+				catch (TaxisIndisponiveis &t)
 				 {
 				 cout<<t.getRazao()<<endl;
 
-				 }*/
+				 }
 			}
 			case 6: {
-				//cout mostrarClientesPorCapital(comp)<< endl;
+				comp.mostrarClientesPorCapital();
 				break;
 			}
 			case 7: {
-				//mostrarTaxis(cout, comp);
+				comp.mostrarTaxis();
 				break;
 			}
 			case 8: {
+				desconto=true;
+				cout<<"Percentagem de desconto:(entre 0 e 1): ";
+				cin>>percentagem;
+				break;
+					}
+			case 9: {
 				comp.cobrarPagamentoMensal();
+				desconto=false;
 				break;
 			}
-			case 9: {
+			case 10: {
 				return;
 			}
 			default:

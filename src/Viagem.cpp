@@ -101,6 +101,12 @@ float Viagem::getCustoViagem() const {
 	return custo;
 }
 
+/////
+void Viagem::modificaCusto(float per) {
+	 custo=custo*per;
+}
+//////
+
 ostream & operator <<(ostream & os, Viagem &v)
 {
 

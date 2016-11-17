@@ -128,7 +128,7 @@ throw TaxisIndisponiveis("Nao existem taxis de momento disponiveis");
 }
 
 
-void CompanhiaTaxis::fazerviagem_cliente(int id, Data dia, Hora horaIn, Hora horaOut, Percurso p1)
+void CompanhiaTaxis::fazerviagem_cliente(int id, Data dia, Hora horaIn, Hora horaOut, Percurso p1, bool disc, float per)
 {
 
 	for(unsigned int j=0; j<clientes.size();j++)
@@ -142,6 +142,8 @@ for(unsigned int i=0; i<taxisTotais.size();i++)
 if(taxisTotais[i].getDisponivel(horaIn,horaOut))
 {
 	Viagem v(dia,horaIn,horaOut,p1);
+	if(disc)
+		v.modificaCusto(clientes[j]->give_monthly_promotion(per));
 	clientes[j]->addViagem_historico(v);
 	clientes[j]->aumentaPontos();
 	clientes[j]->addViagem_mensal(v);

@@ -40,7 +40,7 @@ public:
 	int procuraCliente(int id) const;
 	int ultimoIDcliente();
 	void fazerviagem_ocasional(Data dia, Hora horaIn, Hora horaOut, Percurso p1);
-	void fazerviagem_cliente(int id, Data dia, Hora horaIn, Hora horaOut, Percurso p1);
+	void fazerviagem_cliente(int id, Data dia, Hora horaIn, Hora horaOut, Percurso p1, bool disc, float per);
 	void cobrarPagamentoMensal();
 	void mostrarClientesPorCapital();
 	void mostrarClientesPorID();

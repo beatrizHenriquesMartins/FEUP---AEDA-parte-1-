@@ -44,6 +44,7 @@ public:
 	void setDestino(string localD, int dist2);
 	float pagarViagem();
 	float getCustoViagem() const;
+	void modificaCusto(float per); ////
 	Percurso getDeslocacao();
 	friend ostream & operator <<(ostream & os, Viagem &v);
 };
