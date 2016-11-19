@@ -20,24 +20,22 @@ void Menu::menuInicio() {
 			<< "2. Sair" << endl << setw(5) << " " << "op: ";
 
 	int op;
-	while (1) {
-		try {
-			cin >> op;
+	try {
+		cin >> op;
 
-			if (cin.fail())
-				throw OpcaoErrada();
-			if (op < 1 && op > 2)
-				throw OpcaoErrada();
+		cout << endl << "cheguei!" << endl;
+		if (op < 1 && op > 2)
+			throw OpcaoErrada();
 
-			if (op == 1) {
-				menuEntrar();
-			} else if (op == 2) {
-				return;
-			}
-
-		} catch (OpcaoErrada &x) {
-			x.alertaErro();
+		cout << endl << "cheguei!" << endl;
+		if (op == 1) {
+			menuEntrar();
+		} else if (op == 2) {
+			exit(0);
 		}
+
+	} catch (OpcaoErrada &x) {
+		x.alertaErro();
 	}
 }
 
@@ -420,7 +418,7 @@ void Menu::menuClientes(CompanhiaTaxis &comp) {
 
 				try {
 
-					comp.fazerviagem_cliente(id, Data(dia, mes, ano),
+					comp.fazerViagemCliente(id, Data(dia, mes, ano),
 							Hora(hi, mi, si), Hora(hf, mf, sf),
 							Percurso(localPartida, localDestino, distancia),
 							desconto, percentagem);
@@ -549,7 +547,7 @@ void Menu::menuCompanhia(CompanhiaTaxis &comp) {
 				cin >> t;
 
 				try {
-					comp.fazerviagem_ocasional(Data(dia, mes, ano),
+					comp.fazerViagemOcasional(Data(dia, mes, ano),
 							Hora(hi, mi, si), Hora(hf, mf, sf),
 							Percurso(localPartida, localDestino, distancia));
 					break;

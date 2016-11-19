@@ -10,8 +10,7 @@
 
 using namespace std;
 
-
-class Pagamento{
+class Pagamento {
 private:
 	float dinheiro;
 	string tipo;
@@ -21,6 +20,6 @@ public:
 	float getTotal();
 	string getTipo();
 	void changeTotal(float n);
-	void changeTipo (string t);
+	void changeTipo(string t);
 };
 

@@ -7,51 +7,47 @@
 
 #include "Hora.h"
 
-
 Hora::Hora() {
-	hora=0;
-	minutos=0;
-	segundos=0;
+	hora = 0;
+	minutos = 0;
+	segundos = 0;
 }
 
 Hora::Hora(int h, int m, int s) {
 
-	if(h<0 || h>23)
+	if (h < 0 || h > 23)
 		//throw HoraInvalida("Hora nao permitida");
-	if(m<0 || m>59)
+		if (m < 0 || m > 59)
 			//throw HoraInvalida("Minutos nao permitidos");
-	if(s<0 || s>59)
-			//throw HoraInvalida("Segundos nao permitidos");
+			if (s < 0 || s > 59)
+				//throw HoraInvalida("Segundos nao permitidos");
 
-	hora = h;
+				hora = h;
 	minutos = m;
 	segundos = s;
 
 }
 
-int Hora::get_hora() const {
+int Hora::getHora() const {
 	return hora;
 }
 
-int Hora::get_minutos() const {
+int Hora::getMinutos() const {
 	return minutos;
 }
 
-int Hora::get_segundos() const {
+int Hora::getSegundos() const {
 	return segundos;
 }
 
-Hora Hora::somaHoras(int min)
-{
+Hora Hora::somaHoras(int min) {
 	int minfinal;
 
 	minfinal = this->minutos + min;
 
-	if (minfinal / 60 > 0)
-	{
-		if (hora + 1 == 24 )
-		{
-			Hora h = Hora(0,0,0);
+	if (minfinal / 60 > 0) {
+		if (hora + 1 == 24) {
+			Hora h = Hora(0, 0, 0);
 			return h;
 		}
 	}
@@ -60,50 +56,52 @@ Hora Hora::somaHoras(int min)
 	int minu = this->minutos + minfinal % 60;
 	int sec = this->segundos;
 
-	Hora h = Hora(hor,minu,sec);
+	Hora h = Hora(hor, minu, sec);
 	return h;
 }
 
-bool Hora::operator <(Hora h2)
-{
+//
+string Hora::toString() {
+	stringstream ss;
+	ss << this->getHora() << ":" << this->getMinutos() << ":"
+			<< this->getSegundos() << "h" << endl;
+	return ss.str();
+}
+//
 
-if(hora<h2.get_hora())
-	return true;
-else
-	if(hora==h2.get_hora() && minutos<h2.get_minutos())
+bool Hora::operator <(Hora h2) {
+
+	if (hora < h2.getHora())
+		return true;
+	else if (hora == h2.getHora() && minutos < h2.getMinutos())
+		return true;
+	else if (hora == h2.getHora() && minutos == h2.getMinutos()
+			&& segundos < h2.getSegundos())
 		return true;
 	else
-		if(hora==h2.get_hora() && minutos==h2.get_minutos() && segundos<h2.get_segundos())
-			return true;
-		else
-			return false;
+		return false;
 
 }
 
-bool Hora::operator <=(Hora h2)
-{
+bool Hora::operator <=(Hora h2) {
 
-if(hora<=h2.get_hora())
-	return true;
-else
-	if(hora==h2.get_hora() && minutos<=h2.get_minutos())
+	if (hora <= h2.getHora())
+		return true;
+	else if (hora == h2.getHora() && minutos <= h2.getMinutos())
+		return true;
+	else if (hora == h2.getHora() && minutos == h2.getMinutos()
+			&& segundos <= h2.getSegundos())
 		return true;
 	else
-		if(hora==h2.get_hora() && minutos==h2.get_minutos() && segundos<=h2.get_segundos())
-			return true;
-		else
-			return false;
+		return false;
 
 }
 
-ostream & operator <<(ostream & os, Hora h)
-{
+ostream & operator <<(ostream & os, Hora h) {
 
-	os<<h.get_hora()<<":"<<h.get_minutos()<<":"<<h.get_segundos()<<endl;
+	os << h.getHora() << ":" << h.getMinutos() << ":" << h.getSegundos()
+			<< "h" << endl;
 	return os;
 
 }
-
-
-
 

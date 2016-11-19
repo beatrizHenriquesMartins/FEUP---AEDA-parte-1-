@@ -24,8 +24,8 @@ public:
 	Utente(string nome, string tipo_pagamento);
 	string getNomeC() const;
 	void setNomeC(string nome);
-	void changeCusto_total(float n);
-	void changeCusto_tipo(string tipo);
+	void changeCustoTotal(float n);
+	void changeCustoTipo(string tipo);
 	Pagamento getCusto();
 };
 
@@ -43,11 +43,11 @@ protected:
 	string email;
 	int numeroTelemovel;
 	vector<Viagem> historicoViagens;
-	vector<Viagem> viagens_mensais;
-	int cartao_pontos;
+	vector<Viagem> viagensMensais;
+	int cartaoPontos;
 public:
 	Cliente(int id, string nC, string m, string mail, int nT, int nif,
-			string tipo_pagamento);
+			string tipoPagamento);
 	virtual ~Cliente() {
 	}
 	;
@@ -64,10 +64,10 @@ public:
 	void setMorada(string m);
 	void setEmail(string mail);
 	void setNumeroTelemovel(int nT);
-	void addViagem_mensal(Viagem v);
-	void addViagem_historico(Viagem v);
+	void addViagemMensal(Viagem v);
+	void addViagemHistorico(Viagem v);
 	void resetMes();
-	virtual float give_monthly_promotion(float p);
+	virtual float giveMonthlyPromotion(float p);
 	float fimdoMes();
 	virtual string mostrarCliente();
 	bool operator <(Cliente c2);
@@ -77,17 +77,17 @@ class Particular: public Cliente {
 public:
 	Particular(int id, string nC, string m, string mail, int nT, int nif,
 			string tipo_pagamento);
-	float give_monthly_promotion(float p);
+	float giveMonthlyPromotion(float p);
 	string mostrarCliente();
 
 };
 
 class Empresa: public Cliente {
-	int num_funcionarios;
+	int numFuncionarios;
 public:
 	Empresa(int id, string nC, string m, string mail, int nT, int nif,
-			string tipo_pagamento, int num_funcionarios);
-	float give_monthly_promotion(float p);
+			string tipoPagamento, int numFuncionarios);
+	float giveMonthlyPromotion(float p);
 	string mostrarCliente();
 };
 

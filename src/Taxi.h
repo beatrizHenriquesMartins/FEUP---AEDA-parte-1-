@@ -31,11 +31,17 @@ public:
 	friend ostream & operator <<(ostream & os, Taxi t);
 };
 
-class TaxisIndisponiveis{
+class TaxisIndisponiveis {
 	string razao;
 public:
-	TaxisIndisponiveis(string r){razao=r;};
-	string getRazao(){return razao;};
+	TaxisIndisponiveis(string r) {
+		razao = r;
+	}
+	;
+	string getRazao() {
+		return razao;
+	}
+	;
 };
 
 #endif /* SRC_TAXI_H_ */

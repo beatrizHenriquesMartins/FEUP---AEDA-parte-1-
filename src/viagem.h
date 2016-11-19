@@ -12,6 +12,8 @@
 #include <string>
 #include <vector>
 #include <math.h>
+#include <iostream>
+#include <fstream>
 
 #include "Hora.h"
 #include "Data.h"
@@ -21,7 +23,7 @@ using namespace std;
 
 class Viagem {
 private:
-	Data dia;
+	Data data;
 	Hora horaIn;
 	Hora horaOut;
 	Percurso deslocacao;
@@ -29,14 +31,17 @@ private:
 	bool pago;
 public:
 	Viagem(Data dia, Hora horaIn, Hora horaOut, Percurso p1);
+	virtual ~Viagem() {
+	}
+	;
 
 	//void alteraViagem();
 
-	Data getDia() const;
-	void setDia(int d, int m, int a);
-	Hora getHoraIn()const;
+	Data getData() const;
+	void setData(int d, int m, int a);
+	Hora getHoraIn() const;
 	void setHoraIn(Hora hora);
-	Hora getHoraOut()const;
+	Hora getHoraOut() const;
 	void setHoraOut(Hora hora);
 	string getPartida() const;
 	void setPartida(string localP, int dist1);
@@ -46,6 +51,7 @@ public:
 	float getCustoViagem() const;
 	void modificaCusto(float per); ////
 	Percurso getDeslocacao();
+	string toString();
 	friend ostream & operator <<(ostream & os, Viagem &v);
 };
 

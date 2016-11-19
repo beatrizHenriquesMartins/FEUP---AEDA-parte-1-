@@ -41,10 +41,18 @@ void Data::setAno(int a) {
 	ano = a;
 }
 
-ostream & operator <<(ostream os, Data d)
-{
+//
+string Data::toString() {
+	stringstream ss;
+	ss << this->getDia() << "/" << this->getMes() << "/" << this->getAno()
+			<< endl;
+	return ss.str();
+}
+//
 
-os<<d.getDia()<<"/"<<d.getMes()<<"/"<<d.getAno();
-return os;
+ostream & operator <<(ostream os, Data d) {
+
+	os << d.getDia() << "/" << d.getMes() << "/" << d.getAno();
+	return os;
 
 }

@@ -6,36 +6,29 @@
  */
 #include "Pagamento.h"
 
-
-Pagamento::Pagamento()
-{
-	tipo="indefinido";
-	dinheiro=0;
+Pagamento::Pagamento() {
+	tipo = "indefinido";
+	dinheiro = 0;
 }
 
-Pagamento::Pagamento(string t)
-{
-	tipo=t;
-	dinheiro=0;
+Pagamento::Pagamento(string t) {
+	tipo = t;
+	dinheiro = 0;
 }
 
-float Pagamento::getTotal()
-{
+float Pagamento::getTotal() {
 	return dinheiro;
 }
 
-string Pagamento::getTipo()
-{
+string Pagamento::getTipo() {
 	return tipo;
 }
 
-void Pagamento::changeTotal(float n)
-{
-	dinheiro=n;
+void Pagamento::changeTotal(float n) {
+	dinheiro = n;
 }
 
-void Pagamento::changeTipo (string t)
-{
-tipo=t;
+void Pagamento::changeTipo(string t) {
+	tipo = t;
 
 }

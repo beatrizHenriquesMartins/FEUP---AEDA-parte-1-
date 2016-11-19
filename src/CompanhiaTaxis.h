@@ -37,13 +37,16 @@ public:
 	void adicionaTaxi(Hora horI, Hora horO);
 	bool removeTaxi(int id);
 	int procuraTaxi(int n) const;
-	void adicionaClienteParticular(string nome, string morada, string email, int nT, int nif, string tipo_pagamento);
-	void adicionaClienteEmpresa(string nome, string morada, string email, int nT, int nif, string tipo_pagamento,int num_funcionarios);
+	void adicionaClienteParticular(string nome, string morada, string email,
+			int nT, int nif, string tipoPagamento);
+	void adicionaClienteEmpresa(string nome, string morada, string email,
+			int nT, int nif, string tipoPagamento, int numFuncionarios);
 	bool removeCliente(int id);
 	int procuraCliente(int id) const;
 	int ultimoIDcliente();
-	void fazerviagem_ocasional(Data dia, Hora horaIn, Hora horaOut, Percurso p1);
-	void fazerviagem_cliente(int id, Data dia, Hora horaIn, Hora horaOut, Percurso p1, bool disc, float per);
+	void fazerViagemOcasional(Data dia, Hora horaIn, Hora horaOut, Percurso p1);
+	void fazerViagemCliente(int id, Data dia, Hora horaIn, Hora horaOut,
+			Percurso p1, bool disc, float per);
 	void cobrarPagamentoMensal();
 	void mostrarClientesPorCapital();
 	void mostrarClientesPorID();

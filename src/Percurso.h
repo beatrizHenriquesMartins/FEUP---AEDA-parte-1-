@@ -12,7 +12,6 @@
 #include <string>
 #include <vector>
 
-
 using namespace std;
 
 class Percurso {
@@ -29,9 +28,7 @@ public:
 	void setLocalPartida(string localPart, int dist);
 	void setLocalDestino(string localDest, int dist);
 	void setDistancia(int distancia);
-	friend ostream & operator << (ostream os, Percurso p);
+	friend ostream & operator <<(ostream os, Percurso p);
 };
-
-
 
 #endif /* SRC_PERCURSO_H_ */

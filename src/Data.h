@@ -9,6 +9,7 @@
 #define SRC_DATA_H_
 
 #include <string>
+#include <sstream>
 #include <iostream>
 
 using namespace std;
@@ -27,6 +28,7 @@ public:
 	void setDia(int d);
 	void setMes(int m);
 	void setAno(int a);
+	string toString();
 	friend ostream & operator <<(ostream os, Data d);
 };
 
