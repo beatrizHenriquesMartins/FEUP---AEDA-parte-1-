@@ -31,12 +31,12 @@ public:
 	friend ostream & operator <<(ostream & os, Hora h);
 };
 
-/*
+
  class HoraInvalida{
  string razao;
  public:
  HoraInvalida(string r){razao=r;};
  string getRazao(){return razao;};
- };*/
+ };
 
 #endif /* SRC_HORA_H_ */

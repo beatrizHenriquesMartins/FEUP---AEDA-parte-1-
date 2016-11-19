@@ -44,8 +44,8 @@ public:
 	bool removeCliente(int id);
 	int procuraCliente(int id) const;
 	int ultimoIDcliente();
-	void fazerViagemOcasional(Data dia, Hora horaIn, Hora horaOut, Percurso p1);
-	void fazerViagemCliente(int id, Data dia, Hora horaIn, Hora horaOut,
+	void fazerViagemOcasional(Data dia, Hora horaIn,  Percurso p1);
+	void fazerViagemCliente(int id, Data dia, Hora horaIn,
 			Percurso p1, bool disc, float per);
 	void cobrarPagamentoMensal();
 	void mostrarClientesPorCapital();

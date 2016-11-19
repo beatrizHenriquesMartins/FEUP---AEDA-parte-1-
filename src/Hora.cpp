@@ -16,11 +16,11 @@ Hora::Hora() {
 Hora::Hora(int h, int m, int s) {
 
 	if (h < 0 || h > 23)
-		//throw HoraInvalida("Hora nao permitida");
+		throw HoraInvalida("Hora nao permitida");
 		if (m < 0 || m > 59)
-			//throw HoraInvalida("Minutos nao permitidos");
+			throw HoraInvalida("Minutos nao permitidos");
 			if (s < 0 || s > 59)
-				//throw HoraInvalida("Segundos nao permitidos");
+				throw HoraInvalida("Segundos nao permitidos");
 
 				hora = h;
 	minutos = m;
@@ -64,7 +64,7 @@ Hora Hora::somaHoras(int min) {
 string Hora::toString() {
 	stringstream ss;
 	ss << this->getHora() << ":" << this->getMinutos() << ":"
-			<< this->getSegundos() << "h" << endl;
+			<< this->getSegundos() << "h";
 	return ss.str();
 }
 //
@@ -100,7 +100,7 @@ bool Hora::operator <=(Hora h2) {
 ostream & operator <<(ostream & os, Hora h) {
 
 	os << h.getHora() << ":" << h.getMinutos() << ":" << h.getSegundos()
-			<< "h" << endl;
+			<< "h";
 	return os;
 
 }

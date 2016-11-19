@@ -15,6 +15,7 @@ CompanhiaTaxis::CompanhiaTaxis() {
 CompanhiaTaxis::CompanhiaTaxis(string n, float c) {
 	nome = n;
 	capital = c;
+
 }
 
 string CompanhiaTaxis::getNome() {
@@ -146,12 +147,13 @@ int CompanhiaTaxis::ultimoIDcliente() {
 	return clientes[ind]->getID() + 1;
 }
 
-void CompanhiaTaxis::fazerViagemOcasional(Data dia, Hora horaIn, Hora horaOut,
+void CompanhiaTaxis::fazerViagemOcasional(Data dia, Hora horaIn,
 		Percurso p1) {
 
+	Viagem v(dia, horaIn, p1);
+	v.horaFinal();
 	for (unsigned int i = 0; i < taxisTotais.size(); i++) {
-		if (taxisTotais[i].getDisponivel(horaIn, horaOut)) {
-			Viagem v(dia, horaIn, horaOut, p1);
+		if (taxisTotais[i].getDisponivel(horaIn, v.getHoraOut())) {
 
 			taxisTotais[i].setRentabilidade(v.pagarViagem());
 			return;
@@ -160,16 +162,17 @@ void CompanhiaTaxis::fazerViagemOcasional(Data dia, Hora horaIn, Hora horaOut,
 	throw TaxisIndisponiveis("Nao existem taxis de momento disponiveis");
 }
 
-void CompanhiaTaxis::fazerViagemCliente(int id, Data dia, Hora horaIn,
-		Hora horaOut, Percurso p1, bool disc, float per) {
+void CompanhiaTaxis::fazerViagemCliente(int id, Data dia, Hora horaIn, Percurso p1, bool disc, float per) {
 
+	Viagem v(dia, horaIn,p1);
+	v.horaFinal();
 	for (unsigned int j = 0; j < clientes.size(); j++) {
 		if (clientes[j]->getID() == id) {
 
 			for (unsigned int i = 0; i < taxisTotais.size(); i++) {
 
-				if (taxisTotais[i].getDisponivel(horaIn, horaOut)) {
-					Viagem v(dia, horaIn, horaOut, p1);
+				if (taxisTotais[i].getDisponivel(horaIn, v.getHoraOut())) {
+
 					if (disc)
 						v.modificaCusto(clientes[j]->giveMonthlyPromotion(per));
 					clientes[j]->addViagemHistorico(v);

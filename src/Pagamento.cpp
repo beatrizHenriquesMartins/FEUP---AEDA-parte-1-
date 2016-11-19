@@ -25,7 +25,7 @@ string Pagamento::getTipo() {
 }
 
 void Pagamento::changeTotal(float n) {
-	dinheiro = n;
+	dinheiro +=n;
 }
 
 void Pagamento::changeTipo(string t) {

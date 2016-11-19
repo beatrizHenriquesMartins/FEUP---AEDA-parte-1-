@@ -30,13 +30,8 @@ private:
 	float custo;
 	bool pago;
 public:
-	Viagem(Data dia, Hora horaIn, Hora horaOut, Percurso p1);
-	virtual ~Viagem() {
-	}
-	;
-
-	//void alteraViagem();
-
+	Viagem(Data dia, Hora horaIn, Percurso p1);
+	~Viagem();
 	Data getData() const;
 	void setData(int d, int m, int a);
 	Hora getHoraIn() const;
@@ -47,12 +42,13 @@ public:
 	void setPartida(string localP, int dist1);
 	string getDestino() const;
 	void setDestino(string localD, int dist2);
+	float horaFinal();
 	float pagarViagem();
 	float getCustoViagem() const;
 	void modificaCusto(float per); ////
 	Percurso getDeslocacao();
 	string toString();
-	friend ostream & operator <<(ostream & os, Viagem &v);
+	//friend ostream & operator <<(ostream & os, Viagem &v);
 };
 
 #endif /* SRC_VIAGEM_H_ */

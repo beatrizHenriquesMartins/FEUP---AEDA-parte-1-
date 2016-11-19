@@ -20,12 +20,12 @@ using namespace std;
 class Menu {
 public:
 	Menu();
-	void menuInicio();
+	void menuInicio(CompanhiaTaxis &comp);
 	int lerFicheiroClienteParticular(CompanhiaTaxis &comp);
 	int lerFicheiroClienteEmpresas(CompanhiaTaxis &comp);
 	//int escreverFicheiroClienteParticular(CompanhiaTaxis comp);
 	//int escreverFicheiroClienteEmpresas(CompanhiaTaxis comp);
-	void menuEntrar();
+	void menuEntrar(CompanhiaTaxis &comp);
 	void menuClientes(CompanhiaTaxis &comp);
 	void menuTaxis(CompanhiaTaxis &comp);
 	void menuCompanhia(CompanhiaTaxis &comp);

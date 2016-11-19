@@ -9,14 +9,15 @@
 #include "Data.h"
 #include "Percurso.h"
 
-Viagem::Viagem(Data dia, Hora horaIn, Hora horaOut, Percurso p1) {
+Viagem::Viagem(Data dia, Hora horaIn, Percurso p1) {
 	this->data = dia;
 	this->horaIn = horaIn;
-	this->horaOut = horaOut;
 	this->deslocacao = p1;
 	this->pago = false;
 	this->custo = 0;
 }
+
+Viagem::~Viagem() {};
 
 Data Viagem::getData() const {
 	return data;
@@ -59,16 +60,27 @@ void Viagem::setDestino(string localD, int dist2) {
 	deslocacao.setLocalDestino(localD, dist2);
 }
 
-float Viagem::pagarViagem() {
+
+float Viagem::horaFinal()
+{
+
 	float tempo = 1.15 * deslocacao.getDistancia();
-	Hora t1(7, 15, 0), t2(9, 0, 0), t3(18, 0, 0), t4(20, 15, 0);
+		Hora t1(7, 15, 0), t2(9, 0, 0), t3(18, 0, 0), t4(20, 15, 0);
 
-	if ((horaIn < t2 && t1 < horaIn) || (horaIn < t4 && t3 < horaIn))
-		tempo = tempo * 1.3;
+		if ((horaIn < t2 && t1 < horaIn) || (horaIn < t4 && t3 < horaIn))
+			tempo = tempo * 1.3;
 
-	int temp = floor(tempo);
+		int temp = floor(tempo);
 
-	horaOut = horaIn.somaHoras(temp);
+		horaOut = horaIn.somaHoras(temp);
+		return tempo;
+
+
+}
+
+float Viagem::pagarViagem() {
+
+	float tempo=this->horaFinal();
 
 	custo = tempo * 0.6;
 	this->pago = true;
@@ -93,17 +105,18 @@ void Viagem::modificaCusto(float per) {
 string Viagem::toString() {
 	stringstream ss;
 	ss << "Data: " << this->getData().toString() << "\nHora Inicial: "
-			<< this->getHoraIn().toString() << "\nHora Final: "
-			<< this->getHoraOut().toString() << "\nCusto: "
-			<< this->getCustoViagem() << "€" << endl;
+			<< horaIn << "\nHora Final: "
+			<< horaOut << "\nCusto: "
+			<< this->getCustoViagem() << "€";
 	return ss.str();
 }
 
 /*
  ostream & operator <<(ostream & os, Viagem & v) {
- os << "Data: " << v.getData(). << "\nHora Inicial: " << v.getHoraIn()
- << "\nHora Final: " << v.getHoraOut() << "\nCusto: "
- << v.getCustoViagem();
+
+ os << "Data: " << v.getData() << " Hora Inicial: " << v.getHoraIn()<< " Hora Final: " << v.getHoraOut() << " Custo: "<< v.getCustoViagem();
+
  return os;
- }
- */
+
+ }*/
+

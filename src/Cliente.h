@@ -37,7 +37,7 @@ public:
 
 class Cliente: public Utente {
 protected:
-	int idC;
+	static int idC;
 	int NIF;
 	string morada;
 	string email;
@@ -46,7 +46,7 @@ protected:
 	vector<Viagem> viagensMensais;
 	int cartaoPontos;
 public:
-	Cliente(int id, string nC, string m, string mail, int nT, int nif,
+	Cliente(string nC, string m, string mail, int nT, int nif,
 			string tipoPagamento);
 	virtual ~Cliente() {
 	}

@@ -40,10 +40,13 @@ Ocasionais::Ocasionais(string nome, string tipoPagamento) :
 }
 
 //Cliente
-Cliente::Cliente(int id, string nC, string m, string mail, int nT, int nif,
+
+//int Cliente::idc=0;
+
+Cliente::Cliente(string nC, string m, string mail, int nT, int nif,
 		string tipoPagamento) :
 		Utente(nC, tipoPagamento) {
-	idC = id;
+	idC++;
 	NIF = nif;
 	morada = m;
 	email = m;
@@ -127,6 +130,8 @@ float Cliente::fimdoMes() {
 		viagensMensais[i].pagarViagem();
 		n += viagensMensais[i].getCustoViagem();
 	}
+
+	n=n*1.02;
 	custo.changeTotal(n);
 	return n;
 
