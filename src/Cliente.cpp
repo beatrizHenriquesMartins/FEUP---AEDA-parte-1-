@@ -41,7 +41,17 @@ Ocasionais::Ocasionais(string nome, string tipoPagamento) :
 
 //Cliente
 
-int Cliente::ultidC=1;
+int Cliente::ultidC = 1;
+
+Cliente::Cliente(int id, string nome, int nif, string morada, string email,
+		int numeroTelemovel, string tipoPagamento) :
+		Utente(nome, tipoPagamento) {
+	this->id = id;
+	this->NIF = nif;
+	this->morada = morada;
+	this->email = email;
+	this->numeroTelemovel = numeroTelemovel;
+}
 
 Cliente::Cliente(string nC, string m, string mail, int nT, int nif,
 		string tipoPagamento) :
@@ -51,7 +61,7 @@ Cliente::Cliente(string nC, string m, string mail, int nT, int nif,
 	email = m;
 	numeroTelemovel = nT;
 	cartaoPontos = 0;
-	id=ultidC++;
+	id = ultidC++;
 }
 
 int Cliente::getID() const {
@@ -131,7 +141,7 @@ float Cliente::fimdoMes() {
 		n += viagensMensais[i].getCustoViagem();
 	}
 
-	n=n*1.02;
+	n = n * 1.02;
 	custo.changeTotal(n);
 	return n;
 
@@ -159,8 +169,14 @@ bool Cliente::operator <(Cliente c2) {
 }
 
 //Particular
-Particular::Particular(string nC, string m, string mail, int nT,
-		int nif, string tipoPagamento) :
+Particular::Particular(int id, string nome, int nif, string morada,
+		string email, int numeroTelemovel, string tipoPagamento) :
+		Cliente(id, nome, nif, morada, email, numeroTelemovel, tipoPagamento) {
+
+}
+
+Particular::Particular(string nC, string m, string mail, int nT, int nif,
+		string tipoPagamento) :
 		Cliente(nC, m, mail, nT, nif, tipoPagamento) {
 
 }
@@ -190,6 +206,12 @@ string Particular::mostrarCliente() {
 	return ss.str();
 }
 //Empresa
+Empresa::Empresa(int id, string nome, int nif, string morada, string email,
+		int numeroTelemovel, string tipoPagamento, int nFuncionarios) :
+		Cliente(id, nome, nif, morada, email, numeroTelemovel, tipoPagamento) {
+	this->numFuncionarios = nFuncionarios;
+}
+
 Empresa::Empresa(string nC, string m, string mail, int nT, int nif,
 		string tipoPagamento, int numFuncionarios) :
 		Cliente(nC, m, mail, nT, nif, tipoPagamento) {
@@ -215,9 +237,9 @@ string Empresa::mostrarCliente() {
 	stringstream ss;
 	ss << id << " Nome: " << this->getNomeC() << " |Morada: " << morada
 			<< " |Email: " << email << " |Nr Telemovel: " << numeroTelemovel
-			<< " |Total dispendido na Companhia: " << this->getCusto().getTotal()
-			<< " |Tipo de pagamento: " << this->getCusto().getTipo()
-			<< " |Nr total de pontos no cartao: " << cartaoPontos
-			<< " |Nr de funcionarios: " << numFuncionarios;
+			<< " |Total dispendido na Companhia: "
+			<< this->getCusto().getTotal() << " |Tipo de pagamento: "
+			<< this->getCusto().getTipo() << " |Nr total de pontos no cartao: "
+			<< cartaoPontos << " |Nr de funcionarios: " << numFuncionarios;
 	return ss.str();
 }

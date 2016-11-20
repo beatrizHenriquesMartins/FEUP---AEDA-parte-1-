@@ -24,6 +24,7 @@ private:
 	float capital;
 	vector<Cliente *> clientes;
 	vector<Taxi> taxisTotais;
+	vector<Percurso*> percursosDisponiveis;
 
 public:
 	CompanhiaTaxis();
@@ -44,14 +45,16 @@ public:
 	bool removeCliente(int id);
 	int procuraCliente(int id) const;
 	int ultimoIDcliente();
-	void fazerViagemOcasional(Data dia, Hora horaIn,  Percurso p1);
-	void fazerViagemCliente(int id, Data dia, Hora horaIn,
-			Percurso p1, bool disc, float per);
+	void fazerViagemOcasional(Data dia, Hora horaIn, Percurso p1);
+	void fazerViagemCliente(int id, Data dia, Hora horaIn, Percurso p1,
+			bool disc, float per);
 	void cobrarPagamentoMensal();
 	void mostrarClientesPorCapital();
 	void mostrarClientesPorID();
 	void mostrarTaxis();
 	void setClientes(vector<Cliente*> c);
+	void setPercursos(vector<Percurso*> p);
+	vector<Percurso*> getPercursos() const;
 };
 
 #endif /* SRC_COMPANHIATAXIS_H_ */

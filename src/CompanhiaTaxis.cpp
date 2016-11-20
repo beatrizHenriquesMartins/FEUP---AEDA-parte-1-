@@ -85,10 +85,17 @@ void CompanhiaTaxis::setClientes(vector<Cliente*> c) {
 	this->clientes = c;
 }
 
+void CompanhiaTaxis::setPercursos(vector<Percurso*> p) {
+	percursosDisponiveis = p;
+}
+
+vector<Percurso*> CompanhiaTaxis::getPercursos() const {
+	return percursosDisponiveis;
+
+}
 void CompanhiaTaxis::adicionaClienteParticular(string nome, string morada,
 		string email, int nT, int nif, string tipoPagamento) {
-	Cliente *c = new Particular(nome, morada, email, nT, nif,
-			tipoPagamento);
+	Cliente *c = new Particular(nome, morada, email, nT, nif, tipoPagamento);
 	clientes.push_back(c);
 }
 
@@ -143,8 +150,7 @@ int CompanhiaTaxis::ultimoIDcliente() {
 	return clientes[ind]->getID() + 1;
 }
 
-void CompanhiaTaxis::fazerViagemOcasional(Data dia, Hora horaIn,
-		Percurso p1) {
+void CompanhiaTaxis::fazerViagemOcasional(Data dia, Hora horaIn, Percurso p1) {
 
 	Viagem v(dia, horaIn, p1);
 	v.horaFinal();
@@ -158,9 +164,10 @@ void CompanhiaTaxis::fazerViagemOcasional(Data dia, Hora horaIn,
 	throw TaxisIndisponiveis("Nao existem taxis de momento disponiveis");
 }
 
-void CompanhiaTaxis::fazerViagemCliente(int id, Data dia, Hora horaIn, Percurso p1, bool disc, float per) {
+void CompanhiaTaxis::fazerViagemCliente(int id, Data dia, Hora horaIn,
+		Percurso p1, bool disc, float per) {
 
-	Viagem v(dia, horaIn,p1);
+	Viagem v(dia, horaIn, p1);
 	v.horaFinal();
 	for (unsigned int j = 0; j < clientes.size(); j++) {
 		if (clientes[j]->getID() == id) {
@@ -223,7 +230,7 @@ void CompanhiaTaxis::cobrarPagamentoMensal() {
 
 	for (unsigned int j = 0; j < taxisTotais.size(); j++) {
 		capital += taxisTotais[j].getRentabilidade();
-		float n=-1*(taxisTotais[j].getRentabilidade());
+		float n = -1 * (taxisTotais[j].getRentabilidade());
 		taxisTotais[j].setRentabilidade(n);
 	}
 }
@@ -248,7 +255,7 @@ void CompanhiaTaxis::mostrarClientesPorID() {
 	vector<Cliente *>::iterator ite = clientes.end();
 
 	for (; it != ite; it++) {
-		cout << (*it)->mostrarCliente()<< endl;
+		cout << (*it)->mostrarCliente() << endl;
 	}
 
 }
@@ -259,7 +266,7 @@ void CompanhiaTaxis::mostrarTaxis() {
 	vector<Taxi>::iterator ite = taxisTotais.end();
 
 	for (; it != ite; it++) {
-		cout << (*it)<<endl;
+		cout << (*it) << endl;
 	}
 }
 

@@ -21,8 +21,13 @@ class Menu {
 public:
 	Menu();
 	void menuInicio(CompanhiaTaxis &comp);
-	int lerFicheiroClienteParticular(CompanhiaTaxis &comp);
-	int lerFicheiroClienteEmpresas(CompanhiaTaxis &comp);
+	void trim(string &str);
+	void lerFicheiroClienteParticular(CompanhiaTaxis &comp);
+	void lerFicheiroClienteEmpresas(CompanhiaTaxis &comp);
+	void lerFicheiroPercurso(CompanhiaTaxis &comp);
+	void lerFicheiroViagens(CompanhiaTaxis &comp);
+	Data* stringToData(string &s);
+	Hora* stringToHora(string &s);
 	//int escreverFicheiroClienteParticular(CompanhiaTaxis comp);
 	//int escreverFicheiroClienteEmpresas(CompanhiaTaxis comp);
 	void menuEntrar(CompanhiaTaxis &comp);

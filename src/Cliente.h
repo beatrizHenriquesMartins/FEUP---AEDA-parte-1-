@@ -47,6 +47,8 @@ protected:
 	vector<Viagem> viagensMensais;
 	int cartaoPontos;
 public:
+	Cliente(int id, string nome, int nif, string morada, string email,
+			int numeroTelemovel, string tipoPagamento);
 	Cliente(string nC, string m, string mail, int nT, int nif,
 			string tipoPagamento);
 	virtual ~Cliente() {
@@ -76,6 +78,8 @@ public:
 
 class Particular: public Cliente {
 public:
+	Particular(int id, string nome, int nif, string morada, string email,
+			int numeroTelemovel, string tipoPagamento);
 	Particular(string nC, string m, string mail, int nT, int nif,
 			string tipo_pagamento);
 	float giveMonthlyPromotion(float p);
@@ -86,6 +90,8 @@ public:
 class Empresa: public Cliente {
 	int numFuncionarios;
 public:
+	Empresa(int id, string nome, int nif, string morada, string email,
+			int numeroTelemovel, string tipoPagamento,int nFuncionarios);
 	Empresa(string nC, string m, string mail, int nT, int nif,
 			string tipoPagamento, int numFuncionarios);
 	float giveMonthlyPromotion(float p);
