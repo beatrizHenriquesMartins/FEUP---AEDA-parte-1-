@@ -31,7 +31,6 @@ private:
 	bool pago;
 public:
 	Viagem(Data dia, Hora horaIn, Percurso p1);
-	Viagem(Data dia,Hora hi,Percurso p1,)
 	~Viagem();
 	Data getData() const;
 	void setData(int d, int m, int a);

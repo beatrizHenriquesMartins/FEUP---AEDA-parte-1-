@@ -8,19 +8,13 @@
 #include "Cliente.h"
 
 //Utente
-Utente::Utente(string nome, string tipoPagamento, bool pOuE) {
+Utente::Utente(string nome, string tipoPagamento) {
 	custo = Pagamento(tipoPagamento);
 	nomeC = nome;
-	particOuEmpre = pOuE;
 }
 
 string Utente::getNomeC() const {
 	return nomeC;
-}
-
-bool getParticOuEmpre() const
-{
-	return particOuEmpre;
 }
 
 void Utente::setNomeC(string nC) {
@@ -40,31 +34,34 @@ void Utente::changeCustoTipo(string tipo) {
 }
 
 //Ocasionais
-Ocasionais::Ocasionais(string nome, string tipoPagamento, bool pOuE) :
-		Utente(nome, tipoPagamento, pOuE) {
+Ocasionais::Ocasionais(string nome, string tipoPagamento) :
+		Utente(nome, tipoPagamento) {
 
 }
 
 //Cliente
-
 int Cliente::ultidC = 1;
 
-Cliente::Cliente(int id, string nome, int nif, string morada, string email,
-		int numeroTelemovel, string tipoPagamento, bool pOuE) :
-		Utente(nome, tipoPagamento, pOuE) {
+Cliente::Cliente(int id, string nome, string morada, string email,
+		int numeroTelemovel, int nif, float cap, string tipoPagamento,
+		int pontos) :
+		Utente(nome, tipoPagamento) {
 	this->id = id;
+	ultidC = ++id;
 	this->NIF = nif;
+	this->custo.changeTotal(cap);
 	this->morada = morada;
 	this->email = email;
 	this->numeroTelemovel = numeroTelemovel;
+	cartaoPontos = pontos;
 }
 
 Cliente::Cliente(string nC, string m, string mail, int nT, int nif,
-		string tipoPagamento, bool pOuE) :
-		Utente(nC, tipoPagamento, pOuE) {
+		string tipoPagamento) :
+		Utente(nC, tipoPagamento) {
 	NIF = nif;
 	morada = m;
-	email = m;
+	email = mail;
 	numeroTelemovel = nT;
 	cartaoPontos = 0;
 	id = ultidC++;
@@ -157,10 +154,15 @@ string Cliente::mostrarCliente() {
 	stringstream ss;
 	ss << id << " Nome: " << this->getNomeC() << " Morada: " << morada
 			<< " Email: " << email << " Nr Telemovel: " << numeroTelemovel
-			<< " Total dispendido na Companhia: " << this->getCusto().getTotal()
-			<< " Tipo de pagamento: " << this->getCusto().getTipo()
-			<< " Nr total de pontos no cartao: " << cartaoPontos;
+			<< " NIF: " << NIF << " Total dispendido na Companhia: "
+			<< this->getCusto().getTotal() << " Tipo de pagamento: "
+			<< this->getCusto().getTipo() << " Nr total de pontos no cartao: "
+			<< cartaoPontos;
 	return ss.str();
+}
+
+bool Cliente::isParticular() {
+
 }
 
 bool Cliente::operator <(Cliente c2) {
@@ -175,15 +177,17 @@ bool Cliente::operator <(Cliente c2) {
 }
 
 //Particular
-Particular::Particular(int id, string nome, int nif, string morada,
-		string email, int numeroTelemovel, string tipoPagamento, bool pOuE) :
-		Cliente(id, nome, nif, morada, email, numeroTelemovel, tipoPagamento, pOuE) {
+Particular::Particular(int id, string nome, string morada, string email,
+		int numeroTelemovel, int nif, float cap, string tipoPagamento,
+		int pontos) :
+		Cliente(id, nome, morada, email, numeroTelemovel, nif, cap,
+				tipoPagamento, pontos) {
 
 }
 
 Particular::Particular(string nC, string m, string mail, int nT, int nif,
-		string tipoPagamento, bool pOuE) :
-		Cliente(nC, m, mail, nT, nif, tipoPagamento, pOuE) {
+		string tipoPagamento) :
+		Cliente(nC, m, mail, nT, nif, tipoPagamento) {
 
 }
 
@@ -206,21 +210,29 @@ string Particular::mostrarCliente() {
 	stringstream ss;
 	ss << id << " Nome: " << this->getNomeC() << " Morada: " << morada
 			<< " Email: " << email << " Nr Telemovel: " << numeroTelemovel
-			<< " Total dispendido na Companhia: " << this->getCusto().getTotal()
-			<< " Tipo de pagamento: " << this->getCusto().getTipo()
-			<< " Nr total de pontos no cartao: " << cartaoPontos;
+			<< " NIF: " << NIF << " Total dispendido na Companhia: "
+			<< this->getCusto().getTotal() << " Tipo de pagamento: "
+			<< this->getCusto().getTipo() << " Nr total de pontos no cartao: "
+			<< cartaoPontos;
 	return ss.str();
 }
+
+bool Particular::isParticular() {
+	return true;
+}
+
 //Empresa
-Empresa::Empresa(int id, string nome, int nif, string morada, string email,
-		int numeroTelemovel, string tipoPagamento, int nFuncionarios, bool pOuE) :
-		Cliente(id, nome, nif, morada, email, numeroTelemovel, tipoPagamento, pOuE) {
+Empresa::Empresa(int id, string nome, string morada, string email,
+		int numeroTelemovel, int nif, float cap, string tipoPagamento,
+		int nFuncionarios, int pontos) :
+		Cliente(id, nome, morada, email, numeroTelemovel, nif, cap,
+				tipoPagamento, pontos) {
 	this->numFuncionarios = nFuncionarios;
 }
 
 Empresa::Empresa(string nC, string m, string mail, int nT, int nif,
-		string tipoPagamento, int numFuncionarios, bool pOuE) :
-		Cliente(nC, m, mail, nT, nif, tipoPagamento, pOuE) {
+		string tipoPagamento, int numFuncionarios) :
+		Cliente(nC, m, mail, nT, nif, tipoPagamento) {
 	this->numFuncionarios = numFuncionarios;
 }
 
@@ -241,11 +253,15 @@ float Empresa::giveMonthlyPromotion(float p) {
 
 string Empresa::mostrarCliente() {
 	stringstream ss;
-	ss << id << " Nome: " << this->getNomeC() << " |Morada: " << morada
-			<< " |Email: " << email << " |Nr Telemovel: " << numeroTelemovel
-			<< " |Total dispendido na Companhia: "
-			<< this->getCusto().getTotal() << " |Tipo de pagamento: "
-			<< this->getCusto().getTipo() << " |Nr total de pontos no cartao: "
-			<< cartaoPontos << " |Nr de funcionarios: " << numFuncionarios;
+	ss << id << " Nome: " << this->getNomeC() << " Morada: " << morada
+			<< " Email: " << email << " Nr Telemovel: " << numeroTelemovel
+			<< " NIF: " << NIF << " Total dispendido na Companhia: "
+			<< this->getCusto().getTotal() << " Tipo de pagamento: "
+			<< this->getCusto().getTipo() << " Nr total de pontos no cartao: "
+			<< cartaoPontos << " Nr funcionarios: " << numFuncionarios;
 	return ss.str();
+}
+
+bool Empresa::isParticular() {
+	return false;
 }

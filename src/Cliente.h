@@ -20,11 +20,10 @@ class Utente {
 protected:
 	string nomeC;
 	Pagamento custo;
-	bool particOuEmpre;
+
 public:
-	Utente(string nome, string tipo_pagamento, bool pOuE);
+	Utente(string nome, string tipoPagamento);
 	string getNomeC() const;
-	bool getParticOuEmpre() const;
 	void setNomeC(string nome);
 	void changeCustoTotal(float n);
 	void changeCustoTipo(string tipo);
@@ -33,7 +32,8 @@ public:
 
 class Ocasionais: public Utente {
 public:
-	Ocasionais(string nome, string tipo_pagamento, bool pOuE);
+	Ocasionais(string nome, string tipo_pagamento);
+	;
 
 };
 
@@ -49,10 +49,11 @@ protected:
 	vector<Viagem> viagensMensais;
 	int cartaoPontos;
 public:
-	Cliente(int id, string nome, int nif, string morada, string email,
-			int numeroTelemovel, string tipoPagamento, bool pOuE);
+	Cliente(int id, string nome, string morada, string email,
+			int numeroTelemovel, int nif, float cap, string tipoPagamento,
+			int pontos);
 	Cliente(string nC, string m, string mail, int nT, int nif,
-			string tipoPagamento, bool pOuE);
+			string tipoPagamento);
 	virtual ~Cliente() {
 	}
 	;
@@ -75,29 +76,33 @@ public:
 	virtual float giveMonthlyPromotion(float p);
 	float fimdoMes();
 	virtual string mostrarCliente();
+	virtual bool isParticular();
 	bool operator <(Cliente c2);
 };
 
 class Particular: public Cliente {
 public:
-	Particular(int id, string nome, int nif, string morada, string email,
-			int numeroTelemovel, string tipoPagamento, bool pOuE);
+	Particular(int id, string nome, string morada, string email,
+			int numeroTelemovel, int nif, float cap, string tipoPagamento,
+			int pontos);
 	Particular(string nC, string m, string mail, int nT, int nif,
-			string tipo_pagamento, bool pOuE);
+			string tipo_pagamento);
 	float giveMonthlyPromotion(float p);
 	string mostrarCliente();
-
+	virtual bool isParticular();
 };
 
 class Empresa: public Cliente {
 	int numFuncionarios;
 public:
-	Empresa(int id, string nome, int nif, string morada, string email,
-			int numeroTelemovel, string tipoPagamento,int nFuncionarios, bool pOuE);
+	Empresa(int id, string nome, string morada, string email,
+			int numeroTelemovel, int nif, float cap, string tipoPagamento,
+			int nFuncionarios, int pontos);
 	Empresa(string nC, string m, string mail, int nT, int nif,
-			string tipoPagamento, int numFuncionarios, bool pOuE);
+			string tipoPagamento, int numFuncionarios);
 	float giveMonthlyPromotion(float p);
 	string mostrarCliente();
+	virtual bool isParticular();
 };
 
 class ClienteInexistente {

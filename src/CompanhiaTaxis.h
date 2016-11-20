@@ -38,6 +38,8 @@ public:
 	void adicionaTaxi(Hora horI, Hora horO);
 	bool removeTaxi(int id);
 	int procuraTaxi(int n) const;
+	void setPercursos(vector<Percurso*> p);
+	vector<Percurso*> getPercursos() const;
 	void adicionaClienteParticular(string nome, string morada, string email,
 			int nT, int nif, string tipoPagamento);
 	void adicionaClienteEmpresa(string nome, string morada, string email,
@@ -53,8 +55,7 @@ public:
 	void mostrarClientesPorID();
 	void mostrarTaxis();
 	void setClientes(vector<Cliente*> c);
-	void setPercursos(vector<Percurso*> p);
-	vector<Percurso*> getPercursos() const;
+	void concaClientes(vector<Cliente*> c);
 };
 
 #endif /* SRC_COMPANHIATAXIS_H_ */

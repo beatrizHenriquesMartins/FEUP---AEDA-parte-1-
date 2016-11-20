@@ -11,6 +11,7 @@
 #include <string>
 #include <iomanip>
 #include <iostream>
+#include <stdlib.h>
 
 #include "CompanhiaTaxis.h"
 #include <fstream>
@@ -26,10 +27,12 @@ public:
 	void lerFicheiroClienteEmpresas(CompanhiaTaxis &comp);
 	void lerFicheiroPercurso(CompanhiaTaxis &comp);
 	void lerFicheiroViagens(CompanhiaTaxis &comp);
-	Data* stringToData(string &s);
+	Data stringToData(string &s);
 	Hora* stringToHora(string &s);
-	//int escreverFicheiroClienteParticular(CompanhiaTaxis comp);
-	//int escreverFicheiroClienteEmpresas(CompanhiaTaxis comp);
+	void escreverFicheiroClientesParticulares(CompanhiaTaxis &comp);
+	void escreverFicheiroClientesEmpresa(CompanhiaTaxis &comp);
+	void escreverFicheiroClientesViagensCliente(CompanhiaTaxis &comp);
+	void escreverFicheiroComp(CompanhiaTaxis &comp);
 	void menuEntrar(CompanhiaTaxis &comp);
 	void menuClientes(CompanhiaTaxis &comp);
 	void menuTaxis(CompanhiaTaxis &comp);
