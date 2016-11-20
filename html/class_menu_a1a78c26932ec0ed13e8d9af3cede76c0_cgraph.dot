@@ -1,0 +1,24 @@
+digraph "Menu::menuTaxis"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node264 [label="Menu::menuTaxis",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node264 -> Node265 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node265 [label="CompanhiaTaxis::adicionaTaxi",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_companhia_taxis.html#a97c8ec0ff1e6bb1717698a1ed1e61f9a",tooltip="função para adicionar taxi à lista de taxis "];
+  Node264 -> Node266 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node266 [label="CompanhiaTaxis::mostrarTaxis",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_companhia_taxis.html#ac6e7c25c1f3fb1a97d714668b4189f8f",tooltip="função que imprime todos os taxis da companhia "];
+  Node264 -> Node267 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node267 [label="CompanhiaTaxis::removeTaxi",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_companhia_taxis.html#a54ad03f877e3e81e4a023e2fdcf3024c",tooltip="função para eliminar taxi "];
+  Node267 -> Node268 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node268 [label="CompanhiaTaxis::procuraTaxi",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_companhia_taxis.html#a14c51fc63afe03bf8850fb9559db634c",tooltip="função para procurar taxi "];
+  Node268 -> Node269 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node269 [label="sequentialSearch",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sequential_search_8h.html#acd555ad1f1fc3b2011aab63641f98151"];
+  Node264 -> Node270 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node270 [label="ErroInput::alertaErro",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_erro_input.html#aa4fbfcf2c76e9d74da9a525831bf7efb"];
+  Node264 -> Node268 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node264 -> Node271 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node271 [label="CompanhiaTaxis::getTaxis\lTotais",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_companhia_taxis.html#a3f1e79958ff4ee7dc12e9fd827eb0bb1",tooltip="função para obter lista de todos os taxis "];
+  Node264 -> Node272 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node272 [label="OpcaoErrada::alertaErro",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_opcao_errada.html#a26bc1d7170a0ef29e3a9eae58760ac6f"];
+}

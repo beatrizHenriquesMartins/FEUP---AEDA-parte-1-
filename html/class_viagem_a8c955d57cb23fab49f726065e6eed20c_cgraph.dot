@@ -1,0 +1,13 @@
+digraph "Viagem::horaFinal"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node12 [label="Viagem::horaFinal",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node12 -> Node13 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="Percurso::getDistancia",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_percurso.html#a0f8920294007befff27924c4850ffb44",tooltip="função para obter distância "];
+  Node12 -> Node14 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 [label="Hora::somaHoras",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_hora.html#ad54ed49a29096cc68e7090522a53f164",tooltip="função que soma minutos a uma determinada hora "];
+  Node14 -> Node15 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node15 [label="Hora::Hora",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_hora.html#a90c18369977bbf1bf3a7370d8ea9e9ae",tooltip="construtor da classe Hora vazio "];
+}

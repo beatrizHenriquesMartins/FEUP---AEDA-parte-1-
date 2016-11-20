@@ -1,0 +1,11 @@
+digraph "Menu::lerFicheiroTaxis"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node88 [label="Menu::lerFicheiroTaxis",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node88 -> Node89 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node89 [label="Menu::stringToHora",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_menu.html#a54c4b759f5ea6aaf0fa22916c2caca60"];
+  Node88 -> Node90 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node90 [label="CompanhiaTaxis::setTaxis",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_companhia_taxis.html#a4b511a6d3c610c45e4d01d79192d72a2",tooltip="função que actualiza a lista de taxis "];
+}

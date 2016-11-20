@@ -1,0 +1,9 @@
+digraph "Viagem::setDestino"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node23 [label="Viagem::setDestino",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node23 -> Node24 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node24 [label="Percurso::setLocalDestino",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_percurso.html#afe3880912124a9103fba0412e0242555",tooltip="função que actualiza local de destino "];
+}
