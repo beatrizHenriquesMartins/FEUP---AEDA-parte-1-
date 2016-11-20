@@ -520,15 +520,20 @@ while (1) {
 				}
 			}
 
+			bool pOuE;
+
 			if (emp == 1) {
 				int num_func;
+				pOuE = false;
 				cout << setw(5) << " " << "Nr.Funcionarios da Empresa: ";
 				cin >> num_func;
 				comp.adicionaClienteEmpresa(nome, morada, email,
-						numeroTelemovel, NIF, t, num_func);
-			} else
+						numeroTelemovel, NIF, t, num_func, pOuE);
+			} else{
+				pOuE = true;
 				comp.adicionaClienteParticular(nome, morada, email,
-						numeroTelemovel, NIF, t);
+						numeroTelemovel, NIF, t, pOuE);
+			}
 			break;
 		}
 

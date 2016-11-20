@@ -8,13 +8,19 @@
 #include "Cliente.h"
 
 //Utente
-Utente::Utente(string nome, string tipoPagamento) {
+Utente::Utente(string nome, string tipoPagamento, bool pOuE) {
 	custo = Pagamento(tipoPagamento);
 	nomeC = nome;
+	particOuEmpre = pOuE;
 }
 
 string Utente::getNomeC() const {
 	return nomeC;
+}
+
+bool getParticOuEmpre() const
+{
+	return particOuEmpre;
 }
 
 void Utente::setNomeC(string nC) {
@@ -34,8 +40,8 @@ void Utente::changeCustoTipo(string tipo) {
 }
 
 //Ocasionais
-Ocasionais::Ocasionais(string nome, string tipoPagamento) :
-		Utente(nome, tipoPagamento) {
+Ocasionais::Ocasionais(string nome, string tipoPagamento, bool pOuE) :
+		Utente(nome, tipoPagamento, pOuE) {
 
 }
 
@@ -44,8 +50,8 @@ Ocasionais::Ocasionais(string nome, string tipoPagamento) :
 int Cliente::ultidC = 1;
 
 Cliente::Cliente(int id, string nome, int nif, string morada, string email,
-		int numeroTelemovel, string tipoPagamento) :
-		Utente(nome, tipoPagamento) {
+		int numeroTelemovel, string tipoPagamento, bool pOuE) :
+		Utente(nome, tipoPagamento, pOuE) {
 	this->id = id;
 	this->NIF = nif;
 	this->morada = morada;
@@ -54,8 +60,8 @@ Cliente::Cliente(int id, string nome, int nif, string morada, string email,
 }
 
 Cliente::Cliente(string nC, string m, string mail, int nT, int nif,
-		string tipoPagamento) :
-		Utente(nC, tipoPagamento) {
+		string tipoPagamento, bool pOuE) :
+		Utente(nC, tipoPagamento, pOuE) {
 	NIF = nif;
 	morada = m;
 	email = m;
@@ -170,14 +176,14 @@ bool Cliente::operator <(Cliente c2) {
 
 //Particular
 Particular::Particular(int id, string nome, int nif, string morada,
-		string email, int numeroTelemovel, string tipoPagamento) :
-		Cliente(id, nome, nif, morada, email, numeroTelemovel, tipoPagamento) {
+		string email, int numeroTelemovel, string tipoPagamento, bool pOuE) :
+		Cliente(id, nome, nif, morada, email, numeroTelemovel, tipoPagamento, pOuE) {
 
 }
 
 Particular::Particular(string nC, string m, string mail, int nT, int nif,
-		string tipoPagamento) :
-		Cliente(nC, m, mail, nT, nif, tipoPagamento) {
+		string tipoPagamento, bool pOuE) :
+		Cliente(nC, m, mail, nT, nif, tipoPagamento, pOuE) {
 
 }
 
@@ -207,14 +213,14 @@ string Particular::mostrarCliente() {
 }
 //Empresa
 Empresa::Empresa(int id, string nome, int nif, string morada, string email,
-		int numeroTelemovel, string tipoPagamento, int nFuncionarios) :
-		Cliente(id, nome, nif, morada, email, numeroTelemovel, tipoPagamento) {
+		int numeroTelemovel, string tipoPagamento, int nFuncionarios, bool pOuE) :
+		Cliente(id, nome, nif, morada, email, numeroTelemovel, tipoPagamento, pOuE) {
 	this->numFuncionarios = nFuncionarios;
 }
 
 Empresa::Empresa(string nC, string m, string mail, int nT, int nif,
-		string tipoPagamento, int numFuncionarios) :
-		Cliente(nC, m, mail, nT, nif, tipoPagamento) {
+		string tipoPagamento, int numFuncionarios, bool pOuE) :
+		Cliente(nC, m, mail, nT, nif, tipoPagamento, pOuE) {
 	this->numFuncionarios = numFuncionarios;
 }
 

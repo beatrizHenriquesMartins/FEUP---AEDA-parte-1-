@@ -20,9 +20,11 @@ class Utente {
 protected:
 	string nomeC;
 	Pagamento custo;
+	bool particOuEmpre;
 public:
-	Utente(string nome, string tipo_pagamento);
+	Utente(string nome, string tipo_pagamento, bool pOuE);
 	string getNomeC() const;
+	bool getParticOuEmpre() const;
 	void setNomeC(string nome);
 	void changeCustoTotal(float n);
 	void changeCustoTipo(string tipo);
@@ -31,7 +33,7 @@ public:
 
 class Ocasionais: public Utente {
 public:
-	Ocasionais(string nome, string tipo_pagamento);
+	Ocasionais(string nome, string tipo_pagamento, bool pOuE);
 
 };
 
@@ -48,9 +50,9 @@ protected:
 	int cartaoPontos;
 public:
 	Cliente(int id, string nome, int nif, string morada, string email,
-			int numeroTelemovel, string tipoPagamento);
+			int numeroTelemovel, string tipoPagamento, bool pOuE);
 	Cliente(string nC, string m, string mail, int nT, int nif,
-			string tipoPagamento);
+			string tipoPagamento, bool pOuE);
 	virtual ~Cliente() {
 	}
 	;
@@ -79,9 +81,9 @@ public:
 class Particular: public Cliente {
 public:
 	Particular(int id, string nome, int nif, string morada, string email,
-			int numeroTelemovel, string tipoPagamento);
+			int numeroTelemovel, string tipoPagamento, bool pOuE);
 	Particular(string nC, string m, string mail, int nT, int nif,
-			string tipo_pagamento);
+			string tipo_pagamento, bool pOuE);
 	float giveMonthlyPromotion(float p);
 	string mostrarCliente();
 
@@ -91,9 +93,9 @@ class Empresa: public Cliente {
 	int numFuncionarios;
 public:
 	Empresa(int id, string nome, int nif, string morada, string email,
-			int numeroTelemovel, string tipoPagamento,int nFuncionarios);
+			int numeroTelemovel, string tipoPagamento,int nFuncionarios, bool pOuE);
 	Empresa(string nC, string m, string mail, int nT, int nif,
-			string tipoPagamento, int numFuncionarios);
+			string tipoPagamento, int numFuncionarios, bool pOuE);
 	float giveMonthlyPromotion(float p);
 	string mostrarCliente();
 };
