@@ -44,6 +44,12 @@ void CompanhiaTaxis::adicionaTaxi(Hora horI, Hora horO) {
 	taxisTotais.push_back(t);
 }
 
+void CompanhiaTaxis::setTaxis(vector<Taxi> t)
+{
+	taxisTotais=t;
+
+}
+
 int CompanhiaTaxis::procuraTaxi(int n) const {
 	if (taxisTotais.size() == 0) {
 		return -1;

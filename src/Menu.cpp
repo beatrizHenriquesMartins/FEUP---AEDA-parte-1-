@@ -58,6 +58,7 @@ void Menu::menuInicio(CompanhiaTaxis &comp) {
 				escreverFicheiroClientesEmpresa(comp);
 				escreverFicheiroClientesViagensCliente(comp);
 				escreverFicheiroComp(comp);
+				escreverFicheiroTaxis(comp);
 				cout << endl << "Terminou" << endl;
 				return;
 			}
@@ -136,7 +137,6 @@ void Menu::lerFicheiroClienteParticular(CompanhiaTaxis &comp) {
 			Cliente* c = new Particular(id, nome, morada, email, nt, nif, cap,
 					tp, pontos);
 
-
 			aux.push_back(c);
 		}
 
@@ -202,7 +202,6 @@ void Menu::lerFicheiroClienteEmpresas(CompanhiaTaxis &comp) {
 
 			Cliente *c = new Empresa(id, nome, morada, email, nt, nif, cap, tp,
 					nFunc, pontos);
-
 
 			aux.push_back(c);
 		}
@@ -298,23 +297,6 @@ void Menu::lerFicheiroViagens(CompanhiaTaxis &comp) {
 			getline(ss, custof);
 			custo = atoi(custof.c_str());
 
-			/*file >> id;
-			 getline(file, lixo, ';');
-			 getline(file, data, ';');
-			 getline(file, hi, ';');
-			 getline(file, hf, ';');
-			 getline(file, part, ';');
-			 getline(file, dest, ';');
-			 file >> dist;
-			 getline(file, lixo, ';');
-			 file >> custo;
-			 getline(file, lixo, '\n');
-			 /*trim(data);
-			 trim(hi);
-			 trim(hf);
-			 trim(part);
-			 trim(dest);*/
-
 			Data d = stringToData(data);
 			Hora horaIn = stringToHora(hi);
 			Hora horaF = stringToHora(hf);
@@ -331,6 +313,53 @@ void Menu::lerFicheiroViagens(CompanhiaTaxis &comp) {
 		}
 	} else {
 		cout << endl << "Erro Viagens Cientes" << endl;
+	}
+}
+
+void Menu::lerFicheiroTaxis(CompanhiaTaxis &comp) {
+	ifstream file("Taxis.txt");
+
+	if (file.is_open()) {
+		int n;
+		string lixo;
+
+		vector<Taxi> aux;
+		file >> n;
+		getline(file, lixo, '\n');
+
+		string line;
+		while (getline(file, line)) {
+
+			stringstream ss;
+			ss << line;
+
+			string idf;
+			int id;
+			string hi;
+			string hf;
+			string rentf;
+			float rent;
+
+			getline(ss, lixo, 'o');
+			getline(ss, idf, ';');
+			id = atoi(idf.c_str());
+			getline(ss, lixo, ':');
+			getline(ss, rentf, ';');
+			rent = atoi(rentf.c_str());
+			getline(ss, lixo, ':');
+			getline(ss, hi, 'e');
+			getline(ss, lixo, 's');
+			getline(ss, hf);
+
+			Hora horaIn = stringToHora(hi);
+			Hora horaF = stringToHora(hf);
+			Taxi t(id, rent, horaIn, horaF);
+			aux.push_back(t);
+		}
+		comp.setTaxis(aux);
+
+	} else {
+		cout << endl << "Erro Taxis " << endl;
 	}
 }
 
@@ -495,12 +524,30 @@ void Menu::escreverFicheiroClientesViagensCliente(CompanhiaTaxis &comp) {
 						comp.getClientes()[i]->getHistoricoViagens()[j].getDeslocacao().getDistancia();
 				float custo =
 						comp.getClientes()[i]->getHistoricoViagens()[j].getCustoViagem();
-				file << id << " ; " << data.toString() << " ; " <<"Hora inicial: "<< hi.toString()
-						<< " ; " <<"Hora inicial: "<< hf.toString() << " ; " <<"Percurso: "<< part << "-"
-						<< dest << " Distancia: " << dist << " ; " <<"Custo: "<< custo << endl;
+				file << id << " ; " << data.toString() << " ; "
+						<< "Hora inicial: " << hi.toString() << " ; "
+						<< "Hora inicial: " << hf.toString() << " ; "
+						<< "Percurso: " << part << "-" << dest << " Distancia: "
+						<< dist << " ; " << "Custo: " << custo << endl;
 
 			}
 		}
+	}
+
+	file.close();
+}
+
+void Menu::escreverFicheiroTaxis(CompanhiaTaxis &comp) {
+	ofstream file("Taxis.txt");
+
+	file.clear();
+
+	vector<Taxi> vt = comp.getTaxisTotais();
+
+	file << vt.size() << endl;
+	for (unsigned int j = 0; j < vt.size(); j++) {
+
+		file << vt[j] << endl;
 	}
 
 	file.close();
@@ -512,7 +559,7 @@ void Menu::menuEntrar(CompanhiaTaxis &comp) {
 	lerFicheiroClienteEmpresas(comp);
 	//lerFicheiroPercurso(comp);
 	lerFicheiroViagens(comp);
-
+	lerFicheiroTaxis(comp);
 	menuCompanhia(comp);
 }
 

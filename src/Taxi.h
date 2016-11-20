@@ -22,6 +22,7 @@ class Taxi {
 	Hora horaOff;
 public:
 	Taxi(Hora horI, Hora horO);
+	Taxi(int n, float r,Hora horI, Hora horO);
 	~Taxi();
 	int getNumeroTaxi() const;
 	bool getDisponivel(Hora hi, Hora hf);

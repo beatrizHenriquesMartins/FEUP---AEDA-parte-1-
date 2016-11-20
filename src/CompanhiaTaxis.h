@@ -33,9 +33,9 @@ public:
 	float getCapital();
 	void somaCapital(float n);
 	vector<Cliente *> getClientes() const;
-	vector<Ocasionais> getOcasionais() const;
 	vector<Taxi> getTaxisTotais() const;
 	void adicionaTaxi(Hora horI, Hora horO);
+	void setTaxis(vector<Taxi> t);
 	bool removeTaxi(int id);
 	int procuraTaxi(int n) const;
 	void setPercursos(vector<Percurso*> p);

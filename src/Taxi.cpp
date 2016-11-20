@@ -17,6 +17,14 @@ Taxi::Taxi(Hora horI, Hora horO) {
 	numeroTaxi=ultinumeroTaxi++;
 }
 
+Taxi::Taxi(int n, float r,Hora horI, Hora horO) {
+	horaIn = horI;
+	horaOff = horO;
+	rentabilidade = r;
+	numeroTaxi= n;
+	ultinumeroTaxi=++n;
+}
+
 Taxi::~Taxi() {
 }
 ;
