@@ -165,15 +165,20 @@ bool Cliente::isParticular() {
 
 }
 
-bool Cliente::operator <(Cliente c2) {
-	if (this->custo.getTotal() < c2.getCusto().getTotal())
-		return true;
-	else if (this->custo.getTotal() == c2.getCusto().getTotal()
-			&& this->historicoViagens.size() < c2.getHistoricoViagens().size())
-		return true;
-	else
-		return false;
 
+
+bool Cliente::operator <(Cliente c2) {
+	if (custo.getTotal() < c2.getCusto().getTotal())
+		return true;
+	else {
+		if (this->custo.getTotal() == c2.getCusto().getTotal()) {
+			if (this->historicoViagens.size() < c2.getHistoricoViagens().size())
+				return true;
+			else
+				return false;
+		}
+	}
+	return false;
 }
 
 void Cliente::mostrarViagens() {
@@ -189,7 +194,6 @@ void Cliente::mostrarViagensmensais() {
 		cout << viagensMensais[i].toString() << endl;
 	}
 }
-
 
 //Particular
 Particular::Particular(int id, string nome, string morada, string email,

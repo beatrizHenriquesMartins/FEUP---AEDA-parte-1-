@@ -87,7 +87,7 @@ void CompanhiaTaxis::setClientes(vector<Cliente*> c) {
 
 void CompanhiaTaxis::concaClientes(vector<Cliente*> c) {
 
-	clientes.insert(clientes.end(),c.begin(),c.end());
+	clientes.insert(clientes.end(), c.begin(), c.end());
 }
 
 void CompanhiaTaxis::setPercursos(vector<Percurso*> p) {
@@ -241,26 +241,43 @@ void CompanhiaTaxis::cobrarPagamentoMensal() {
 }
 
 void CompanhiaTaxis::mostrarClientesPorCapital() {
-	vector<Cliente *> v = clientes;
-	vector<Cliente *>::iterator it = v.begin();
-	vector<Cliente *>::iterator ite = v.end();
+	vector<Cliente> v;
+
+	for (unsigned int i = 0; i < clientes.size(); i++)
+		v.push_back(*(clientes[i]));
+
+	vector<Cliente>::iterator it = v.begin();
+	vector<Cliente>::iterator ite = v.end();
 
 	sort(it, ite);
 	reverse(it, ite);
 
 	for (; it != ite; it++) {
-		cout << (*it)->mostrarCliente() << endl;
+		cout << (*it).mostrarCliente() << endl;
 	}
 
 }
 
+bool compaID(Cliente c1, Cliente c2) {
+	if (c1.getID() < c2.getID())
+		return true;
+	else
+		return false;
+}
+
 void CompanhiaTaxis::mostrarClientesPorID() {
 
-	vector<Cliente *>::iterator it = clientes.begin();
-	vector<Cliente *>::iterator ite = clientes.end();
+	vector<Cliente> v;
 
+	for (unsigned int i = 0; i < clientes.size(); i++)
+		v.push_back(*(clientes[i]));
+
+	vector<Cliente>::iterator it = v.begin();
+	vector<Cliente>::iterator ite = v.end();
+
+	sort(it, ite, compaID);
 	for (; it != ite; it++) {
-		cout << (*it)->mostrarCliente() << endl;
+		cout << (*it).mostrarCliente() << endl;
 	}
 
 }
