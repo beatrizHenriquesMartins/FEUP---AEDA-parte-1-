@@ -178,7 +178,7 @@ void Menu::menuTaxis(CompanhiaTaxis &comp) {
 				<< "1. Compra de Taxi" << endl
 
 				<< setw(5) << " " << "2. Remover Taxi" << endl << setw(5) << " "
-				<< "3. Ver Taxi especifico" << " "
+				<< "3. Ver Taxi especifico" << " " << endl
 				<< "4. Voltar ao Menu da Companhia" << endl;
 
 		int opC;
@@ -419,7 +419,10 @@ void Menu::menuClientes(CompanhiaTaxis &comp) {
 					if (cin.fail())
 						throw ErroInput();
 
-					cout << "Digite o dia em que a viagem ocorre: Dia ";
+					Hora h1(hi, mi, si);
+
+					cout << "Digite o dia em que a viagem ocorre:" << endl
+							<< "Dia ";
 					cin >> dia;
 					if (cin.fail())
 						throw ErroInput();
@@ -432,6 +435,8 @@ void Menu::menuClientes(CompanhiaTaxis &comp) {
 					if (cin.fail())
 						throw ErroInput();
 
+					Data d1(dia, mes, ano);
+
 					comp.mostrarClientesPorID();
 					cout << "ID do cliente que quer fazer uma viagem: ";
 					cin >> id;
@@ -442,28 +447,29 @@ void Menu::menuClientes(CompanhiaTaxis &comp) {
 					}
 					if (comp.procuraCliente(id) == -1)
 						throw ClienteInexistente(id);
-				}
 
-				catch (ErroInput &e) {
-
-					e.alertaErro();
-					break;
-				}
-
-				try {
-
-					comp.fazerViagemCliente(id, Data(dia, mes, ano),
-							Hora(hi, mi, si),
+					comp.fazerViagemCliente(id, d1, h1,
 							Percurso(localPartida, localDestino, distancia),
 							desconto, percentagem);
-					break;
+
+				} catch (ErroInput &e) {
+
+					e.alertaErro();
+
 				} catch (ClienteInexistente &c) {
 					cout << "Cliente numero " << c.getID() << " nao existe"
 							<< endl;
 				} catch (TaxisIndisponiveis &t) {
 					cout << t.getRazao() << endl;
 
+				} catch (HoraInvalida &h) {
+
+					cout << h.getRazao() << endl;
+				} catch (DataInvalida &d) {
+
+					d.dataErrada();
 				}
+				break;
 			}
 
 			case 4: {
@@ -580,6 +586,7 @@ void Menu::menuCompanhia(CompanhiaTaxis &comp) {
 					cin >> si;
 					if (cin.fail())
 						throw ErroInput();
+					Hora h1(hi,mi,si);
 
 					cout << "Digite o dia em que a viagem ocorre: Dia ";
 					cin >> dia;
@@ -593,42 +600,50 @@ void Menu::menuCompanhia(CompanhiaTaxis &comp) {
 					cin >> ano;
 					if (cin.fail())
 						throw ErroInput();
+					Data d1(dia,mes,ano);
 
-				}
+					int erro = 1;
+					while (erro) {
+						try {
+							cout << setw(5) << " " << "Tipo de pagamento: "
+									<< endl;
+							cout << "Escolher entre:" << endl;
+							cout << "1: Numerario  " << "2: Multibanco :";
+							cin >> t;
+							if (cin.fail())
+								throw ErroInput();
+							if ((t != 2) && (t != 1))
+								throw OpcaoErrada();
+							else
+								erro = 0;
 
-				catch (ErroInput &e) {
+						} catch (OpcaoErrada &x) {
+							x.alertaErro();
+						}
+					}
+
+					comp.fazerViagemOcasional(d1,
+							h1,
+						Percurso(localPartida, localDestino, distancia));
+
+
+				} catch (ErroInput &e) {
 
 					e.alertaErro();
-					break;
+
 				}
 
-				int erro = 1;
-				while (erro) {
-					try {
-						cout << setw(5) << " " << "Tipo de pagamento: " << endl;
-						cout << "Escolher entre:" << endl;
-						cout << "1: Numerario  " << "2: Multibanco :";
-						cin >> t;
-						if (cin.fail())
-							throw ErroInput();
-						if ((t != 2) && (t != 1))
-							throw OpcaoErrada();
-						else
-							erro = 0;
-
-					} catch (OpcaoErrada &x) {
-						x.alertaErro();
-					}
-				}
-				try {
-					comp.fazerViagemOcasional(Data(dia, mes, ano),
-							Hora(hi, mi, si),
-							Percurso(localPartida, localDestino, distancia));
-					break;
-				} catch (TaxisIndisponiveis &t) {
+				catch (TaxisIndisponiveis &t) {
 					cout << t.getRazao() << endl;
 
+				} catch (HoraInvalida &h) {
+
+					cout << h.getRazao() << endl;
+				} catch (DataInvalida &d) {
+
+					d.dataErrada();
 				}
+				break;
 			}
 			case 6: {
 				comp.mostrarClientesPorCapital();
@@ -653,6 +668,7 @@ void Menu::menuCompanhia(CompanhiaTaxis &comp) {
 			case 10: {
 				comp.cobrarPagamentoMensal();
 				desconto = false;
+				percentagem = 1;
 				break;
 			}
 			case 11: {
@@ -663,6 +679,9 @@ void Menu::menuCompanhia(CompanhiaTaxis &comp) {
 			}
 		} catch (OpcaoErrada &x) {
 			x.alertaErro();
+		} catch (ErroInput &e) {
+
+			e.alertaErro();
 		}
 	}
 }

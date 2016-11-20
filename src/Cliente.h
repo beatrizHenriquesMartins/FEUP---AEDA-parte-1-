@@ -37,7 +37,8 @@ public:
 
 class Cliente: public Utente {
 protected:
-	static int idC;
+	static int ultidC;
+	int id;
 	int NIF;
 	string morada;
 	string email;
@@ -75,7 +76,7 @@ public:
 
 class Particular: public Cliente {
 public:
-	Particular(int id, string nC, string m, string mail, int nT, int nif,
+	Particular(string nC, string m, string mail, int nT, int nif,
 			string tipo_pagamento);
 	float giveMonthlyPromotion(float p);
 	string mostrarCliente();
@@ -85,7 +86,7 @@ public:
 class Empresa: public Cliente {
 	int numFuncionarios;
 public:
-	Empresa(int id, string nC, string m, string mail, int nT, int nif,
+	Empresa(string nC, string m, string mail, int nT, int nif,
 			string tipoPagamento, int numFuncionarios);
 	float giveMonthlyPromotion(float p);
 	string mostrarCliente();

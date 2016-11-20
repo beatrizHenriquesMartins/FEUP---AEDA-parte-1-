@@ -15,7 +15,8 @@
 using namespace std;
 
 class Taxi {
-	static int numeroTaxi;
+	static int ultinumeroTaxi;
+	int numeroTaxi;
 	float rentabilidade;
 	Hora horaIn;
 	Hora horaOff;

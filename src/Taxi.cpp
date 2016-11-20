@@ -7,14 +7,14 @@
 
 #include "Taxi.h"
 
-int Taxi::numeroTaxi = 0;
+int Taxi::ultinumeroTaxi = 1;
 
 //Taxi
 Taxi::Taxi(Hora horI, Hora horO) {
 	horaIn = horI;
 	horaOff = horO;
 	rentabilidade = 0;
-	numeroTaxi++;
+	numeroTaxi=ultinumeroTaxi++;
 }
 
 Taxi::~Taxi() {

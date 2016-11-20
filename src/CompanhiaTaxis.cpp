@@ -87,9 +87,7 @@ void CompanhiaTaxis::setClientes(vector<Cliente*> c) {
 
 void CompanhiaTaxis::adicionaClienteParticular(string nome, string morada,
 		string email, int nT, int nif, string tipoPagamento) {
-	int id;
-	id = ultimoIDcliente();
-	Cliente *c = new Particular(id, nome, morada, email, nT, nif,
+	Cliente *c = new Particular(nome, morada, email, nT, nif,
 			tipoPagamento);
 	clientes.push_back(c);
 }
@@ -97,9 +95,7 @@ void CompanhiaTaxis::adicionaClienteParticular(string nome, string morada,
 void CompanhiaTaxis::adicionaClienteEmpresa(string nome, string morada,
 		string email, int nT, int nif, string tipoPagamento,
 		int numFuncionarios) {
-	int id;
-	id = ultimoIDcliente();
-	Cliente *c = new Empresa(id, nome, morada, email, nT, nif, tipoPagamento,
+	Cliente *c = new Empresa(nome, morada, email, nT, nif, tipoPagamento,
 			numFuncionarios);
 	clientes.push_back(c);
 }
@@ -227,7 +223,8 @@ void CompanhiaTaxis::cobrarPagamentoMensal() {
 
 	for (unsigned int j = 0; j < taxisTotais.size(); j++) {
 		capital += taxisTotais[j].getRentabilidade();
-		taxisTotais[j].setRentabilidade(0);
+		float n=-1*(taxisTotais[j].getRentabilidade());
+		taxisTotais[j].setRentabilidade(n);
 	}
 }
 
@@ -240,7 +237,7 @@ void CompanhiaTaxis::mostrarClientesPorCapital() {
 	reverse(it, ite);
 
 	for (; it != ite; it++) {
-		cout << *it << endl;
+		cout << (*it)->mostrarCliente() << endl;
 	}
 
 }
@@ -251,7 +248,7 @@ void CompanhiaTaxis::mostrarClientesPorID() {
 	vector<Cliente *>::iterator ite = clientes.end();
 
 	for (; it != ite; it++) {
-		cout << *it << endl;
+		cout << (*it)->mostrarCliente()<< endl;
 	}
 
 }
@@ -262,7 +259,7 @@ void CompanhiaTaxis::mostrarTaxis() {
 	vector<Taxi>::iterator ite = taxisTotais.end();
 
 	for (; it != ite; it++) {
-		cout << (*it);
+		cout << (*it)<<endl;
 	}
 }
 

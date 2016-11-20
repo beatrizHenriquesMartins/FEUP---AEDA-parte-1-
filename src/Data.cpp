@@ -12,6 +12,18 @@ Data::Data() {
 }
 
 Data::Data(int d, int m, int a) {
+	if (m > 12 || m < 1)
+		throw DataInvalida();
+	if (m == 2) {
+		if (d > 29)
+			throw DataInvalida();
+	}
+	if (m == 4 || m == 6 || m == 9 || m == 11) {
+		if (d < 1 || d > 30)
+			throw DataInvalida();
+	} else if (d < 1 || d > 31)
+		throw DataInvalida();
+
 	dia = d;
 	mes = m;
 	ano = a;

@@ -32,4 +32,11 @@ public:
 	friend ostream & operator <<(ostream os, Data d);
 };
 
+class DataInvalida {
+public:
+	void dataErrada() {
+		cout << "Data invalida"<<endl;
+	}
+
+};
 #endif /* SRC_DATA_H_ */
