@@ -176,6 +176,21 @@ bool Cliente::operator <(Cliente c2) {
 
 }
 
+void Cliente::mostrarViagens() {
+
+	for (unsigned int i = 0; i < historicoViagens.size(); i++) {
+		cout << historicoViagens[i].toString() << endl;
+	}
+}
+
+void Cliente::mostrarViagensmensais() {
+
+	for (unsigned int i = 0; i < viagensMensais.size(); i++) {
+		cout << viagensMensais[i].toString() << endl;
+	}
+}
+
+
 //Particular
 Particular::Particular(int id, string nome, string morada, string email,
 		int numeroTelemovel, int nif, float cap, string tipoPagamento,
@@ -264,4 +279,8 @@ string Empresa::mostrarCliente() {
 
 bool Empresa::isParticular() {
 	return false;
+}
+
+int Empresa::getNfunc() {
+	return numFuncionarios;
 }

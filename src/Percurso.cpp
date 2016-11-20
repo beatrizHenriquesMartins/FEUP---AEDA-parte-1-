@@ -43,6 +43,14 @@ void Percurso::setDistancia(int distancia) {
 	this->distancia = distancia;
 }
 
+
+string Percurso::toString() {
+	stringstream ss;
+	ss << "Percurso: " << localPartida << "-" << localDestino
+				<< " Distancia: " << distancia;
+	return ss.str();
+}
+
 ostream & operator <<(ostream os, Percurso p) {
 
 	os << "Percurso: " << p.getLocalPartida() << "-" << p.getLocalDestino()

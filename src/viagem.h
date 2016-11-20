@@ -31,6 +31,7 @@ private:
 	bool pago;
 public:
 	Viagem(Data dia, Hora horaIn, Percurso p1);
+	Viagem(Data dia, Hora horaIn, Hora horaOut, Percurso p1, float c);
 	~Viagem();
 	Data getData() const;
 	void setData(int d, int m, int a);
@@ -48,7 +49,7 @@ public:
 	void modificaCusto(float per); ////
 	Percurso getDeslocacao();
 	string toString();
-	//friend ostream & operator <<(ostream & os, Viagem &v);
+	friend ostream & operator <<(ostream & os, Viagem &v);
 };
 
 #endif /* SRC_VIAGEM_H_ */

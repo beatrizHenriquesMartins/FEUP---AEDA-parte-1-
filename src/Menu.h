@@ -28,7 +28,7 @@ public:
 	void lerFicheiroPercurso(CompanhiaTaxis &comp);
 	void lerFicheiroViagens(CompanhiaTaxis &comp);
 	Data stringToData(string &s);
-	Hora* stringToHora(string &s);
+	Hora stringToHora(string &s);
 	void escreverFicheiroClientesParticulares(CompanhiaTaxis &comp);
 	void escreverFicheiroClientesEmpresa(CompanhiaTaxis &comp);
 	void escreverFicheiroClientesViagensCliente(CompanhiaTaxis &comp);

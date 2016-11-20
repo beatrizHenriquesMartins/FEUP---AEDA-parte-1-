@@ -17,6 +17,15 @@ Viagem::Viagem(Data dia, Hora horaIn, Percurso p1) {
 	this->custo = 0;
 }
 
+Viagem::Viagem(Data dia, Hora horaIn, Hora horaOut , Percurso p1, float c) {
+	this->data = dia;
+	this->horaIn = horaIn;
+	this->horaOut = horaOut;
+	this->deslocacao = p1;
+	this->pago = true;
+	this->custo = c;
+}
+
 Viagem::~Viagem() {};
 
 Data Viagem::getData() const {
@@ -59,6 +68,7 @@ string Viagem::getDestino() const {
 void Viagem::setDestino(string localD, int dist2) {
 	deslocacao.setLocalDestino(localD, dist2);
 }
+
 
 
 float Viagem::horaFinal()
@@ -104,10 +114,10 @@ void Viagem::modificaCusto(float per) {
 
 string Viagem::toString() {
 	stringstream ss;
-	ss << "Data: " << this->getData().toString() << "\nHora Inicial: "
-			<< horaIn << "\nHora Final: "
-			<< horaOut << "\nCusto: "
-			<< this->getCustoViagem() << "€";
+	ss << "Data: " << this->getData().toString() << " Hora Inicial: "
+			<< horaIn << " Hora Final: "
+			<< horaOut <<" " <<deslocacao.toString()<<" Custo: "
+			<< this->getCustoViagem();
 	return ss.str();
 }
 

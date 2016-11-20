@@ -28,6 +28,7 @@ public:
 	void setLocalPartida(string localPart, int dist);
 	void setLocalDestino(string localDest, int dist);
 	void setDistancia(int distancia);
+	string toString();
 	friend ostream & operator <<(ostream os, Percurso p);
 };
 

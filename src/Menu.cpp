@@ -25,7 +25,6 @@ Menu::Menu() {
 		getline(file, nome, ';');
 		file >> capital;
 		getline(file, lixo, '\n');
-		trim(nome);
 
 		CompanhiaTaxis comp = CompanhiaTaxis(nome, capital);
 		menuInicio(comp);
@@ -74,14 +73,14 @@ void Menu::menuInicio(CompanhiaTaxis &comp) {
 	}
 }
 
-void Menu::trim(string &str) {
-	if (str.size() != 0) {
-		size_t first = str.find_first_not_of(" ");
-		str = str.substr(first, (str.size() - first));
-		size_t last = str.find_last_not_of(" ");
-		str = str.substr(0, last + 1);
-	}
-}
+/*void Menu::trim(string &str) {
+ if (str.size() != 0) {
+ size_t first = str.find_first_not_of(" ");
+ str = str.substr(first, (str.size() - first));
+ size_t last = str.find_last_not_of(" ");
+ str = str.substr(0, last + 1);
+ }
+ }*/
 
 void Menu::lerFicheiroClienteParticular(CompanhiaTaxis &comp) {
 	ifstream fileC("clientesParticulares.txt");
@@ -137,6 +136,7 @@ void Menu::lerFicheiroClienteParticular(CompanhiaTaxis &comp) {
 			Cliente* c = new Particular(id, nome, morada, email, nt, nif, cap,
 					tp, pontos);
 
+
 			aux.push_back(c);
 		}
 
@@ -188,7 +188,6 @@ void Menu::lerFicheiroClienteEmpresas(CompanhiaTaxis &comp) {
 			getline(ss, nome, ';');
 			getline(ss, morada, ';');
 			getline(ss, email, ';');
-			cout << email << endl;
 			getline(ss, ntt, ';');
 			nt = atoi(ntt.c_str());
 			getline(ss, niff, ';');
@@ -203,6 +202,7 @@ void Menu::lerFicheiroClienteEmpresas(CompanhiaTaxis &comp) {
 
 			Cliente *c = new Empresa(id, nome, morada, email, nt, nif, cap, tp,
 					nFunc, pontos);
+
 
 			aux.push_back(c);
 		}
@@ -236,8 +236,8 @@ void Menu::lerFicheiroPercurso(CompanhiaTaxis &comp) {
 			file >> dist;
 			getline(file, lixo, '\n');
 
-			trim(partida);
-			trim(destino);
+			/*trim(partida);
+			 trim(destino);*/
 
 			Percurso *p = new Percurso(partida, destino, dist);
 
@@ -251,63 +251,88 @@ void Menu::lerFicheiroPercurso(CompanhiaTaxis &comp) {
 	}
 }
 
-/*
- void Menu::lerFicheiroViagens(CompanhiaTaxis &comp) {
- ifstream file("viagensClientes.txt");
- if (file.is_open()) {
- int n;
- string lixo;
- vector<int> idAux;
- vector<Viagem> aux;
- file >> n;
- getline(file, lixo, '\n');
- while (!file.eof()) {
- cout << endl << "viagens" << endl;
- int id;
- string data;
- string hi;
- string hf;
- string part;
- string dest;
- int dist;
- float custo;
- file >> id;
- getline(file, lixo, ';');
- getline(file, data, ';');
- getline(file, hi, ';');
- getline(file, hf, ';');
- getline(file, part, ';');
- getline(file, dest, ';');
- file >> dist;
- getline(file, lixo, ';');
- file >> custo;
- getline(file, lixo, '\n');
- trim(data);
- trim(hi);
- trim(hf);
- trim(part);
- trim(dest);
- Data d = stringToData(data);
- Hora *horaIn = stringToHora(hi);
- Hora *horaF = stringToHora(hf);
- Percurso *p = new Percurso(part, dest, dist);
- //Viagem *v = new Viagem(d, horaIn, p);
- //v->getHoraOut(horaF);
- //v->getCustoViagem(custo);
- idAux.push_back(id);
- //aux.push_back(v);
- }
- for (int i = 0; i < idAux.size(); i++) {
- int index = comp.procuraCliente(idAux[i]);
- if (index == 0) {
- comp.getClientes()[index]->addViagemHistorico(aux[i]);
- }
- }
- } else {
- cout << endl << "Erro Viagens Cientes" << endl;
- }
- }
- */
+void Menu::lerFicheiroViagens(CompanhiaTaxis &comp) {
+	ifstream file("viagens_clientes.txt");
+
+	if (file.is_open()) {
+		int n;
+		string lixo;
+		vector<int> idAux;
+		vector<Viagem> aux;
+		file >> n;
+		getline(file, lixo, '\n');
+
+		string line;
+		while (getline(file, line)) {
+
+			stringstream ss;
+			ss << line;
+
+			string idf;
+			int id;
+			string data;
+			string hi;
+			string hf;
+			string part;
+			string dest;
+			string distf;
+			int dist;
+			string custof;
+			float custo;
+
+			ss << line;
+			getline(ss, idf, ';');
+			id = atoi(idf.c_str());
+			getline(ss, data, ';');
+			getline(ss, lixo, ':');
+			getline(ss, hi, ';');
+			getline(ss, lixo, ':');
+			getline(ss, hf, ';');
+			getline(ss, lixo, ':');
+			getline(ss, part, '-');
+			getline(ss, dest, 'D');
+			getline(ss, lixo, ':');
+			getline(ss, distf, ':');
+			dist = atoi(distf.c_str());
+			getline(ss, lixo, ':');
+			getline(ss, custof);
+			custo = atoi(custof.c_str());
+
+			/*file >> id;
+			 getline(file, lixo, ';');
+			 getline(file, data, ';');
+			 getline(file, hi, ';');
+			 getline(file, hf, ';');
+			 getline(file, part, ';');
+			 getline(file, dest, ';');
+			 file >> dist;
+			 getline(file, lixo, ';');
+			 file >> custo;
+			 getline(file, lixo, '\n');
+			 /*trim(data);
+			 trim(hi);
+			 trim(hf);
+			 trim(part);
+			 trim(dest);*/
+
+			Data d = stringToData(data);
+			Hora horaIn = stringToHora(hi);
+			Hora horaF = stringToHora(hf);
+			Percurso p = Percurso(part, dest, dist);
+			Viagem v(d, horaIn, horaF, p, custo);
+			idAux.push_back(id);
+			aux.push_back(v);
+		}
+		for (unsigned int i = 0; i < idAux.size(); i++) {
+			int index = comp.procuraCliente(idAux[i]);
+			if (index == 0) {
+				comp.getClientes()[index]->addViagemHistorico(aux[i]);
+			}
+		}
+	} else {
+		cout << endl << "Erro Viagens Cientes" << endl;
+	}
+}
 
 Data Menu::stringToData(string &s) {
 	int d;
@@ -327,12 +352,12 @@ Data Menu::stringToData(string &s) {
 		ss >> a;
 	}
 
-	Data *data = new Data(d, m, a);
+	Data data = Data(d, m, a);
 
-	return *data;
+	return data;
 }
 
-Hora* Menu::stringToHora(string &s) {
+Hora Menu::stringToHora(string &s) {
 	int hor;
 	int min;
 	int seg;
@@ -351,7 +376,7 @@ Hora* Menu::stringToHora(string &s) {
 		getline(ss, lixo, 'h');
 	}
 
-	Hora* hora = new Hora(hor, min, seg);
+	Hora hora = Hora(hor, min, seg);
 
 	return hora;
 }
@@ -362,7 +387,7 @@ void Menu::escreverFicheiroClientesParticulares(CompanhiaTaxis &comp) {
 	file.clear();
 
 	vector<Cliente*> tmpPart;
-	for (int i = 0; i < comp.getClientes().size(); i++) {
+	for (unsigned int i = 0; i < comp.getClientes().size(); i++) {
 		if (comp.getClientes()[i]->isParticular() == true) {
 			tmpPart.push_back(comp.getClientes()[i]);
 		}
@@ -370,17 +395,20 @@ void Menu::escreverFicheiroClientesParticulares(CompanhiaTaxis &comp) {
 
 	file << tmpPart.size() << endl;
 
-	for (int j = 0; j < tmpPart.size(); j++) {
+	for (unsigned int j = 0; j < tmpPart.size(); j++) {
 		int id = tmpPart[j]->getID();
 		string nome = tmpPart[j]->getNomeC();
 		string morada = tmpPart[j]->getMorada();
 		string email = tmpPart[j]->getEmail();
 		int nt = tmpPart[j]->getNumeroTelemovel();
 		int nif = tmpPart[j]->getNIF();
+		int cap = tmpPart[j]->getCusto().getTotal();
 		string tp = tmpPart[j]->getCusto().getTipo();
+		int pontos = tmpPart[j]->getPontos();
 
 		file << id << " ; " << nome << " ; " << morada << " ; " << email
-				<< " ; " << nt << " ; " << nif << " ; " << tp << endl;
+				<< " ; " << nt << " ; " << nif << " ; " << cap << " ; " << tp
+				<< " ; " << pontos << endl;
 	}
 
 	file.close();
@@ -392,7 +420,7 @@ void Menu::escreverFicheiroClientesEmpresa(CompanhiaTaxis &comp) {
 	file.clear();
 
 	vector<Cliente*> tmpEmp;
-	for (int i = 0; i < comp.getClientes().size(); i++) {
+	for (unsigned int i = 0; i < comp.getClientes().size(); i++) {
 		if (comp.getClientes()[i]->isParticular() == false) {
 			tmpEmp.push_back(comp.getClientes()[i]);
 		}
@@ -400,20 +428,22 @@ void Menu::escreverFicheiroClientesEmpresa(CompanhiaTaxis &comp) {
 
 	file << tmpEmp.size() << endl;
 
-	for (int j = 0; j < tmpEmp.size(); j++) {
+	for (unsigned int j = 0; j < tmpEmp.size(); j++) {
 		int id = tmpEmp[j]->getID();
 		string nome = tmpEmp[j]->getNomeC();
 		string morada = tmpEmp[j]->getMorada();
 		string email = tmpEmp[j]->getEmail();
 		int nt = tmpEmp[j]->getNumeroTelemovel();
 		int nif = tmpEmp[j]->getNIF();
+		int cap = tmpEmp[j]->getCusto().getTotal();
 		string tp = tmpEmp[j]->getCusto().getTipo();
-		int nFunc = 0;
-		//= tmpEmp[j]->getnu
+		Empresa *e = dynamic_cast<Empresa *>(tmpEmp[j]);
+		int nFunc = e->getNfunc();
+		int pontos = tmpEmp[j]->getPontos();
 
 		file << id << " ; " << nome << " ; " << morada << " ; " << email
-				<< " ; " << nt << " ; " << nif << " ; " << tp << " ; " << nFunc
-				<< endl;
+				<< " ; " << nt << " ; " << nif << " ; " << cap << " ; " << tp
+				<< " ; " << nFunc << " ; " << pontos << endl;
 	}
 
 	file.close();
@@ -431,13 +461,13 @@ void Menu::escreverFicheiroComp(CompanhiaTaxis &comp) {
 }
 
 void Menu::escreverFicheiroClientesViagensCliente(CompanhiaTaxis &comp) {
-	ofstream file("viagensClientes.txt");
+	ofstream file("viagens_clientes.txt");
 
 	file.clear();
 
 	int total = 0;
 
-	for (int i = 0; i < comp.getClientes().size(); i++) {
+	for (unsigned int i = 0; i < comp.getClientes().size(); i++) {
 		if (comp.getClientes()[i]->getHistoricoViagens().size() != 0) {
 			total = total + comp.getClientes()[i]->getHistoricoViagens().size();
 		}
@@ -445,9 +475,9 @@ void Menu::escreverFicheiroClientesViagensCliente(CompanhiaTaxis &comp) {
 
 	file << total << endl;
 
-	for (int i = 0; i < comp.getClientes().size(); i++) {
+	for (unsigned int i = 0; i < comp.getClientes().size(); i++) {
 		if (comp.getClientes()[i]->getHistoricoViagens().size() != 0) {
-			for (int j = 0;
+			for (unsigned int j = 0;
 					j < comp.getClientes()[i]->getHistoricoViagens().size();
 					j++) {
 				int id = comp.getClientes()[i]->getID();
@@ -481,7 +511,7 @@ void Menu::menuEntrar(CompanhiaTaxis &comp) {
 	lerFicheiroClienteParticular(comp);
 	lerFicheiroClienteEmpresas(comp);
 	//lerFicheiroPercurso(comp);
-	//lerFicheiroViagens(comp);
+	lerFicheiroViagens(comp);
 
 	menuCompanhia(comp);
 }
@@ -594,7 +624,10 @@ void Menu::menuClientes(CompanhiaTaxis &comp) {
 				<< setw(5) << " " << "2. Remover Cliente" << endl << setw(5)
 				<< " " << "3. Fazer uma viagem" << endl << setw(5) << " "
 				<< "4. Ver Cliente especifico" << endl << setw(5) << " "
-				<< "5. Voltar ao Menu da Companhia" << endl;
+				<< "5. Ver historico de viagens de cliente especifico" << endl
+				<< setw(5) << " "
+				<< "6. Ver viagens do mes atual de cliente especifico" << endl
+				<< setw(5) << " " << "7. Voltar ao Menu da Companhia" << endl;
 
 		int opC;
 		try {
@@ -813,6 +846,57 @@ void Menu::menuClientes(CompanhiaTaxis &comp) {
 			}
 
 			case 5: {
+
+				int id, i;
+
+				try {
+					cout << "ID do cliente que quer ver: ";
+					cin >> id;
+					if (cin.fail())
+						throw ErroInput();
+				} catch (ErroInput &e) {
+
+					e.alertaErro();
+					break;
+				}
+
+				i = comp.procuraCliente(id);
+				if (i == -1) {
+					cout << "Cliente numero " << id << " nao existe" << endl;
+					break;
+				}
+				vector<Cliente*> vC = comp.getClientes();
+
+				vC[i]->mostrarViagens();
+				break;
+			}
+
+			case 6: {
+
+				int id, i;
+
+				try {
+					cout << "ID do cliente que quer ver: ";
+					cin >> id;
+					if (cin.fail())
+						throw ErroInput();
+				} catch (ErroInput &e) {
+
+					e.alertaErro();
+					break;
+				}
+
+				i = comp.procuraCliente(id);
+				if (i == -1) {
+					cout << "Cliente numero " << id << " nao existe" << endl;
+					break;
+				}
+				vector<Cliente*> vC = comp.getClientes();
+
+				vC[i]->mostrarViagensmensais();
+				break;
+			}
+			case 7: {
 				return;
 			}
 			default:

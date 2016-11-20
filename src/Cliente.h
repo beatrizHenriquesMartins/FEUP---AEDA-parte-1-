@@ -78,6 +78,8 @@ public:
 	virtual string mostrarCliente();
 	virtual bool isParticular();
 	bool operator <(Cliente c2);
+	void mostrarViagens();
+	void mostrarViagensmensais();
 };
 
 class Particular: public Cliente {
@@ -103,6 +105,7 @@ public:
 	float giveMonthlyPromotion(float p);
 	string mostrarCliente();
 	virtual bool isParticular();
+	int getNfunc();
 };
 
 class ClienteInexistente {

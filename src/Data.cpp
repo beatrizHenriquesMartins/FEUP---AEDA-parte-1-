@@ -56,8 +56,7 @@ void Data::setAno(int a) {
 //
 string Data::toString() {
 	stringstream ss;
-	ss << this->getDia() << "/" << this->getMes() << "/" << this->getAno()
-			<< endl;
+	ss << this->getDia() << "/" << this->getMes() << "/" << this->getAno();
 	return ss.str();
 }
 //
