@@ -495,9 +495,9 @@ void Menu::escreverFicheiroClientesViagensCliente(CompanhiaTaxis &comp) {
 						comp.getClientes()[i]->getHistoricoViagens()[j].getDeslocacao().getDistancia();
 				float custo =
 						comp.getClientes()[i]->getHistoricoViagens()[j].getCustoViagem();
-				file << id << " ; " << data.toString() << " ; " << hi.toString()
-						<< " ; " << hf.toString() << " ; " << part << " ; "
-						<< dest << " ; " << dist << " ; " << custo << endl;
+				file << id << " ; " << data.toString() << " ; " <<"Hora inicial: "<< hi.toString()
+						<< " ; " <<"Hora inicial: "<< hf.toString() << " ; " <<"Percurso: "<< part << "-"
+						<< dest << " Distancia: " << dist << " ; " <<"Custo: "<< custo << endl;
 
 			}
 		}
